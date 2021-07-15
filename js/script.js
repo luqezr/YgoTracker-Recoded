@@ -52,6 +52,6 @@ function clearScreen(){
   subContent1.innerHTML=""
   subContent2.innerHTML=""
   subContent3miniCards.innerHTML=""
-  subContent_advancedMode=""
-  subContent_about
+  subContent_advancedMode.innerHTML=""
+  subContent_about.innerHTML=""
 }
