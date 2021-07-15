@@ -28,7 +28,9 @@ function searchNewCards(value1,value2){
 			//console.log(data)
 			data=data
 			results = data;
+            allCards = data;
 			// console.log(results)
+            searchCardNamesForAutocomplete()
 		 });
 		 
 		
@@ -56,7 +58,6 @@ function getMoreNewCards(){
         .then(data => {		
             //console.log(data)
             results = data;
-            allCards=results
             /*
             setsFilterBar.innerHTML= ` 
             <span onclick='wichBanlistButton(this.id)'> <a href="#" value="Banned" id="Banned"> Banned </a> </span>
@@ -75,16 +76,6 @@ function getMoreNewCards(){
 
 
         
-    var moreResults = loadedCards+loadThisManyCards;
-    for (b = loadedCards; b < moreResults ; b++) {
-        if (b >= results.data.length){
-            console.log('No more cards!');
-            moreNewCardsButton.classList.add("d-none");
-            return} 
-        else {
-        createCard(results.data[b])
-        loadedCards++
-        }
-    }
+
     
 }

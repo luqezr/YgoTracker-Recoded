@@ -1,5 +1,6 @@
 // GENERICS
 var searchingText="Buscando..."
+var searchBarText = "Buscar carta por nombre..."
 
 // SEARCH NEW CARDS . JS
 var newCards_H1 = "20 últimas cartas anunciadas :"
@@ -19,3 +20,7 @@ var getCardArchetype_H1=" cartas del arquetipo "
 
 // GET SET CARDS
 var getSetCards_H1=" cartas del set "
+
+// GET STAPLES
+var getStaples_H1_1="Las cartas staples son cartas genéricas que sirven para la mayoría de los mazos"
+var getStaples_H1_2=""

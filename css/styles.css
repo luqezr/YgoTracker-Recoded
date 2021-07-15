@@ -451,7 +451,10 @@ header form button {
   #advancedSearchBar img{
     width: 25px;
   }
+
   
+/* AUTOCOMPLET TEXTO */
+
   /*the container must be positioned relative:*/
   .autocomplete {
     position: relative;
@@ -491,13 +494,14 @@ header form button {
   .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
-    background-color: #fff; 
+    background-color:#000; 
+    color: #fff;
     border-bottom: 1px solid #d4d4d4; 
   }
   
   /*when hovering an item:*/
   .autocomplete-items div:hover {
-    background-color: #e9e9e9; 
+    background-color: #434242; 
   }
   
   /*when navigating through the items using the arrow keys:*/
@@ -505,7 +509,9 @@ header form button {
     background-color: DodgerBlue !important; 
     color: #ffffff; 
   }
-  
+
+
+/* FIN AUTOCOMPLETE TEXTO */
 
   .modal-footer .shareButton button{ 
 

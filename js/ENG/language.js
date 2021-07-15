@@ -1,5 +1,7 @@
 // GENERICS
 var searchingText="Searching..."
+var searchBarText = "Search by card name..."
+
 
 // SEARCH NEW CARDS . JS
 var newCards_H1 = "20 last announced cards :"
@@ -19,3 +21,7 @@ var getCardArchetype_H1=" cards from the archetype "
 
 // GET SET CARDS
 var getSetCards_H1=" cards from the set "
+
+// GET STAPLES
+var getStaples_H1_1="Staples are generic cards that are good in almost any deck"
+var getStaples_H1_2=""

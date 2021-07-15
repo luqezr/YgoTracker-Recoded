@@ -43,6 +43,7 @@ function loadHome(){
 function loadInSpanish() {
     language = "ESP";
     document.documentElement.lang = "es"
+    document.getElementById("card_name").setAttribute("placeholder", "Buscar carta por nombre...")
     save2localStorage("language", language);
     console.log("Cargando página en Español");
     $("#header").load("content/ESP/navBar.html");
@@ -57,6 +58,7 @@ function loadInSpanish() {
 function loadInEnglish() {
     language = "ENG";
     document.documentElement.lang = "en"
+    document.getElementById("card_name").setAttribute("placeholder", "Search by card name...")
     save2localStorage("language", language);
     console.log("Loading page in English");
     $("#header").load("content/ENG/navBar.html");
