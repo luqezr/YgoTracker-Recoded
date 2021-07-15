@@ -4,6 +4,8 @@ var content = document.getElementById("content");
 var subContent1 = document.getElementById("sub-content-1");
 var subContent2 = document.getElementById("sub-content-2");
 var subContent3 = document.getElementById("sub-content-3");
+var subContent_about = document.getElementById("sub-content-about");
+var subContent_advancedMode = document.getElementById("sub-content-advancedMode");
 var subContent3miniCards = document.getElementById("sub-content-3-miniCards");
 var images;
 var results;
@@ -50,4 +52,6 @@ function clearScreen(){
   subContent1.innerHTML=""
   subContent2.innerHTML=""
   subContent3miniCards.innerHTML=""
+  subContent_advancedMode=""
+  subContent_about
 }

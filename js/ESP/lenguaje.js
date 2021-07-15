@@ -24,3 +24,13 @@ var getSetCards_H1=" cartas del set "
 // GET STAPLES
 var getStaples_H1_1="Las cartas staples son cartas genéricas que sirven para la mayoría de los mazos"
 var getStaples_H1_2=""
+
+// GET BANLIST
+var getBanlist_H1_1="Hay un total de "
+var getBanlist_H1_2=" cartas en la Banlist de "
+var getBanlist_H1_3=" : "
+
+// GET BY FORMAT
+var getByFormat_H1_1="Hay un total de "
+var getByFormat_H1_2=" cartas disponibles en el formato "
+var getByFormat_H1_3=" : "

@@ -65,3 +65,15 @@ function loadInEnglish() {
     $("#scripts").load("content/ENG/scripts.html");
   }
 
+
+function loadAbout(){
+  clearScreen()
+  if (language=="ENG"){
+    console.log("loading about in "+language)
+  $("#sub-content-advancedMode").load("content/ENG/about.html");
+  }
+    else if (language == "ESP"){
+      console.log("loading about in "+language)
+      $("#sub-content-advancedMode").load("content/ESP/about.html");
+    }
+}

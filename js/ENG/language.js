@@ -25,3 +25,13 @@ var getSetCards_H1=" cards from the set "
 // GET STAPLES
 var getStaples_H1_1="Staples are generic cards that are good in almost any deck"
 var getStaples_H1_2=""
+
+// GET BANLIST
+var getBanlist_H1_1="There are a total of "
+var getBanlist_H1_2=" cards in the "
+var getBanlist_H1_3=" banlist : "
+
+// GET BY FORMAT
+var getByFormat_H1_1="There are a total of "
+var getByFormat_H1_2=" cards in the format "
+var getByFormat_H1_3=" available : "

@@ -22,18 +22,8 @@ function searchNewCards(value1,value2){
         
        
 	if (fetchinfo = true ){
-        fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new")
-        .then( cardInfo => cardInfo.json() )
-        .then(data => {		
-			//console.log(data)
-			data=data
-			results = data;
-            allCards = data;
-			// console.log(results)
-            searchCardNamesForAutocomplete()
-		 });
-		 
-		
+    
+        getAllCards()
 		// console.log('fetchinfo='+fetchinfo)
         }
         
@@ -44,38 +34,16 @@ function searchNewCards(value1,value2){
     }
 
 
-        
-function getMoreNewCards(){
-        
-    if (newCards == true){
-
-        fetchRandom=false;
-        moreFilteredResults = false;
-       
-    
-        fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new")
-        .then( cardInfo => cardInfo.json() )
-        .then(data => {		
-            //console.log(data)
-            results = data;
-            /*
-            setsFilterBar.innerHTML= ` 
-            <span onclick='wichBanlistButton(this.id)'> <a href="#" value="Banned" id="Banned"> Banned </a> </span>
-            <span onclick='wichBanlistButton(this.id)'> <a href="#" value="Limited" id="Limited"> Limited </a> </span>
-            <span onclick='wichBanlistButton(this.id)'> <a href="#" value="Semi-Limited" id="Semi-Limited"> Semi-Limited </a> </span>
-            `
-            */
-            for (var b = 0; b < resultsPerPage ; b++) {
-                createCard(results.data[b])}
-                
-            
-         
-        }
-        );
-        }
-
-
-        
-
-    
+function getAllCards(){
+    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new")
+    .then( cardInfo => cardInfo.json() )
+    .then(data => {		
+        //console.log(data)
+        data=data
+        results = data;
+        allCards = data;
+        // console.log(results)
+        searchCardNamesForAutocomplete()
+     });
+     
 }
