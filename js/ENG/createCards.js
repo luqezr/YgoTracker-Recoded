@@ -110,7 +110,7 @@ function createCard(card){
 						</div>
 							<div class='cardInfo'  id='${name}'>
 								<h5>${name}</h5>
-								<img src="/media/icons/banStatus/${banlist_info}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText"> ${type} </span> / <img src="/media/icons/cardIcons/race/${race}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText">${race}</span> /<span class="cardInfoText"> Archetype : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span>  / <span class="cardInfoText"> Card ID : <span onclick='getIdCode(this.id)'> <a href="#" class='getIdCode' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span> </span><br>
+								<img src="/media/icons/banStatus/${banlist_info}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText"> ${type} </span> / <img src="/media/icons/cardIcons/race/${race}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText">${race}</span> /<span class="cardInfoText"> Archetype : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span>  / <span class="cardInfoText"> Card ID : <span onclick='getCardID(this.id)'> <a href="#" class='getCardID' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span> </span><br>
 
 								
 							<p class="cardDescription">${desc}</p>
@@ -187,7 +187,7 @@ function createCard(card){
 			<div class='cardInfo'  id='${name}'>
 			
 				<h5>${name}</h5>
-				<img src="/media/icons/banStatus/${banlist_info}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${type} </span>/ <img src="/media/icons/cardIcons/race/${race}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${race}</span> / <img src="/media/icons/cardIcons/attribute/${attribute}.png" style="width : 20px" class="card-img-bottom" alt="Attribute Icon"><span class="cardInfoText"> ${attribute}</span> /  <img src="/media/icons/cardIcons/${levelOrRankOrLink}.png" style="width : 20px" class="card-img-bottom" alt="Level Icon">  ${level} /<span class="cardInfoText"> Archetype : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span>  /  <span class="cardInfoText"><b> ATK </b>: </span><img src="/media/icons/cardIcons/attack.png" style="width : 18px" class="card-img-bottom" alt="Atk Icon"> ${atk}  /  <span class="cardInfoText"><b> DEF </b>: </span><img src="/media/icons/cardIcons/defense.png" style="width : 18px" class="card-img-bottom" alt="Def Icon"> ${def} /<span class="cardInfoText">  Card ID : <span onclick='getIdCode(this.id)'> <a href="#" class='getIdCode' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span> </span><br>
+				<img src="/media/icons/banStatus/${banlist_info}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${type} </span>/ <img src="/media/icons/cardIcons/race/${race}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${race}</span> / <img src="/media/icons/cardIcons/attribute/${attribute}.png" style="width : 20px" class="card-img-bottom" alt="Attribute Icon"><span class="cardInfoText"> ${attribute}</span> /  <img src="/media/icons/cardIcons/${levelOrRankOrLink}.png" style="width : 20px" class="card-img-bottom" alt="Level Icon">  ${level} /<span class="cardInfoText"> Archetype : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span>  /  <span class="cardInfoText"><b> ATK </b>: </span><img src="/media/icons/cardIcons/attack.png" style="width : 18px" class="card-img-bottom" alt="Atk Icon"> ${atk}  /  <span class="cardInfoText"><b> DEF </b>: </span><img src="/media/icons/cardIcons/defense.png" style="width : 18px" class="card-img-bottom" alt="Def Icon"> ${def} /<span class="cardInfoText">  Card ID : <span onclick='getCardID(this.id)'> <a href="#" class='getCardID' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span> </span><br>
 			
 				<p class="cardDescription">${desc}</p>
 				<p id="${id}_setsTitles"> ${releaseText}</p>
@@ -281,5 +281,85 @@ function createCard(card){
 		 document.getElementById(id+'_setTable').innerHTML = " ";
 		 document.getElementById(id+'_setTable').innerHTML+=` `
 		}
+
+}
+
+
+
+function modifyPriceList(card,set){
+	currentSet=set
+	avg=card.average
+	high=card.high
+	low=card.low
+	oneDay=card.shift.toFixed(3);
+	threeDay=card.shift_3.toFixed(3);
+	sevenDay=card.shift_7.toFixed(3);
+	twentyOneDay=card.shift_21.toFixed(3);
+	thirtyDay=card.shift_30.toFixed(3);
+	ninetyDay=card.shift_90.toFixed(3);
+	ohaeDay=card.shift_180.toFixed(3);
+	tsDay=card.shift_365.toFixed(3);
+	updated=card.updated_at
+
+
+
+	var listTBody= document.getElementsByClassName("cardInfo");
+
+	console.log(listTBody)
+	
+	listTBody[0].innerHTML+=`
+
+	<p>Price Shift for <span onclick='cardSet(this.id)'>  <a  style="cursor: pointer" id="${currentSet}" class='getBySet'  class="close" data-dismiss="modal" aria-label="Close">${currentSet}</a>, updated at ${updated}</p>
+	<thead >		
+	<table >
+								<tr>
+								<th>Average</th>
+								<th>High</th>
+								<th>Low</th>
+								</tr>
+												
+  </thead>
+  <tbody>
+								<tr>
+								<td>$${avg}</td>
+								<td>$${high}</td>
+								<td>$${low}</td>
+								</tr>
+			
+			</table>
+			<br>
+			<table>
+								<tr>
+								<th>1 Day</th>
+								<th>3 Days</th>
+								<th>7 Days</th>
+								<th>21 Days</th>
+								</tr>
+								<tr>
+								<td>$${oneDay}</td>
+								<td>$${threeDay}</td>
+								<td>$${sevenDay}</td>
+								<td>$${twentyOneDay}</td>
+								</tr>
+								</table>
+								<br>
+								<table>
+								<tr>
+								<th>30 Days</th>
+								<th>90 Days</th>
+								<th>180 Days</th>
+								<th>365 Days</th>
+								</tr>
+								<tr>
+								<td>$${thirtyDay}</td>
+								<td>$${ninetyDay}</td>
+								<td>$${ohaeDay}</td>
+								<td>$${tsDay}</td>
+								</tr>
+
+	  </table>
+	`
+
+
 
 }

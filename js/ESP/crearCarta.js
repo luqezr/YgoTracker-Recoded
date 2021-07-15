@@ -292,3 +292,83 @@ card_sets.forEach(function(setName,i){
 	}
 
 }
+
+
+
+function modifyPriceList(card,set){
+	currentSet=set
+	avg=card.average
+	high=card.high
+	low=card.low
+	oneDay=card.shift.toFixed(3);
+	threeDay=card.shift_3.toFixed(3);
+	sevenDay=card.shift_7.toFixed(3);
+	twentyOneDay=card.shift_21.toFixed(3);
+	thirtyDay=card.shift_30.toFixed(3);
+	ninetyDay=card.shift_90.toFixed(3);
+	ohaeDay=card.shift_180.toFixed(3);
+	tsDay=card.shift_365.toFixed(3);
+	updated=card.updated_at
+
+
+
+	var listTBody= document.getElementsByClassName("cardInfo");
+
+	console.log(listTBody)
+	
+	listTBody[0].innerHTML+=`
+
+	<p>Price Shift for <span onclick='cardSet(this.id)'>  <a  style="cursor: pointer" id="${currentSet}" class='getBySet'  class="close" data-dismiss="modal" aria-label="Close">${currentSet}</a>, updated at ${updated}</p>
+	<thead >		
+	<table >
+								<tr>
+								<th>Average</th>
+								<th>High</th>
+								<th>Low</th>
+								</tr>
+												
+  </thead>
+  <tbody>
+								<tr>
+								<td>$${avg}</td>
+								<td>$${high}</td>
+								<td>$${low}</td>
+								</tr>
+			
+			</table>
+			<br>
+			<table>
+								<tr>
+								<th>1 Day</th>
+								<th>3 Days</th>
+								<th>7 Days</th>
+								<th>21 Days</th>
+								</tr>
+								<tr>
+								<td>$${oneDay}</td>
+								<td>$${threeDay}</td>
+								<td>$${sevenDay}</td>
+								<td>$${twentyOneDay}</td>
+								</tr>
+								</table>
+								<br>
+								<table>
+								<tr>
+								<th>30 Days</th>
+								<th>90 Days</th>
+								<th>180 Days</th>
+								<th>365 Days</th>
+								</tr>
+								<tr>
+								<td>$${thirtyDay}</td>
+								<td>$${ninetyDay}</td>
+								<td>$${ohaeDay}</td>
+								<td>$${tsDay}</td>
+								</tr>
+
+	  </table>
+	`
+
+
+
+}

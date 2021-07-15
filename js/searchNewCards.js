@@ -8,12 +8,11 @@ function searchNewCards(value1,value2){
     fetch("https://db.ygoprodeck.com/api/newcards.php")
     .then( cardInfo => cardInfo.json() )
     .then(data => {		
+        clearScreen()
         results=data
         newCardsResults=data
         fetchInfo=true;
         subContent1.innerHTML= `${value1}`;
-        //console.log(data)
-        subContent2.innerHTML = '';
         for (var b = 0; b < 20 ; b++) {
             let card = [data[0][b]]
             //console.log(card)
@@ -57,7 +56,7 @@ function getMoreNewCards(){
         .then(data => {		
             //console.log(data)
             results = data;
-    
+            allCards=results
             /*
             setsFilterBar.innerHTML= ` 
             <span onclick='wichBanlistButton(this.id)'> <a href="#" value="Banned" id="Banned"> Banned </a> </span>

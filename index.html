@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Keep track of all your Yu-Gi-Oh! Cards with Yugiohtracker !">
+    <meta name="description" content="Keep track of all your Yu-Gi-Oh! Cards with Yugioh Tracker !">
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
@@ -42,11 +42,31 @@ info@yugiohtracker.com
 <main>
 
   <div id ="content">
+
+    <div id="searchBar-div">
+      <!-- SEARCH BAR -->
+        <form class="mr-2 my-auto w-100 d-inline-block order-1"  method="GET" action="" name="search" autocomplete="off"> 
+          <div class="input-group" class="autocomplete">
+            <input id="card_name" name="fname" type="text" class="form-control search-menu" autofocus
+              placeholder="Search by card name">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <button type="submit" id="send" class="fa fa-search" aria-hidden="true"></button>
+              </span>
+
+            </div>
+          </div>
+      </form>
+    </div>
     <div id="sub-content-1">
         <!-- TITULO DEL CONTENIDO -->
     </div>
     <div id="sub-content-2">
-      <!-- CONTENIDO -->
+      <!-- CONTENIDO DE  CARTAS NORMALES-->
+    </div>
+    <div id="sub-content-3">
+      <div id="sub-content-3-miniCards" class="row"></div>
+      <!-- CONTENIDO DE MINI CARTAS -->
     </div>
   </div>
 

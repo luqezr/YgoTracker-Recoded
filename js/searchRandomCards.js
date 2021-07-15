@@ -2,9 +2,8 @@
 function fetchxRandomCards(howManyToFetch,value1,value2){
 
 //    window.location.hash = '/randomCards'
-
+    clearScreen()
     subContent1.innerHTML= `${value1}`
-    subContent2.innerHTML= ''
     howManyToFetch = resultsPerPage
     results=[]
     results[0]=[]
