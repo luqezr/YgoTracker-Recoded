@@ -35,3 +35,11 @@ var getBanlist_H1_3=" banlist : "
 var getByFormat_H1_1="There are a total of "
 var getByFormat_H1_2=" cards in the format "
 var getByFormat_H1_3=" available : "
+
+// GET ALL SETS 
+var getAllSets_H1_1="There are a total  of "
+var getAllSets_H1_2=" available Sets : "
+
+// GET ALL ARCHETYPES
+var getAllArchetypes_H1_1="There are a total  of "
+var getAllArchetypes_H1_2=" available Archetypes : "

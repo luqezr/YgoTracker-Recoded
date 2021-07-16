@@ -34,3 +34,12 @@ var getBanlist_H1_3=" : "
 var getByFormat_H1_1="Hay un total de "
 var getByFormat_H1_2=" cartas disponibles en el formato "
 var getByFormat_H1_3=" : "
+
+
+// GET ALL SETS 
+var getAllSets_H1_1="Hay un total de "
+var getAllSets_H1_2=" Sets disponibles : "
+
+// GET ALL ARCHETYPES
+var getAllArchetypes_H1_1="Hay un total de "
+var getAllArchetypes_H1_2=" Arquetipos disponibles : "

@@ -6,7 +6,8 @@ var subContent2 = document.getElementById("sub-content-2");
 var subContent3 = document.getElementById("sub-content-3");
 var subContent_about = document.getElementById("sub-content-about");
 var subContent_advancedMode = document.getElementById("sub-content-advancedMode");
-var subContent3miniCards = document.getElementById("sub-content-3-miniCards");
+var subContent_miniCards = document.getElementById("sub-content-3-miniCards");
+var subContent_filterBar = document.getElementById("sub-content-filterBar");
 var images;
 var results;
 var banlist = "tcg";
@@ -51,7 +52,15 @@ function copyCardID(e){
 function clearScreen(){
   subContent1.innerHTML=""
   subContent2.innerHTML=""
-  subContent3miniCards.innerHTML=""
+  subContent_miniCards.innerHTML=""
+  subContent_advancedMode.innerHTML=""
+  subContent_about.innerHTML=""
+  subContent_filterBar.innerHTML=""
+}
+
+function clearScreenForSetsAndArchetypes(){
+  subContent2.innerHTML=""
+  subContent_miniCards.innerHTML=""
   subContent_advancedMode.innerHTML=""
   subContent_about.innerHTML=""
 }
