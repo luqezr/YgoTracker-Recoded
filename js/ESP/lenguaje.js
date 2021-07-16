@@ -43,3 +43,7 @@ var getAllSets_H1_2=" Sets disponibles : "
 // GET ALL ARCHETYPES
 var getAllArchetypes_H1_1="Hay un total de "
 var getAllArchetypes_H1_2=" Arquetipos disponibles : "
+
+// ADVANCED MODE
+var filteredResults_H1_1 = "Un total de "
+var filteredResults_H1_2 = " cartas coinciden con tu criterio de búsqueda : "

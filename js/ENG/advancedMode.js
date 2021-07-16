@@ -588,9 +588,6 @@ function sortByInverted(parameter,textValue1,textValue2){
 function sortBy(parameter,textValue1,textValue2){ 
 
   clearScreen()
-  if (pathname == "/advancedSearch.html"){
-    advancedSearchBar.classList.remove("d-none");
-}
 
   sortedResults = results.sortBy(parameter)
   //CREATING THE CARDS
