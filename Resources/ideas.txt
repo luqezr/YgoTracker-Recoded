@@ -1,3 +1,96 @@
 Endpoint de la api para filtrar cartas desde x fecha hasta x fecha y con formato TCG
 
 https://db.ygoprodeck.com/api/v7/cardinfo.php?&startdate=01/01/2021&enddate=06/06/2021&dateregion=tcg_date
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+ 
+
+/*
+id
+name
+Type: Tipo de carta
+desc : efecto
+atk
+def
+level
+race
+attribute
+archetype
+
+
+Type
+    Monstruos: 
+        Effect Monster
+        Union Effect Monster
+        Normal Monster
+        Spirit Monster
+        Pendulum Normal Monster
+        Pendulum Effect Monster
+        Pendulum Tuner Effect Monster
+        Tuner Monster
+        Flip Effect Monster
+        Token
+        Ritual Monster
+        Gemini Monster
+
+    Extra Deck :
+        Fusion Monster
+        Pendulum Effect Fusion Monster
+        XYZ Monster
+        XYZ Pendulum Effect Monster
+        Synchro Monster
+        Synchro Pendulum Effect Monster
+        Link Monster
+
+    Magias & Trampas:
+        Spell Card
+        Trap Card
+
+
+Race 
+
+    Monstruos:
+        Aqua
+        Beast
+        Beast-Warrior
+        Creator God
+        Cyberse
+        Dinosaur
+        Divine-Beast
+        Dragon
+        Fairy
+        Fiend
+        Fish
+        Insect
+        Machine
+        Plant
+        Psychic
+        Pyro
+        Reptile
+        Rock
+        Sea Serpent
+        Spellcaster
+        Thunder
+        Warrior
+        Winged Beast
+        Wyrm
+        Zombie
+        
+    Magias:
+        Normal
+        Continuous
+        Field
+        Quick-Play
+        Ritual
+        Equip
+    
+    Trampas:
+        Normal
+        Continuous
+        Counter
+
+        */

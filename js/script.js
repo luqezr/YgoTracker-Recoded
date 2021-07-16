@@ -20,11 +20,13 @@ var resultsPerPage = 18;
 
 // LOCALSTORAGE
 
+// SAVE
 function save2localStorage(value1, value2) {
   localStorage.setItem(value1, JSON.stringify(value2));
   console.log(value1 + " was saved with a value of " + value2);
 }
 
+// READ
 function readLocalStorage(value1) {
   if (localStorage.getItem(value1)) {
     value2 = JSON.parse(localStorage.getItem(value1));
@@ -36,6 +38,7 @@ function readLocalStorage(value1) {
 }
 
 
+// COPY CARD ID
 
 function copyCardID(e){
 	e = e || window.event;
@@ -48,15 +51,18 @@ function copyCardID(e){
 	copy(cardShareURL)
 }
 
+// CLEAR SCREEN CONTENT
 
 function clearScreen(){
   subContent1.innerHTML=""
   subContent2.innerHTML=""
   subContent_miniCards.innerHTML=""
-  subContent_advancedMode.innerHTML=""
+  // subContent_advancedMode.innerHTML=""
   subContent_about.innerHTML=""
   subContent_filterBar.innerHTML=""
 }
+
+// CLEAR CONTENT FOR SETS AND ARCHETYPES
 
 function clearScreenForSetsAndArchetypes(){
   subContent2.innerHTML=""
@@ -64,3 +70,20 @@ function clearScreenForSetsAndArchetypes(){
   subContent_advancedMode.innerHTML=""
   subContent_about.innerHTML=""
 }
+
+// BACK TO TOP BUTTON
+ 
+var btn = $('#back2top');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
