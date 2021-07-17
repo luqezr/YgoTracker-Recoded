@@ -3,11 +3,15 @@ Endpoint de la api para filtrar cartas desde x fecha hasta x fecha y con formato
 https://db.ygoprodeck.com/api/v7/cardinfo.php?&startdate=01/01/2021&enddate=06/06/2021&dateregion=tcg_date
 
 
+///////////////////////////////////////////////////////////////////////////////////
 
+Se puede agregar imagenes a los sets con este Link
+https://static-3.studiobebop.net/ygo_data/set_images/Battles_of_Legend__Hero's_Revenge.jpg
+
+ 
 
 ///////////////////////////////////////////////////////////////////////////////////
 
- 
 
 /*
 id

@@ -51,11 +51,21 @@ getYgopricesPrice()
         // window.location.hash = `/set/${setName}`
         
         	
-       console.log(data);
+        console.log(data);
         results = data;
-        //if(data.length > 40){images = confirm("Load Images?") }
-        subContent1.innerHTML= ` ${data.data.length} ${textValue1} : <span onclick='cardSet(this.id)'> <a href="#" class='getBySet' id='${setName}'>  ${setName}  </a></span>`;
-      
+        setImage = setName.replace(/ /g, "_");
+        setImage = setImage.replace(/:/g,"_");
+
+        subContent1.innerHTML= ` 
+        <div class="setDivHeader-subContent1">
+            <div class="setDiv-subContent1">      
+            ${data.data.length}${textValue1}<span onclick='cardSet(this.id)'><a href="#" class='getBySet' id='${setName}'>${setName}</a></span>
+            </div>
+		    <div class="setImage-subContent1"> 
+                <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" alt="set Image" srcset=""> 
+            </div>
+        </div>
+        `
 
         for (b = 0; b < resultsPerPage && !(b > results.data.length) ; b++) {
             if (b >= data.length){console.log('No more cards!'); return} else {
