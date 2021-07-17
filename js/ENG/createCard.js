@@ -142,28 +142,24 @@ function createCard(card){
 				<div class="miniCard" class="card" class="col-sm" >
 		
 
-		<div class="modal fade modalCardImage" id="ModalID${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal fade modalCardImage" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content modalImage">
 					<div class="modal-header">
-					
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button>
 						<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
-						
+
 					</div>
 					
 					<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					</div>
  
-						</div>
 					</div>
 				</div>
-
-
 			</div>
+
+
+		</div>
 	
 		`
 
@@ -217,9 +213,6 @@ function createCard(card){
 					<div class="modal-content modalImage">
 						<div class="modal-header">
 						
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
 							<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
 							
 						</div>

@@ -22,27 +22,6 @@ function getCardBySet(setName,textSearchValue,textValue1){
     </div>
     `;
     
-function getYgopricesPrice(setName){
-    var request = new XMLHttpRequest();
-
-request.open('GET', `http://yugiohprices.com/api/price_for_print_tag/${setName}`);
-
-request.onreadystatechange = function () {
-  if (this.readyState === 4) {
-    // console.log('Status:', this.status);
-    // console.log('Headers:', this.getAllResponseHeaders());
-    // console.log('Body:', this.responseText);
-    yugiohPricesResult = this.responseText
-  }
-
-};
-
-request.send();
-console.log(yugiohPricesResult)
-}
-
-getYgopricesPrice()
-
     fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset="+setName+"&misc=yes")
     .then( cardInfo => cardInfo.json() )
     .then(data => {	
@@ -62,7 +41,29 @@ getYgopricesPrice()
             ${data.data.length}${textValue1}<span onclick='cardSet(this.id)'><a href="#" class='getBySet' id='${setName}'>${setName}</a></span>
             </div>
 		    <div class="setImage-subContent1"> 
-                <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" alt="set Image" srcset=""> 
+                <div class="setImage cardGridIMG"> 
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
+                        <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
+                
+                    </button>
+                </div>
+                <div class="modal fade modalCardImage" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content modalImage">
+                            <div class="modal-header">
+                            
+                                <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" >
+                                
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         `

@@ -27,10 +27,7 @@ function createMiniCard(card){
 				<div class="modal-content">
 					<div class="modal-header">
 
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-
+					
 						<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" >
 						
 					</div>
@@ -82,14 +79,10 @@ function createMiniCard(card){
 			<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
 			</button>
 
-			<div class="modal fade cardModal" id="ModalID${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal fade cardModal" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
 
 							<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" >
 							

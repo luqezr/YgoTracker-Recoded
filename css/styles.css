@@ -325,14 +325,14 @@ font-family: CardEffect;
 }
 
 .setImages {
-  width: 0px;
+    max-width: 250px;
 }
 
 .setGrid {
   padding: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -386,6 +386,10 @@ header input :hover {
 #send {
   color: white !important;
   border-width: 0;
+}
+
+.dropdown-menu {
+    border-radius: 7;
 }
 
 header form span {
@@ -487,6 +491,7 @@ header form button {
 .autocomplete {
   position: relative;
   display: inline-block;
+  
 }
 
 input {

@@ -40,22 +40,35 @@ function autocomplete(inp, arr) {
   
   inp.addEventListener("keydown", function(e) {
       var x = document.getElementById(this.id + "autocomplete-list");
+      
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
-        
+        // WHAT HAPPENS IF DOWN KEY PRESSED
         currentFocus++;
-        
         addActive(x);
+
+
       } else if (e.keyCode == 38) { 
+        // WHAT HAPPENS IF DOWN KEY PRESSED
         currentFocus--;
-        
         addActive(x);
-      } else if (e.keyCode == 13) {
+
+      } else if (e.keyCode == 39) {
+        console.log("right key pressed! ")
+        closeAllLists(e.target);
         
-        e.preventDefault();
+      } else if (e.keyCode == 13) {
+        // WHAT HAPPENS IF ENTER IS PRESSED
+        console.log(addActive(x))
+        console.log("enter pressed, searching")
+        closeAllLists(e.target)
+        console.log("Searching : "+cardName)
+        searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)
+
+
         if (currentFocus > -1) {
-          
           if (x) x[currentFocus].click();
+          
         }
       }
   });
@@ -84,6 +97,8 @@ function autocomplete(inp, arr) {
 
 document.addEventListener("click", function (e) {
     closeAllLists(e.target);
+    console.log(e.target)
+    console.log("element clicked")
     
 });
 }

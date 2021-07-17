@@ -21,9 +21,10 @@ function searchCards(cardName, textValue1,textValue2,textValue3,textValue4) {
     .then((cardInfo) => cardInfo.json())
     .then((data) => {
       results = data;
-      console.log(results)
+      // console.log(results)
+      
       subContent1.innerHTML = `<h2>${textValue1} ${results.data.length} ${textValue2}</h2>`;
-      for (let b = 0; b < resultsPerPage; b++) {
+      for (let b = 0; b <= resultsPerPage; b++) {
         // console.log(results.data[b])
         createCard(results.data[b]);
       }
