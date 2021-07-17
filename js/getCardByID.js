@@ -3,7 +3,7 @@
 function getCardID(e){
 	e = e || window.event;
 	e = e.target || e.srcElement
-	console.log('cardID:' +e.id)
+	// console.log('cardID:' +e.id)
 	var cardId = e.id
 	getCardByID(cardId,searchingText)
 }
@@ -17,7 +17,7 @@ function getCardByID(cardId,textValue1,textValue2){
 
     subContent2.innerHTML= `
     <div id='wait'>
-    <img src="/img/wait/wait00.gif" alt="Wait" style="width: '400px'"> 
+    <img src="/media/wait/wait_.gif" alt="Wait" style="width: '400px'"> 
     <br>
     <h3>${textValue1}</h3>
     </div>

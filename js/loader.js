@@ -4,21 +4,21 @@ $(document).ready(function () {
   });
 
 function loadHome(){
-    console.log("ready!");
+    // console.log("ready!");
   
     language = readLocalStorage("language");
-    console.log(language);
+    // console.log(language);
   
     if (language == undefined) {
       if (confirm("Load in English?")) {
         language = "ENG";
-        console.log(language);
+        // console.log(language);
         loadInEnglish();
         return;
   
       } else if (confirm("Cargar en Español?")) {
         language = "ESP";
-        console.log(language);
+        // console.log(language);
         loadInSpanish()
         return;
   
@@ -45,7 +45,7 @@ function loadInSpanish() {
     document.documentElement.lang = "es"
     document.getElementById("card_name").setAttribute("placeholder", "Buscar carta por nombre...")
     save2localStorage("language", language);
-    console.log("Cargando página en Español");
+    // console.log("Cargando página en Español");
     $("#header").load("content/ESP/navBar.html");
     $("#scripts").load("content/ESP/scripts.html");
   }
@@ -60,7 +60,7 @@ function loadInEnglish() {
     document.documentElement.lang = "en"
     document.getElementById("card_name").setAttribute("placeholder", "Search by card name...")
     save2localStorage("language", language);
-    console.log("Loading page in English");
+    // console.log("Loading page in English");
     $("#header").load("content/ENG/navBar.html");
     $("#scripts").load("content/ENG/scripts.html");
   }
@@ -69,11 +69,11 @@ function loadInEnglish() {
 function loadAbout(){
   clearScreen()
   if (language=="ENG"){
-    console.log("loading about in "+language)
+    // console.log("loading about in "+language)
     $("#sub-content-about").load("content/ENG/about.html");
   }
     else if (language == "ESP"){
-      console.log("loading about in "+language)
+      // console.log("loading about in "+language)
       $("#sub-content-about").load("content/ESP/about.html");
     }
 }

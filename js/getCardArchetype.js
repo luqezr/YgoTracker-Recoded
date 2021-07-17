@@ -13,7 +13,7 @@ function getCardsOfArchetype(cardvalue, value1, value2) {
   var cardvalue = archetype;
   subContent2.innerHTML = `
     <div id='wait'>
-    <img src="/img/wait6.gif" alt="Wait" style="width: '400px'"> 
+    <img src="/media/wait/wait_archetype.gif" alt="Wait" style="width: '400px'"> 
     <br>
     <h3>${value1}</h3>
     </div>

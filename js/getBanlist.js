@@ -15,12 +15,12 @@ function wichBanlistButton(e){
     
    filteredResults= results.data.filter(function(card){result.includes(banlistButton)})
 
-    console.log('banlistButton hitted, value ='+ banlistButton+'/ banlist value ='+ banlist)
+    // console.log('banlistButton hitted, value ='+ banlistButton+'/ banlist value ='+ banlist)
 
     var filteredBanlist = results.data.filter(result => banlist == `${banlistButton}`);
 
-    console.log(filteredBanlist)
-    console.log(results.data.filter(result => banlist == `${banlistButton}`))
+    // console.log(filteredBanlist)
+    // console.log(results.data.filter(result => banlist == `${banlistButton}`))
 
     }
 

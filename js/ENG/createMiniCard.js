@@ -28,7 +28,7 @@ function createMiniCard(card){
 					<div class="modal-header">
 
 					
-						<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" >
+						<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" class="close" data-dismiss="modal" >
 						
 					</div>
 					<div class="modal-body">
@@ -50,14 +50,10 @@ function createMiniCard(card){
 					
 									</div>
 								</div>
-							
-								<div class="modal-footer">
 								<div class='shareButton'>
 								<span onclick='copyCardID(this.id)'><button class=js-copy-card-url-${cardID} class='copyCardID' data-toggle="tooltip" data-placement="bottom" title="Copy card link" class="close" data-dismiss="modal" aria-label="Close" id='button.${id}'> <i id='${id}' class="fa fa-share-square-o" aria-hidden="true"></i> </button></span>
 								</div>
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -84,7 +80,7 @@ function createMiniCard(card){
 					<div class="modal-content">
 						<div class="modal-header">
 
-							<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" >
+							<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" class="close" data-dismiss="modal">
 							
 							
 						</div>
@@ -107,13 +103,9 @@ function createMiniCard(card){
 			
 							</div>
 						</div>
-
-						
-						<div class="modal-footer">
-						<div class='shareButton'>
+<div class='shareButton'>
 						<span onclick='copyCardID(this.id)'><button class=js-copy-card-url-${cardID} class='copyCardID' data-toggle="tooltip" data-placement="bottom" title="Copy card link" class="close" data-dismiss="modal" aria-label="Close" id='button.${id}'> <i id='${id}' class="fa fa-share-square-o" aria-hidden="true"></i> </button></span> 
 						</div>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</div>

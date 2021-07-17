@@ -146,15 +146,10 @@ function createCard(card){
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content modalImage">
 					<div class="modal-header">
-						<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
+						<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" class="close" data-dismiss="modal">
 
 					</div>
-					
-					<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					</div>
- 
-					</div>
+				
 				</div>
 			</div>
 
@@ -213,12 +208,8 @@ function createCard(card){
 					<div class="modal-content modalImage">
 						<div class="modal-header">
 						
-							<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
+							<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" class="close" data-dismiss="modal">
 							
-						</div>
-					
-						<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</div>
@@ -298,7 +289,7 @@ function modifyPriceList(card,set){
 
 	var listTBody= document.getElementsByClassName("cardInfo");
 
-	console.log(listTBody)
+	// console.log(listTBody)
 	
 	listTBody[0].innerHTML+=`
 

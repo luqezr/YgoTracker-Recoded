@@ -1,14 +1,14 @@
 function getCardSetCode(e) {
     e = e || window.event;
     e = e.target || e.srcElement;
-    console.log("cardID:" + e.id);
+    // console.log("cardID:" + e.id);
     cardSetCode = e.id;
     getCardBySetCode(cardSetCode);
   }
   
   function getCardBySetCode(cardSetCode,value1) {
     clearScreen()
-    console.log("Get card by set code");
+    // console.log("Get card by set code");
     // window.location.hash = `/setcode/${cardSetCode}`;
 
     function getYgopricesPrice(cardId) {
@@ -29,13 +29,13 @@ function getCardSetCode(e) {
               // console.log('Body:', this.responseText);
               yugiohPricesResult = JSON.parse(this.responseText);
       
-              console.log(yugiohPricesResult.data);
-              console.log(yugiohPricesResult.data.price_data.name);
-              console.log(yugiohPricesResult.data.price_data.price_data.data.prices)
+              // console.log(yugiohPricesResult.data);
+              // console.log(yugiohPricesResult.data.price_data.name);
+              // console.log(yugiohPricesResult.data.price_data.price_data.data.prices)
           
             }
           };
-          console.log(yugiohPricesResult)
+          // console.log(yugiohPricesResult)
           request.send();
 
       

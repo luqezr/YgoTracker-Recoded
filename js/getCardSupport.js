@@ -36,7 +36,7 @@
     setTimeout(function () {
 
       for (var b = 0; b < yugiohPricesResult.length; b++) {
-      console.log(yugiohPricesResult[b])
+      // console.log(yugiohPricesResult[b])
       getSupportCards(yugiohPricesResult[b])
       // createCard(yugiohPricesResult[b])
    }

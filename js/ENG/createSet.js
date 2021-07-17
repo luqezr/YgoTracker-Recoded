@@ -30,14 +30,10 @@ function createSet(set,textValue1,textValue2,textValue3,textValue4,textValue5){
 					<div class="modal-content modalImage">
 						<div class="modal-header">
 
-							<img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" >
+							<img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" class="close" data-dismiss="modal">
 							
 						</div>
 						
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						</div>
-	
 					</div>
 				</div>
 			</div>

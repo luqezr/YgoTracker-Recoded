@@ -4,7 +4,7 @@ var archetypesPerPage = 100
 function getArchetypeLetter(e){
 	e = e || window.event;
 	e = e.target || e.srcElement
-	console.log('Archetype Letter:' +e.id)
+	// console.log('Archetype Letter:' +e.id)
     archetypeLetter = e.id
     clearScreenForSetsAndArchetypes()
 

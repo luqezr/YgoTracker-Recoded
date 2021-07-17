@@ -5,7 +5,7 @@ searchButton.addEventListener("click", function getCard(evt) {
   evt.preventDefault();
     // window.location.hash = `/search/${cardName}`;
     var cardName = document.search.fname.value;
-    console.log("Searching : "+cardName)
+    // console.log("Searching : "+cardName)
     clearScreen()
     searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)
 

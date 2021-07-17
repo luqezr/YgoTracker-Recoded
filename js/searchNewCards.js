@@ -2,7 +2,7 @@
 
 function searchNewCards(value1,value2){
 
-    console.log("searching new cards...")
+    // console.log("searching new cards...")
     // window.location.hash = '/newCards'
 
     fetch("https://db.ygoprodeck.com/api/newcards.php")

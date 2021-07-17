@@ -59,10 +59,10 @@ function autocomplete(inp, arr) {
         
       } else if (e.keyCode == 13) {
         // WHAT HAPPENS IF ENTER IS PRESSED
-        console.log(addActive(x))
-        console.log("enter pressed, searching")
+        // console.log(addActive(x))
+        // console.log("enter pressed, searching")
         closeAllLists(e.target)
-        console.log("Searching : "+cardName)
+        // console.log("Searching : "+cardName)
         searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)
 
 
@@ -97,8 +97,8 @@ function autocomplete(inp, arr) {
 
 document.addEventListener("click", function (e) {
     closeAllLists(e.target);
-    console.log(e.target)
-    console.log("element clicked")
+    // console.log(e.target)
+    // console.log("element clicked")
     
 });
 }

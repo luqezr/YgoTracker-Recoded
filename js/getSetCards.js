@@ -1,7 +1,7 @@
 function cardSet(e){
 	e = e || window.event;
 	e = e.target || e.srcElement
-	console.log('cardSet:' +e.id)
+	// console.log('cardSet:' +e.id)
 	setName = e.id
 	getCardBySet(setName,searchingText,getSetCards_H1)
 }
@@ -16,7 +16,7 @@ function getCardBySet(setName,textSearchValue,textValue1){
  
     subContent2.innerHTML= `
     <div id='wait'>
-    <img src="/img/wait/wait04.gif" alt="Wait" style="width: '400px'"> 
+    <img src="/media/wait/wait_format.gif" alt="Wait" style="width: '400px'"> 
     <br>
     <h3>${textSearchValue}</h3>
     </div>
@@ -30,7 +30,7 @@ function getCardBySet(setName,textSearchValue,textValue1){
         // window.location.hash = `/set/${setName}`
         
         	
-        console.log(data);
+        // console.log(data);
         results = data;
         setImage = setName.replace(/ /g, "_");
         setImage = setImage.replace(/:/g,"_");
@@ -52,13 +52,10 @@ function getCardBySet(setName,textSearchValue,textValue1){
                         <div class="modal-content modalImage">
                             <div class="modal-header">
                             
-                                <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" >
+                                <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" class="close" data-dismiss="modal">
                                 
                             </div>
                             
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
         
                         </div>
                     </div>

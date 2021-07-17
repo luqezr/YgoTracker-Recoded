@@ -146,6 +146,7 @@ img.center {
 .modal-footer button,
 .modalCardImage .modal-content {
   background-color: rgba(0, 0, 0, 0.9);
+  width: 100%;
 }
 /* 
 .modalCardImage .modal-footer{ 
@@ -342,12 +343,12 @@ font-family: CardEffect;
 
 .setImage-subContent1 img{
     max-width: 350px;
-    max-height: 350px;
+    /* height: 350px; */
 }
 
 .setImage img{
     max-width: 200px;
-    max-height: 200px;
+    /* height: 200px; */
 }
 .setDivHeader-subContent1{
     display: flex;
@@ -423,6 +424,13 @@ header form button {
   flex-direction: row;
 }
 
+#sub-content-3-miniCards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
 .showRisingAndFallingInfo {
   width: 100%;
 }
@@ -478,7 +486,7 @@ header form button {
   font-family: CardTitle;
   font-size: 18pt;
   background-color: rgba(255, 255, 255, 0.7);
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 #advancedSearchBar img {
