@@ -3,6 +3,8 @@ function wichBanlist(e){
 	e = e.target || e.srcElement
 	//console.log('Banlist for : ' +e.id)
 	banlist = e.id
+    
+
     getBanlist(banlist, getBanlist_H1_1 ,getBanlist_H1_2,getBanlist_H1_3)
     
     }
@@ -29,7 +31,9 @@ function wichBanlistButton(e){
 
 function getBanlist(cardvalue,textValue1,textValue2,textValue3){
 
+
     clearScreen()
+    resetMoreResults()
 
     // window.location.hash = `/banlist/${cardvalue}`
 

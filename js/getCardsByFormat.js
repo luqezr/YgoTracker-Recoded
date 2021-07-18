@@ -12,6 +12,7 @@ function wichFormat(e){
 function getByFormat(format,textValue1,textValue2,textValue3){
     
     clearScreen()
+    resetMoreResults()
   
     // window.location.hash = `/format/${format}`
 

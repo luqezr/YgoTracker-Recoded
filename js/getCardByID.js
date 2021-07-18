@@ -14,6 +14,7 @@ function getCardID(e){
 function getCardByID(cardId,textValue1,textValue2){
     // window.location.hash = '/searchById'
     clearScreen()
+    resetMoreResults()
 
     subContent2.innerHTML= `
     <div id='wait'>

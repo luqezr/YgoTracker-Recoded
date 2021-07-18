@@ -2,6 +2,9 @@
 
 function searchNewCards(value1,value2){
 
+
+    clearScreen()
+    resetMoreResults()
     // console.log("searching new cards...")
     // window.location.hash = '/newCards'
 

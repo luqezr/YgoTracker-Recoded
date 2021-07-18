@@ -87,3 +87,36 @@ btn.on('click', function(e) {
   e.preventDefault();
   $('html, body').animate({scrollTop:0}, '300');
 });
+
+
+// LOAD MORE CARDS
+
+var loadedCards = resultsPerPage
+var loadThisManyCards = 12
+var moreResults
+
+function resetMoreResults(){
+  moreResults=0
+  loadedCards = resultsPerPage
+}
+
+function loadMoreCards(){
+
+  moreResults = loadedCards+loadThisManyCards;
+
+  for (b = loadedCards; b < moreResults ; b++) {
+      if (b >= results.data.length){
+          console.log('No more cards!');
+          resetMoreResults()
+          return} 
+      else {
+        console.log(loadedCards)
+        console.log(results.data[(b-1)])
+        console.log(results.data[b])
+        console.log(results.data[b+1])
+      createCard(results.data[b])
+      loadedCards++
+      console.log(loadedCards)
+      }
+  }
+}

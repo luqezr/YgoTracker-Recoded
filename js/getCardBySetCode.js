@@ -6,10 +6,20 @@ function getCardSetCode(e) {
     getCardBySetCode(cardSetCode);
   }
   
-  function getCardBySetCode(cardSetCode,value1) {
+  function getCardBySetCode(cardSetCode,textValue1) {
     clearScreen()
+    resetMoreResults()
     // console.log("Get card by set code");
     // window.location.hash = `/setcode/${cardSetCode}`;
+
+    subContent2.innerHTML= `
+    <div id='wait'>
+    <img src="/media/wait/wait_.gif" alt="Wait" style="width: '400px'"> 
+    <br>
+    <h3>${textValue1}</h3>
+    </div>
+    `;
+
 
     function getYgopricesPrice(cardId) {
           var request = new XMLHttpRequest();
@@ -71,6 +81,7 @@ function getCardSetCode(e) {
         .then((cardInfo) => cardInfo.json())
         .then((data) => {
           //console.log(data);
+          clearScreen()
           results = data;
           console.log(results);
           console.log(results.data[0])

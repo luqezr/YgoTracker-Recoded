@@ -7,6 +7,7 @@ function getArchetypeLetter(e){
 	// console.log('Archetype Letter:' +e.id)
     archetypeLetter = e.id
     clearScreenForSetsAndArchetypes()
+    resetMoreResults()
 
     var filteredArchetypes = results.filter(result => result.archetype_name[0] == `${archetypeLetter}`);
     //console.log(filteredArchetypes)

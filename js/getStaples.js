@@ -2,6 +2,7 @@
 function getStaples(textValue1, textValue2){
     
     clearScreen()
+    resetMoreResults()
 
 //    window.location.hash = `/staples`
 

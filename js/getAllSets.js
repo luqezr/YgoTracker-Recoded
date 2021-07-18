@@ -6,6 +6,7 @@ function getSetLetter(e) {
     e = e.target || e.srcElement
     setLetter = e.id
     clearScreenForSetsAndArchetypes()
+    resetMoreResults()
     var filteredSets = results.filter(result => result.set_name[0] == `${setLetter}`);
 
     for (b = 0; b < filteredSets.length; b++) {

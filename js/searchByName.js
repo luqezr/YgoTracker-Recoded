@@ -7,6 +7,7 @@ searchButton.addEventListener("click", function getCard(evt) {
     var cardName = document.search.fname.value;
     // console.log("Searching : "+cardName)
     clearScreen()
+    resetMoreResults()
     searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)
 
 })

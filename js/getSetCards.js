@@ -11,6 +11,8 @@ function cardSet(e){
 function getCardBySet(setName,textSearchValue,textValue1){
 
     clearScreen()
+    resetMoreResults()
+    console.log(moreResults)
 
 //    document.location.href=`http://yugiohtracker.com/${setName}`
  
@@ -50,12 +52,9 @@ function getCardBySet(setName,textSearchValue,textValue1){
                 <div class="modal fade modalCardImage" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content modalImage">
-                            <div class="modal-header">
-                            
-                                <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" class="close" data-dismiss="modal">
+                          
+                        <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" class="close" data-dismiss="modal">
                                 
-                            </div>
-                            
         
                         </div>
                     </div>

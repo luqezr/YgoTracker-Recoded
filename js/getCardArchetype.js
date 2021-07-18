@@ -9,6 +9,7 @@ function cardArchetype(e) {
 }
 
 function getCardsOfArchetype(cardvalue, value1, value2) {
+  resetMoreResults()
   clearScreen();
   var cardvalue = archetype;
   subContent2.innerHTML = `
