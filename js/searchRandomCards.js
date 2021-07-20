@@ -24,7 +24,7 @@ function searchRandomCards(where){
     .then(data => {
         //console.log(data)
         results[0].push(data)
-        createCard(data)
+        whatType(data)
         fetchRandom=true;
         
 })};

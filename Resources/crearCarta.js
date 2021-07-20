@@ -26,7 +26,7 @@ function assignValuesToCard (card){
 	banlist_info = card.banlist
 	misc_info = card.misc_info
 	if (misc_info === undefined){
-		releaseText="This card hasn't been released yet";
+		releaseText="Esta carta fue anunciada pero aun no ha sido impresa ni en TCG ni en OCG";
 	} else { 
 			if (misc_info[0].tcg_date == undefined){
 			releaseText = `Esta carta fue impresa en OCG el ${misc_info[0].ocg_date} pero todavía no está disponible en TCG` 
@@ -58,6 +58,7 @@ function assignValuesToCard (card){
 		//cardPrice = ('Amazon price : '+ card_prices[0].amazon_price + '<br>CardMarket price : ' +  card_prices[0].cardmarket_price+ '<br>Ebay price : ' +  card_prices[0].ebay_price + '<br>TCGPlayer price : ' +   card_prices[0].tcgplayer_price +'<br>')
 	} else { cardPrice = '' }	
 
+	// console.log(banlist_info)
 	if (banlist_info == undefined ){
 		banlist_info = "Ilimitada";
 		banlist_info_image = "Unlimited"
@@ -65,13 +66,29 @@ function assignValuesToCard (card){
 	} 
 
 
+
 	if (banlist == "tcg" ){
 		banlist_info = banlist_info.ban_tcg;
 		if (banlist_info == undefined ){
 			banlist_info = "Ilimitada";		
 			banlist_info_image = "Unlimited"
-	
-		} 
+			
+		} else if (banlist_info == "Limited" ){
+		
+			banlist_info = "Limitada";
+			banlist_info_image = "Limited"
+		
+			} else if (banlist_info == "Semi-Limited" ){
+					
+				banlist_info = "Semi-Limitada";
+				banlist_info_image = "Semi-Limited"
+			
+				} else if (banlist_info == "Banned" ){
+					
+					banlist_info = "Baneada";
+					banlist_info_image = "Banned"
+				
+					}
 	 } 
 
 	if (banlist == "ocg" ){
@@ -115,7 +132,7 @@ if (type == "Trap Card" || type == "Spell Card" ){
 					</div>
 						<div class='cardInfo'  id='${name}'>
 							<h5>${name}</h5>
-							<img src="/media/icons/banStatus/${banlist_info_image}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type_image}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText"> ${type} </span> / <img src="/media/icons/cardIcons/race/${race_image}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText">${race}</span> /<span class="cardInfoText"> Arquetipo : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span>  / <span class="cardInfoText"> Card ID : <span onclick='getIdCode(this.id)'> <a href="#" class='getIdCode' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span> </span><br>
+							<img src="/media/icons/banStatus/${banlist_info_image}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type_image}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText"> ${type} </span> / <img src="/media/icons/cardIcons/race/${race_image}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText">${race}</span> /<span class="cardInfoText"> Arquetipo : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span>  / <span class="cardInfoText"> Card ID :<span onclick='getCardID(this.id)'> <a href="#" class='getCardID' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span>  </span><br>
 
 							
 						<p class="cardDescription">${desc}</p>
@@ -196,7 +213,7 @@ if (type == "Trap Card" || type == "Spell Card" ){
 		<div class='cardInfo'  id='${name}'>
 		
 			<h5>${name}</h5>
-			<img src="/media/icons/banStatus/${banlist_info_image}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type_image}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${type} </span>/ <img src="/media/icons/cardIcons/race/${race_image}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${race}</span> / <img src="/media/icons/cardIcons/attribute/${attribute_image}.png" style="width : 20px" class="card-img-bottom" alt="Attribute Icon"><span class="cardInfoText"> ${attribute}</span> /  <img src="/media/icons/cardIcons/${levelOrRankOrLink}.png" style="width : 20px" class="card-img-bottom" alt="Level Icon">  ${level} /<span class="cardInfoText"> Arquetipo : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span>  /  <span class="cardInfoText"><b> ATK </b>: </span><img src="/media/icons/cardIcons/attack.png" style="width : 18px" class="card-img-bottom" alt="Atk Icon"> ${atk}  /  <span class="cardInfoText"><b> DEF </b>: </span><img src="/media/icons/cardIcons/defense.png" style="width : 18px" class="card-img-bottom" alt="Def Icon"> ${def} /<span class="cardInfoText">  Card ID : <span onclick='getIdCode(this.id)'> <a href="#" class='getIdCode' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span> </span><br>
+			<img src="/media/icons/banStatus/${banlist_info_image}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type_image}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${type} </span>/ <img src="/media/icons/cardIcons/race/${race_image}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${race}</span> / <img src="/media/icons/cardIcons/attribute/${attribute_image}.png" style="width : 20px" class="card-img-bottom" alt="Attribute Icon"><span class="cardInfoText"> ${attribute}</span> /  <img src="/media/icons/cardIcons/${levelOrRankOrLink}.png" style="width : 20px" class="card-img-bottom" alt="Level Icon">  ${level} /<span class="cardInfoText"> Arquetipo : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span>  /  <span class="cardInfoText"><b> ATK </b>: </span><img src="/media/icons/cardIcons/attack.png" style="width : 18px" class="card-img-bottom" alt="Atk Icon"> ${atk}  /  <span class="cardInfoText"><b> DEF </b>: </span><img src="/media/icons/cardIcons/defense.png" style="width : 18px" class="card-img-bottom" alt="Def Icon"> ${def} /<span class="cardInfoText">  Card ID :<span onclick='getCardID(this.id)'> <a href="#" class='getCardID' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span>  </span><br>
 		
 			<p class="cardDescription">${desc}</p>
 			<p id="${id}_setsTitles"> ${releaseText}</p>

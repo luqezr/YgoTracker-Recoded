@@ -29,7 +29,7 @@ function getCardByID(cardId,textValue1,textValue2){
     .then(data => {	
         results = data;
         clearScreen()
-        createCard(results.data[0])
+        whatType(results.data[0])
                 
         });
 

@@ -2,6 +2,20 @@
 var searchingText="Buscando..."
 var searchBarText = "Buscar carta por nombre..."
 
+// CREATE CARD
+var createCard_releaseText_1="Esta carta fue anunciada pero aun no ha sido impresa ni en TCG ni en OCG"
+var createCard_releaseText_2_1="Esta carta fue impresa en OCG el "
+var createCard_releaseText_2_2=" pero todavía no está disponible en TCG"
+var createCard_releaseText_3_1="Esta carta fue impresa en OCG el "
+var createCard_releaseText_3_2=" y el "
+var createCard_releaseText_3_3=" en TCG y está disponible en los siguientes sets: "
+var createCard_banlist_info_unlimited="Ilimitada"
+var createCard_banlist_info_limited="Limitada"
+var createCard_banlist_info_semi_limited="Semi-Limitada"
+var createCard_banlist_info_banned="Baneada"
+var createCard_attribute_spell="Magia"
+var createCard_attribute_trap="Trampa"
+
 // SEARCH NEW CARDS . JS
 var newCards_H1 = "20 últimas cartas anunciadas :"
 
@@ -47,3 +61,12 @@ var getAllArchetypes_H1_2=" Arquetipos disponibles : "
 // ADVANCED MODE
 var filteredResults_H1_1 = "Un total de "
 var filteredResults_H1_2 = " cartas coinciden con tu criterio de búsqueda : "
+
+
+
+// ALL SETS TEXT
+var allSetsText_H1_1=""
+var allSetsText_H1_2=""
+var allSetsText_H1_3=" cartas / Codigo del set :"
+var allSetsText_H1_4=" este set fue impreson en TCG el "
+var allSetsText_H1_5=""

@@ -53,7 +53,8 @@ function getBanlist(cardvalue,textValue1,textValue2,textValue3){
 
 
         for (var b = 0; b < resultsPerPage ; b++) {
-            createCard(data.data[b])}
+            whatType(data.data[b])}
+            
             
     }
     );

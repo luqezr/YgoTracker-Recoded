@@ -66,7 +66,7 @@ function getCardBySet(setName,textSearchValue,textValue1){
 
         for (b = 0; b < resultsPerPage && !(b > results.data.length) ; b++) {
             if (b >= data.length){console.log('No more cards!'); return} else {
-                createCard(data.data[b])}}
+                whatType(data.data[b])}}
                 
     });
     }

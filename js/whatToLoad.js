@@ -50,7 +50,7 @@ function resolveURL() {
                 subtitle.innerHTML = `${results.data.length} cards for the ${searchedValue} : `
                 for (b = 0; b < resultsPerPage && !(b > results.data.length); b++) {
                     if (b >= data.length) { console.log('No more cards!'); return } else {
-                        createCard(results.data[b])
+                        whatType(results.data[b])
                     }
                 }
 
@@ -81,7 +81,7 @@ function resolveURL() {
                 subtitle.innerHTML = `${results.data.length} cards from set <span onclick='cardSet(this.id)'> <a href="#" class='getBySet' id='${setName}'>  ${setName}  </a></span>: `
                 for (b = 0; b < resultsPerPage && !(b > results.data.length); b++) {
                     if (b >= data.length) { console.log('No more cards!'); return } else {
-                        createCard(results.data[b])
+                        whatType(results.data[b])
                     }
                 }
 
@@ -129,7 +129,7 @@ function resolveURL() {
                 results = data
                 cardResults.innerHTML = '';
                 // console.log(results)
-                createCard(results.data[0])
+                whatType(results.data[0])
 
 
 

@@ -16,7 +16,7 @@ function getStaples(textValue1, textValue2){
         
         for (b = 0; b < resultsPerPage ; b++) {
             if (b >= data.data.length){console.log('No more cards!'); return} else {
-                createCard(data.data[b])}}
+                whatType(data.data[b])}}
                 
     });
 

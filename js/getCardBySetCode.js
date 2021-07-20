@@ -85,7 +85,7 @@ function getCardSetCode(e) {
           results = data;
           console.log(results);
           console.log(results.data[0])
-          createCard(results.data[0]);
+          whatType(results.data[0]);
           
           modifyPriceList(yugiohPricesResult.data.price_data.price_data.data.prices,yugiohPricesResult.data.price_data.name);
         });

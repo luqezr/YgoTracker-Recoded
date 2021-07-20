@@ -29,7 +29,7 @@ function getByFormat(format,textValue1,textValue2,textValue3){
         for (b = 0; b < resultsPerPage ; b++) {
             if (b >= data.data.length){console.log('No more cards!'); return} 
             else {
-                createCard(results.data[b])}}
+                whatType(results.data[b])}}
                 
     });
     }

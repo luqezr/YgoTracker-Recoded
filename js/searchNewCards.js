@@ -20,7 +20,7 @@ function searchNewCards(value1,value2){
             let card = [data[0][b]]
             //console.log(card)
             //console.log(card[0])
-            createCard(card[0])
+            whatType(card[0])
         }
         
        

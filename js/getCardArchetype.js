@@ -4,7 +4,7 @@ function cardArchetype(e) {
   //console.log('cardArchetype :' +e.id)
   archetype = e.id;
   // document.getElementById('bodyAdv').classList.add('d-none')
-
+  console.log(archetype)
   getCardsOfArchetype(archetype, searchingText, getCardArchetype_H1);
 }
 
@@ -35,7 +35,7 @@ function getCardsOfArchetype(cardvalue, value1, value2) {
       subContent1.innerHTML = ` ${results.data.length} ${value2}<span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'>  ${archetype}  </a></span> `;
 
       for (var b = 0; b < data.data.length; b++) {
-        createCard(data.data[b]);
+        whatType(data.data[b]);
       }
     });
 }

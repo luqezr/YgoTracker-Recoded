@@ -71,6 +71,29 @@ function clearScreenForSetsAndArchetypes(){
   subContent_about.innerHTML=""
 }
 
+// WHAT TYPE OF CARD TO LOAD (CARD, MINI CARD)
+
+var whatType
+
+function changeView (newType) {
+  whatType = newType
+  console.log("Current view is set to "+whatType)
+}
+
+// LOAD MORE CARDS BUTTON
+
+ 
+var moreCardsbtn = $('#loadMoreCards');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 6000) {
+    moreCardsbtn.addClass('show');
+  } else {
+    moreCardsbtn.removeClass('show');
+  }
+});
+
+
 // BACK TO TOP BUTTON
  
 var btn = $('#back2top');
@@ -100,23 +123,21 @@ function resetMoreResults(){
   loadedCards = resultsPerPage
 }
 
-function loadMoreCards(){
+function loadMoreCards(whatType){
 
   moreResults = loadedCards+loadThisManyCards;
 
   for (b = loadedCards; b < moreResults ; b++) {
       if (b >= results.data.length){
           console.log('No more cards!');
+          
+          moreCardsbtn.removeClass('show');
           resetMoreResults()
           return} 
       else {
-        console.log(loadedCards)
-        console.log(results.data[(b-1)])
-        console.log(results.data[b])
-        console.log(results.data[b+1])
-      createCard(results.data[b])
+   
+      whatType(results.data[b])
       loadedCards++
-      console.log(loadedCards)
       }
   }
 }

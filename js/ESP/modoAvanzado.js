@@ -47,7 +47,7 @@ function loadAdvancedMode(){
 
   <form action="">
   <div id="typeOf">
-    <label class="mr-sm-2" for="typeOfCard">Type of Card (multiple checks doesn't work yet!)</label><br>
+    <label class="mr-sm-2" for="typeOfCard">Tipo de carta</label><br>
     <div id="typeOfCard" class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="All" value="All" checked> 
       <label class="form-check-label" for="All">Todas </label>
@@ -84,15 +84,15 @@ function loadAdvancedMode(){
 
   <div id="desc">
     <div class="form-inline">
-      <label for="formGroupExampleInput">Name / Effect / Description of card</label>
-      <input type="text" class="form-control col-12" id="descForm" placeholder="Text or Name of the card (case sensitive)">
+      <label for="formGroupExampleInput">Nombre / Efecto / Descripción de la carta</label>
+      <input type="text" class="form-control col-12" id="descForm" placeholder="Texto o nombre de la carta, sensible a mayúsculas y símbolos">
     </div>
   </div>
 
   <br>
 
 
-  <button onclick="filterResults()" class="btn btn-dark mb-2">Search!</button>
+  <button onclick="filterResults()" class="btn btn-dark mb-2">Buscar</button>
 
   </div>
   `
@@ -139,7 +139,7 @@ function loadAdvancedMode(){
           spellFilterSettings.innerHTML=`
           <form>
               <div id="typeOfSpell">
-              <label class="mr-sm-2" for="inlineFormCustomSelect">Type of Spell</label><br>
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Tipo de Magia</label><br>
               <div class="form-check form-check-inline">
               <input class="form-check-input raceOfSpell" type="radio" name="inlineRadioOptions" id="NormalSpell" value="Normal">
               <label class="form-check-label" for="NormalSpell"><img src="/media/icons/cardIcons/race/Normal.png" for="NormalSpell"> Normal </label>
@@ -190,7 +190,7 @@ function loadAdvancedMode(){
             trapFilterSettings.innerHTML=`
             <form>   
                 <div id="typeOfTrap">
-                <label class="mr-sm-2" for="inlineFormCustomSelect">Type of Trap</label><br>
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Tipo de Trampa</label><br>
                 <div class="form-check form-check-inline">
                 <input class="form-check-input raceOfTrap" type="radio" name="inlineRadioOptions" id="NormalTrap" value="Normal">
                 <label class="form-check-label" for="NormalTrap"> <img src="/media/icons/cardIcons/race/Normal.png" for="NormalTrap" > Normal</label>
@@ -328,7 +328,7 @@ function loadAdvancedMode(){
                   </form>
                   <form>
                     <div id="levels">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">LEVEL OR RANK</label><br>
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Nivel o Rango</label><br>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level1" value="1">
                       <label class="form-check-label" for="level1">1 <img src="/media/icons/cardIcons/level.png" for="level1"></label>
@@ -487,7 +487,7 @@ function loadAdvancedMode(){
     
             <form>
             <div id="attribute">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Attribute</label><br>
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Atributo</label><br>
             <div class="form-check form-check-inline">
             <input class="form-check-input attributeOfMonsterCard" type="radio" name="DARK" id="DARK" value="DARK">
             <label class="form-check-label" for="DARK"><img src="/media/icons/cardIcons/attribute/DARK.png" for="DARK"> OSCURIDAD </label>

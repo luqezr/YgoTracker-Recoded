@@ -15,7 +15,7 @@ function createMiniCard(card){
 
 	if (type == "Trap Card" || type == "Spell Card" ){
 
-		subContent3miniCards.innerHTML+= `		
+		subContent_miniCards.innerHTML+= `			
 		
 		<div class="miniCard" class="card" class="col-sm" >
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
@@ -36,7 +36,7 @@ function createMiniCard(card){
 					</div>
 					<div class="modal-body">
 						<h5 class="modal-title" id="exampleModalLongTitle">${name}</h5>
-									<img src="/media/icons/banStatus/${banlist_info_image}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type_image}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText"> ${type} </span> / <img src="/media/icons/cardIcons/race/${race_image}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText">${race}</span> /<span class="cardInfoText"> Archetype : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' class="close" data-dismiss="modal" aria-label="Close" id='${archetype}'>  ${archetype}  </a></span>  / <span class="cardInfoText"> Card ID : <span onclick='getIdCode(this.id)'> <a href="#" class='getIdCode' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span> </span><br>
+									<img src="/media/icons/banStatus/${banlist_info_image}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type_image}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText"> ${type} </span> / <img src="/media/icons/cardIcons/race/${race_image}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"> <span class="cardInfoText">${race}</span> /<span class="cardInfoText"> Archetype : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' class="close" data-dismiss="modal" aria-label="Close" id='${archetype}'>  ${archetype}  </a></span>  / <span class="cardInfoText"> Card ID : <span onclick='getCardID(this.id)'> <a href="#" class='getCardID' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span>  </span><br>
 								
 							<p class="cardDescription">${desc}</p>
 							<p id="${id}_setsTitles"> ${releaseText}</p>
@@ -76,7 +76,7 @@ function createMiniCard(card){
 
 		if (type=="Link Monster"){ levelOrRankOrLink="link"}
 
-		subContent3miniCards.innerHTML+= `
+		subContent_miniCards.innerHTML+= `		
 		<div class="miniCard" class="card" class="col-sm" >
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
 			<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
@@ -97,7 +97,7 @@ function createMiniCard(card){
 						</div>
 						<div class="modal-body">
 							<h5 class="modal-title" id="exampleModalLongTitle">${name}</h5>
-							<img src="/media/icons/banStatus/${banlist_info_image}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type_image}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${type} </span>/ <img src="/media/icons/cardIcons/race/${race}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${race}</span> / <img src="/media/icons/cardIcons/attribute/${attribute_image}.png" style="width : 20px" class="card-img-bottom" alt="Attribute Icon"><span class="cardInfoText"> ${attribute}</span> /  <img src="/media/icons/cardIcons/${levelOrRankOrLink}.png" style="width : 20px" class="card-img-bottom" alt="Level Icon">  ${level} /<span class="cardInfoText"> Archetype : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'  class="close" data-dismiss="modal" aria-label="Close">  ${archetype}  </a></span>  /  <span class="cardInfoText"><b> ATK </b>: </span><img src="/media/icons/cardIcons/attack.png" style="width : 18px" class="card-img-bottom" alt="Atk Icon"> ${atk}  /  <span class="cardInfoText"><b> DEF </b>: </span><img src="/media/icons/cardIcons/defense.png" style="width : 18px" class="card-img-bottom" alt="Def Icon"> ${def} /<span class="cardInfoText">  Card ID : <span onclick='getIdCode(this.id)'> <a href="#" class='getIdCode' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span> </span><br>
+							<img src="/media/icons/banStatus/${banlist_info_image}.png" style="width : 18px" class="card-img-bottom" alt="Ban Status"> <span class="cardInfoText">${banlist_info}</span>  /  <img src="/media/icons/cardIcons/typeOfCard/${type_image}.jpg" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${type} </span>/ <img src="/media/icons/cardIcons/race/${race}.png" style="width : 20px" class="card-img-bottom" alt="Race Icon"><span class="cardInfoText"> ${race}</span> / <img src="/media/icons/cardIcons/attribute/${attribute_image}.png" style="width : 20px" class="card-img-bottom" alt="Attribute Icon"><span class="cardInfoText"> ${attribute}</span> /  <img src="/media/icons/cardIcons/${levelOrRankOrLink}.png" style="width : 20px" class="card-img-bottom" alt="Level Icon">  ${level} /<span class="cardInfoText"> Archetype : </span><span onclick='cardArchetype(this.id)'> <a href="#" class='getByArchetype' id='${archetype}'  class="close" data-dismiss="modal" aria-label="Close">  ${archetype}  </a></span>  /  <span class="cardInfoText"><b> ATK </b>: </span><img src="/media/icons/cardIcons/attack.png" style="width : 18px" class="card-img-bottom" alt="Atk Icon"> ${atk}  /  <span class="cardInfoText"><b> DEF </b>: </span><img src="/media/icons/cardIcons/defense.png" style="width : 18px" class="card-img-bottom" alt="Def Icon"> ${def} /<span class="cardInfoText">  Card ID : <span onclick='getCardID(this.id)'> <a href="#" class='getCardID' class="close" data-dismiss="modal" aria-label="Close" id='${id}'>  ${id}  </a></span>  </span><br>
  
 							<p class="cardDescription">${desc}</p>
 							<p id="${id}_setsTitles"> ${releaseText}</p>

@@ -10,7 +10,7 @@ function getSetLetter(e) {
     var filteredSets = results.filter(result => result.set_name[0] == `${setLetter}`);
 
     for (b = 0; b < filteredSets.length; b++) {
-        createSet(filteredSets[b])
+        createSet(filteredSets[b], allSetsText_H1_1,allSetsText_H1_2,allSetsText_H1_3,allSetsText_H1_4,allSetsText_H1_5)
     }
 
 }
@@ -64,7 +64,7 @@ function getAllSets(textValue1,textValue2) {
 
             for (b = 0; b < setsPerPage && !(b > results.length); b++) {
                 if (b >= data.length) { console.log('No more cards!'); return } else {
-                    createSet(data[b], b)
+                    createSet(data[b], allSetsText_H1_1,allSetsText_H1_2,allSetsText_H1_3,allSetsText_H1_4,allSetsText_H1_5)
 
                 }
             }

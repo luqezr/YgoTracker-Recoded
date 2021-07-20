@@ -63,7 +63,9 @@ function autocomplete(inp, arr) {
         // console.log("enter pressed, searching")
         closeAllLists(e.target)
         // console.log("Searching : "+cardName)
-        searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)
+
+        var cardName = document.search.fname.value;
+        // searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)
 
 
         if (currentFocus > -1) {

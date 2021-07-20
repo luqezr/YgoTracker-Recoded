@@ -28,12 +28,9 @@ function createSet(set,textValue1,textValue2,textValue3,textValue4,textValue5){
 			<div class="modal fade modalCardImage" id="ModalID${setImage}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content modalImage">
-						<div class="modal-header">
-
-							<img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" class="close" data-dismiss="modal">
-							
-						</div>
 						
+						<img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" class="close" data-dismiss="modal">
+
 					</div>
 				</div>
 			</div>

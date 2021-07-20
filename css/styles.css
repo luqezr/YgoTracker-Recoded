@@ -29,6 +29,8 @@ table a :hover, .spanWithA:hover{
   right: 30px;
   transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
   z-index: 8000;
+  opacity: 0;
+  visibility: hidden;
 }
 
 
@@ -390,6 +392,7 @@ font-family: CardEffect;
 
 .archetype {
   padding: 5px;
+  width: 100%;
 }
 
 .archetypeGrid {
