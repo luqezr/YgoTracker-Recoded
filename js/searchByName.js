@@ -3,8 +3,8 @@ var searchButton = document.getElementById("send")
 
 searchButton.addEventListener("click", function getCard(evt) {
   evt.preventDefault();
-    // window.location.hash = `/search/${cardName}`;
     var cardName = document.search.fname.value;
+
     // console.log("Searching : "+cardName)
     clearScreen()
     resetMoreResults()
@@ -14,6 +14,8 @@ searchButton.addEventListener("click", function getCard(evt) {
 
 
 function searchCards(cardName, textValue1,textValue2,textValue3,textValue4) {
+  
+  window.location.hash = `/search/${cardName}`;
   fetch(
     "https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=" +
       cardName +

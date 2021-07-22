@@ -71,9 +71,11 @@ function loadAbout(){
   if (language=="ENG"){
     // console.log("loading about in "+language)
     $("#sub-content-about").load("content/ENG/about.html");
+    window.location.hash="/about"
   }
     else if (language == "ESP"){
       // console.log("loading about in "+language)
       $("#sub-content-about").load("content/ESP/about.html");
+      window.location.hash="/about"
     }
 }

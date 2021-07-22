@@ -66,42 +66,52 @@ function assignValuesToCard (card, createCard_releaseText_1, createCard_releaseT
 			//cardPrice = ('Amazon price : '+ card_prices[0].amazon_price + '<br>CardMarket price : ' +  card_prices[0].cardmarket_price+ '<br>Ebay price : ' +  card_prices[0].ebay_price + '<br>TCGPlayer price : ' +   card_prices[0].tcgplayer_price +'<br>')
 		} else { cardPrice = '' }	
 	
-		
 		banlist_info = card.banlist_info
+		// console.log(banlist_info)
+		
 		if (banlist_info == undefined ){
 			banlist_info = createCard_banlist_info_unlimited;
 			banlist_info_image = "Unlimited"
 		} 
 	
+		
 
 		if (banlist == "tcg" ){
-			
+			if ( banlist_info.ban_tcg ){
+				// console.log("existe ban en tcg")
+			} else {
+				banlist_info = createCard_banlist_info_unlimited;		
+				banlist_info_image = "Unlimited"
+				// console.log("no existe ban en tcg")
+			}
+
 			// banlist_info = banlist_info.ban_tcg;
 			if (banlist_info == undefined ){
 				
 				banlist_info = createCard_banlist_info_unlimited;		
 				banlist_info_image = "Unlimited"
+				// console.log(banlist_info_image)
 				
 			} else if (banlist_info.ban_tcg == "Limited" ){
 			
 				banlist_info = createCard_banlist_info_limited;
 				banlist_info_image = "Limited"
+				// console.log(banlist_info_image)
 			
 				} else if (banlist_info.ban_tcg == "Semi-Limited" ){
 						
 					banlist_info =createCard_banlist_info_semi_limited;
-					
-
 					banlist_info_image = "Semi-Limited"
+					// console.log(banlist_info_image)
 				
 					} else if (banlist_info.ban_tcg == "Banned" ){
 						
 						banlist_info = createCard_banlist_info_banned;
-						
-	
 						banlist_info_image = "Banned"
+						// console.log(banlist_info_image)
 					
 						}
+
 		 } 
 	
 		if (banlist == "ocg" ){

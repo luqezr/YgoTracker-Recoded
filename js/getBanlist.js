@@ -35,7 +35,7 @@ function getBanlist(cardvalue,textValue1,textValue2,textValue3){
     clearScreen()
     resetMoreResults()
 
-    // window.location.hash = `/banlist/${cardvalue}`
+    window.location.hash = `/banlist/${cardvalue}`
 
     var banlist = cardvalue
 

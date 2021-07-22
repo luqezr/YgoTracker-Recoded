@@ -14,7 +14,7 @@ function getByFormat(format,textValue1,textValue2,textValue3){
     clearScreen()
     resetMoreResults()
   
-    // window.location.hash = `/format/${format}`
+     window.location.hash = `/format/${format}`
 
     fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?format=${format}&misc=yes`)
     .then( cardInfo => cardInfo.json() )

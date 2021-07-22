@@ -14,9 +14,10 @@ var banlist = "tcg";
 var value2;
 var yugiohPricesResult;
 var allCards;
+var scrollingValue = 6000
 
 //  CUANTO VA A CARGAR
-var resultsPerPage = 18;
+var resultsPerPage = 20;
 
 // LOCALSTORAGE
 
@@ -57,9 +58,19 @@ function clearScreen(){
   subContent1.innerHTML=""
   subContent2.innerHTML=""
   subContent_miniCards.innerHTML=""
-  // subContent_advancedMode.innerHTML=""
+  subContent_advancedMode.innerHTML=""
   subContent_about.innerHTML=""
   subContent_filterBar.innerHTML=""
+  advancedModeToggle = 1
+}
+
+// CLEAR SCREEN CONTENT
+
+function clearScreenForAdvancedMode(){
+  subContent1.innerHTML=""
+  subContent2.innerHTML=""
+  subContent_miniCards.innerHTML=""
+  subContent_about.innerHTML=""
 }
 
 // CLEAR CONTENT FOR SETS AND ARCHETYPES
@@ -75,10 +86,34 @@ function clearScreenForSetsAndArchetypes(){
 
 var whatType
 
-function changeView (newType) {
-  whatType = newType
-  console.log("Current view is set to "+whatType)
-}
+function changeView () {
+  clearScreen()
+  view++
+  if (view > 2) {
+    view = 1
+    console.log(view)
+    whatType = createCard
+    save2localStorage("view", view);
+
+  } else if (view==1) {
+    whatType = createCard
+    scrollingValue = 6000
+    save2localStorage("view", view);
+
+  } else if (view == 2) {
+    whatType = createMiniCard
+    scrollingValue = 1000
+    save2localStorage("view", view);
+    view = 0
+  }
+
+  for (var b = 0; b < resultsPerPage; b++) {
+    whatType(results.data[b])}
+
+  // console.log("Current view is set to "+ whatType)
+  }
+
+
 
 // LOAD MORE CARDS BUTTON
 
@@ -86,7 +121,7 @@ function changeView (newType) {
 var moreCardsbtn = $('#loadMoreCards');
 
 $(window).scroll(function() {
-  if ($(window).scrollTop() > 6000) {
+  if ($(window).scrollTop() > scrollingValue) {
     moreCardsbtn.addClass('show');
   } else {
     moreCardsbtn.removeClass('show');
@@ -129,13 +164,12 @@ function loadMoreCards(whatType){
 
   for (b = loadedCards; b < moreResults ; b++) {
       if (b >= results.data.length){
-          console.log('No more cards!');
-          
           moreCardsbtn.removeClass('show');
           resetMoreResults()
+          console.log('No more cards!');
+          alert("No more cards!")
           return} 
       else {
-   
       whatType(results.data[b])
       loadedCards++
       }

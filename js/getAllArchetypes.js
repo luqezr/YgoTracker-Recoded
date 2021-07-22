@@ -23,7 +23,8 @@ function getArchetypeLetter(e){
 function getAllArchetypes(textValue1,textValue2){
 
     clearScreen()
-    // window.location.hash = '/archetypes'
+    
+    window.location.hash = '/archetypes'
 
     fetch("https://db.ygoprodeck.com/api/v7/archetypes.php")
     .then( cardInfo => cardInfo.json() )

@@ -20,7 +20,7 @@ function getAllSets(textValue1,textValue2) {
 
     clearScreen()
 
-    // window.location.hash = `/allSets`
+    window.location.hash = `/allSets`
     
     fetch("https://db.ygoprodeck.com/api/v7/cardsets.php")
         .then(cardInfo => cardInfo.json())

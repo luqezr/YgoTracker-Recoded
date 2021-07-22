@@ -10,7 +10,7 @@ function getCardSetCode(e) {
     clearScreen()
     resetMoreResults()
     // console.log("Get card by set code");
-    // window.location.hash = `/setcode/${cardSetCode}`;
+    window.location.hash = `/setcode/${cardSetCode}`;
 
     subContent2.innerHTML= `
     <div id='wait'>

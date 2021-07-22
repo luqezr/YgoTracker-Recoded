@@ -12,7 +12,7 @@ function getCardID(e){
 
 
 function getCardByID(cardId,textValue1,textValue2){
-    // window.location.hash = '/searchById'
+    window.location.hash = `/searchById/${cardId}`
     clearScreen()
     resetMoreResults()
 

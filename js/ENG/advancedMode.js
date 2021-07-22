@@ -20,13 +20,37 @@ var raceOfTrapCard = undefined;
 var atkParameter=undefined;
 var defParameter=undefined;
 
+// LOAD IN AND OUT ADVANCED MODE 
+
+var advancedModeToggle = 1
+
+function toggleAdvancedMode () {
+
+  advancedModeToggle++
+
+  if (advancedModeToggle==1) {
+    
+    subContent_advancedMode.innerHTML=``
+
+  } else if (advancedModeToggle==2) {
+    loadAdvancedMode()
+    advancedModeToggle = 0
+  }
+
+  }
+
+
+
+
 function loadAdvancedMode(){
   
-  clearScreen();
+  window.location.hash="/advancedMode"
+
+  clearScreenForAdvancedMode();
   
   for (let b = 0; b < resultsPerPage; b++) {
     // console.log(results.data[b])
-    createCard(allCards.data[b]);
+    whatType(allCards.data[b]);
   }
 
   subContent_advancedMode.innerHTML=`
@@ -85,7 +109,7 @@ function loadAdvancedMode(){
   <div id="desc">
     <div class="form-inline">
       <label for="formGroupExampleInput">Name / Effect / Description of card</label>
-      <input type="text" class="form-control col-12" id="descForm" placeholder="Text or Name of the card (case sensitive)">
+      <input type="text" class="form-control col-12" id="descForm" vplaceholder="Text or Name of the card (case sensitive)">
     </div>
   </div>
 
@@ -567,7 +591,7 @@ Array.prototype.sortByInverted = function(p) {
 
 function sortByInverted(parameter,textValue1,textValue2){
   
-  clearScreen()
+  clearScreenForAdvancedMode()
   fetchRandom=false;
   newCards = false;
  
@@ -578,7 +602,7 @@ function sortByInverted(parameter,textValue1,textValue2){
      function createSortedByInvertedCards(){
       subContent1.innerHTML= `${textValue1}${sortedResultsInverted.length}${textValue2}: `
       for (var b = 0; b < resultsPerPage ; b++) {
-        createCard(sortedResultsInverted[b])}
+        whatType(sortedResultsInverted[b])}
     }  
     
     createSortedByInvertedCards()
@@ -587,7 +611,7 @@ function sortByInverted(parameter,textValue1,textValue2){
 
 function sortBy(parameter,textValue1,textValue2){ 
 
-  clearScreen()
+  clearScreenForAdvancedMode()
 
   sortedResults = results.sortBy(parameter)
   //CREATING THE CARDS
@@ -595,7 +619,7 @@ function sortBy(parameter,textValue1,textValue2){
   function createSortedByInvertedCards(){
     subContent1.innerHTML= `${textValue1}${sortedResults.length}${textValue2}: `
    for (var b = 0; b < resultsPerPage ; b++) {
-     createCard(sortedResults[b])}
+     whatType(sortedResults[b])}
  }  
  
  createSortedByInvertedCards()
@@ -629,11 +653,11 @@ $('#descForm').on('input', function() {
 
 
 function filterResults(){
-clearScreen()
+  clearScreenForAdvancedMode()
 //FILTER BY DESCRIPTION
 if ((document.getElementById("descForm").value) != undefined){
   function filterByDescription(){
-    return (filteredResults= (results.data.filter(function(card){
+    return (filteredResults= (allCards.data.filter(function(card){
       return ((card.desc).includes(document.getElementById("descForm").value) || (card.name).includes(document.getElementById("descForm").value))
     
     })))
@@ -647,7 +671,7 @@ if ((document.getElementById("descForm").value) != undefined){
   if (typeParameter == "All"){
   subContent1.innerHTML= `Card Results ${filteredResults.length} cards : `
   for (var b = 0; b < resultsPerPage ; b++) {
-  createCard(filteredResults[b])}
+  whatType(filteredResults[b])}
   return
    }
 
@@ -846,7 +870,7 @@ function filterByLevelOfCard(){
   subContent1.innerHTML= `${textValue1}${filteredResults.length}${textValue2}`
   for (var b = 0; b < resultsPerPage ; b++) {
 
-    createCard(filteredResults[b])}
+    whatType(filteredResults[b])}
   }
 }
 
@@ -855,7 +879,7 @@ function filterByLevelOfCard(){
 
   
 advancedSearchBar.classList.remove("d-none");
-clearScreen()
+clearScreenForAdvancedMode()
 createFilteredCards(filteredResults_H1_1,filteredResults_H1_2)
 
 

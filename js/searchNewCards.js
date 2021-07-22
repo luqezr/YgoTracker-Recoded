@@ -6,7 +6,7 @@ function searchNewCards(value1,value2){
     clearScreen()
     resetMoreResults()
     // console.log("searching new cards...")
-    // window.location.hash = '/newCards'
+    window.location.hash = '/newCards'
 
     fetch("https://db.ygoprodeck.com/api/newcards.php")
     .then( cardInfo => cardInfo.json() )
@@ -43,7 +43,7 @@ function getAllCards(){
     .then(data => {		
         //console.log(data)
         data=data
-        results = data;
+        // results = data;
         allCards = data;
         // console.log(results)
         searchCardNamesForAutocomplete()

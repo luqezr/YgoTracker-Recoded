@@ -7,7 +7,7 @@ function createMiniCards(){
 	whatType = createMiniCard
 	createMiniCard(results.data[b])}
 	$(window).scroll(function() {
-		if ($(window).scrollTop() > 1500) {
+		if ($(window).scrollTop() > scrollingValue) {
 		  moreCardsbtn.addClass('show');
 		} else {
 		  moreCardsbtn.removeClass('show');

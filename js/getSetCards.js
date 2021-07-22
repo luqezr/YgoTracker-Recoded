@@ -12,7 +12,8 @@ function getCardBySet(setName,textSearchValue,textValue1){
 
     clearScreen()
     resetMoreResults()
-    console.log(moreResults)
+
+    window.location.hash = `/set/${setName}`
 
 //    document.location.href=`http://yugiohtracker.com/${setName}`
  
@@ -29,7 +30,6 @@ function getCardBySet(setName,textSearchValue,textValue1){
     .then(data => {	
 
         clearScreen()
-        // window.location.hash = `/set/${setName}`
         
         	
         // console.log(data);
@@ -44,12 +44,12 @@ function getCardBySet(setName,textSearchValue,textValue1){
             </div>
 		    <div class="setImage-subContent1"> 
                 <div class="setImage cardGridIMG"> 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${setImage}">
                         <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
                 
                     </button>
                 </div>
-                <div class="modal fade modalCardImage" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade modalCardImage" id="ModalID${setImage}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content modalImage">
                           

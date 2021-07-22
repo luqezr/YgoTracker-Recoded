@@ -4,7 +4,7 @@ function getStaples(textValue1, textValue2){
     clearScreen()
     resetMoreResults()
 
-//    window.location.hash = `/staples`
+    window.location.hash = `/staples`
 
     fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?staple=yes&misc=yes")
     .then( cardInfo => cardInfo.json() )

@@ -8,62 +8,53 @@ function resolveURL() {
     pathname = window.location.pathname
     hash = window.location.hash
 
+    banlist="tcg"
+
+    getAllCards()
+
+    view = readLocalStorage("view");
+    console.log("view = "+view)
+
+    if (view > 2){
+        view=1
+        save2localStorage("view", view);
+    } else if (view==1) {
+        whatType = createCard
+        scrollingValue = 6000
+        console.log("Normal view set as default")
+      } else if (view==2) {
+        whatType = createMiniCard
+        scrollingValue = 1000
+        console.log("Mini Card view set as default")
+      }
+
+
+
+
     if (currentURL == '') {
-        fetchNewCards()
+        searchNewCards(newCards_H1)
     }
 
 
     if (hash.includes('search')) {
 
-
         // var res = hash.slice(9); //corta #/search/
         var searchedValue = hash.slice(9);
-        // console.log(searchedValue)
-        fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=" + searchedValue + "&misc=yes")
-            .then(cardInfo => cardInfo.json())
-            .then(data => {
-                results = data
-                cardResults.innerHTML = '';
-                subtitle.innerHTML = `Card Results ${results.data.length} cards : `
-                for (b = 0; b < resultsPerPage && !(b > results.data.length); b++) {
-                    if (b >= data.length) { console.log('No more cards!'); return } else {
-                        createCard(results.data[b])
-                    }
-                }
-
-                moreSearchedCardsButton.classList.remove("d-none");
-            })
+        searchCards(searchedValue, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)
     }
 
 
     if (hash.includes('archetype/')) {
 
-
         // var res = hash.slice(12); //corta #/archetype/
         var searchedValue = hash.slice(12);
-        // console.log(searchedValue)
-        fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=" + searchedValue + "&misc=yes")
-            .then(cardInfo => cardInfo.json())
-            .then(data => {
-                results = data
-                cardResults.innerHTML = '';
-                subtitle.innerHTML = `${results.data.length} cards for the ${searchedValue} : `
-                for (b = 0; b < resultsPerPage && !(b > results.data.length); b++) {
-                    if (b >= data.length) { console.log('No more cards!'); return } else {
-                        whatType(results.data[b])
-                    }
-                }
-
-                moreSearchedCardsButton.classList.remove("d-none");
-            })
+        getCardsOfArchetype(searchedValue, searchingText, getCardArchetype_H1);
     }
 
     if (hash.includes('setcode/')) {
 
-
         // var res = hash.slice(10); //corta #/setcode/
         var searchedValue = hash.slice(10);
-        // console.log(searchedValue)
         getCardBySetCode(searchedValue)
     }
 
@@ -71,22 +62,10 @@ function resolveURL() {
 
         // var res = hash.slice(6); //corta #/set/
         var searchedValue = hash.slice(6);
-        // console.log(searchedValue)
-        fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=" + searchedValue + "&misc=yes")
-            .then(cardInfo => cardInfo.json())
-            .then(data => {
-                results = data
-                cardResults.innerHTML = '';
-                setName = searchedValue.replace(/%20/g, " ");
-                subtitle.innerHTML = `${results.data.length} cards from set <span onclick='cardSet(this.id)'> <a href="#" class='getBySet' id='${setName}'>  ${setName}  </a></span>: `
-                for (b = 0; b < resultsPerPage && !(b > results.data.length); b++) {
-                    if (b >= data.length) { console.log('No more cards!'); return } else {
-                        whatType(results.data[b])
-                    }
-                }
 
-                moreSearchedCardsButton.classList.remove("d-none");
-            })
+	    setName = searchedValue.replace(/%20/g," ");
+        // console.log(searchedValue)
+        getCardBySet(setName,searchingText,getSetCards_H1)
     }
 
     if (hash.includes('customList')) {
@@ -131,8 +110,6 @@ function resolveURL() {
                 // console.log(results)
                 whatType(results.data[0])
 
-
-
             })
     }
 
@@ -141,26 +118,23 @@ function resolveURL() {
     switch (currentURL) {
         case `#/newCards`:
             console.log("/newCards")
-            fetchNewCards();
+            searchNewCards(newCards_H1)
             break;
         case ``:
             console.log("nothing")
             if (pathname == 'index.html') {
-                fetchNewCards()
-            }
-            if (pathname == 'advancedSearch.html') {
-                getAllCards();
+                searchNewCards(newCards_H1)
             }
             break;
 
         case `#/search`:
             console.log("/#/newCards")
-            fetchNewCards();
+            searchNewCards(newCards_H1)
             break;
 
         case `#/allSets`:
             console.log("/#/allSets")
-            getAllSets()
+            getAllSets(getAllSets_H1_1,getAllSets_H1_2)
             break;
 
         case `#/setCode`:
@@ -170,59 +144,84 @@ function resolveURL() {
             break;
         case `#/set`:
             console.log("/#/setName")
+            
             //  getAllArchetypes()
             break;
+            
+        case `#/about`:
+            console.log("/#/about")
+            loadAbout()
+            //  getAllArchetypes()
+            break;
+
         case `#/archetypes`:
             console.log("/#/archetypes")
-            getAllArchetypes()
+            getAllArchetypes(getAllArchetypes_H1_1,getAllArchetypes_H1_2)
             break;
 
         case `#/getByArchetype`:
             console.log("/#/archetype")
-            getAllArchetypes()
+            getAllArchetypes(getAllArchetypes_H1_1,getAllArchetypes_H1_2)
             break;
 
         case `#/randomCards`:
             console.log("/#/randomCards")
-            fetchxRandomCards()
+            fetchxRandomCards(resultsPerPage, randomCards_H1)
             break;
         case `#/staples`:
             console.log("/#/staples")
-            getStaples()
+            getStaples(getStaples_H1_1)
             break;
 
         case `#/format/goat`:
             console.log("/#/format/goat")
-            getByFormat('goat')
+            Urlformat='goat'
+            getByFormat(Urlformat,getByFormat_H1_1,getByFormat_H1_2,getByFormat_H1_3)
+
             break;
         case `#/format/ocg%20goat`:
             console.log("/#/ocg%20goat")
-            getByFormat('ocg goat')
+            Urlformat='ocg goat'
+            getByFormat(Urlformat,getByFormat_H1_1,getByFormat_H1_2,getByFormat_H1_3)
+
             break;
         case `#/format/rush%20duel`:
             console.log("/#/format/rush%duel")
-            getByFormat('rush duel')
+            Urlformat = 'rush duel'
+            getByFormat(Urlformat,getByFormat_H1_1,getByFormat_H1_2,getByFormat_H1_3)
+
             break;
         case `#/format/speed%20duel`:
             console.log("/#/format/speed%20duel")
-            getByFormat('speed duel')
+            Urlformat='speed duel'
+            getByFormat(Urlformat,getByFormat_H1_1,getByFormat_H1_2,getByFormat_H1_3)
+
             break;
         case `#/format/duel%20links`:
             console.log("/#/format/duel%20links")
-            getByFormat('duel links')
+            Urlformat='duel links'
+            getByFormat(Urlformat,getByFormat_H1_1,getByFormat_H1_2,getByFormat_H1_3)
+
             break;
 
         case `#/banlist/tcg`:
             console.log("#/banlist/tcg")
-            getBanlist('tcg')
+            urlBanlist= 'tcg'
+            getBanlist(urlBanlist, getBanlist_H1_1 ,getBanlist_H1_2,getBanlist_H1_3)
+
+            
             break;
         case `#/banlist/ocg`:
             console.log("/#/banlist/ocg")
-            getBanlist('ocg')
+            urlBanlist= 'ocg'
+            getBanlist(urlBanlist, getBanlist_H1_1 ,getBanlist_H1_2,getBanlist_H1_3)
+
             break;
         case `#/banlist/goat`:
             console.log("/#/banlist/goat")
-            getBanlist('goat')
+            urlBanlist= 'goat'
+            getBanlist(urlBanlist, getBanlist_H1_1 ,getBanlist_H1_2,getBanlist_H1_3)
+
             break;
 
     }
