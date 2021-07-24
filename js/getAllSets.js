@@ -1,4 +1,4 @@
-var setsPerPage = 100
+
 const searchCryteria = [];
 
 function getSetLetter(e) {

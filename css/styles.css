@@ -476,7 +476,8 @@ header form button {
   flex-direction: row;
   /* padding: 0.5% 0.5% 1% 1% ; */
   padding: 0px !important;
-  margin: 0px !important
+  margin: 0px !important;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .showRisingAndFallingInfo {
@@ -641,11 +642,26 @@ input[type="submit"] {
 }
 
 
+#footer{
+  height: 110px;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 @media (max-width: 1366px) {
   .cardImages {
     width: 250px;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 10px;
   }
 
   h2 {

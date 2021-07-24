@@ -7,9 +7,15 @@ function loadHome(){
     // console.log("ready!");
   
     language = readLocalStorage("language");
+    view = readLocalStorage("view", view)
     // console.log(language);
   
     if (language == undefined) {
+      // default view set as default (1)
+      view = 1;
+      save2localStorage("view", view);
+
+      // Ask for default language
       if (confirm("Load in English?")) {
         language = "ENG";
         // console.log(language);

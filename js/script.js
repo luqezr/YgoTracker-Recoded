@@ -14,10 +14,13 @@ var banlist = "tcg";
 var value2;
 var yugiohPricesResult;
 var allCards;
-var scrollingValue = 6000
+var scrollingValue = 6000;
+var language;
+var view;
 
 //  CUANTO VA A CARGAR
 var resultsPerPage = 20;
+var setsPerPage = 50;
 
 // LOCALSTORAGE
 
@@ -64,7 +67,18 @@ function clearScreen(){
   advancedModeToggle = 1
 }
 
-// CLEAR SCREEN CONTENT
+// CLEAR SCREEN FOR VIEW CHANGE
+
+function clearScreenForViewChange(){
+  subContent2.innerHTML="";
+  subContent_miniCards.innerHTML=""
+  subContent_advancedMode.innerHTML=""
+  subContent_about.innerHTML=""
+  subContent_filterBar.innerHTML=""
+}
+
+
+// CLEAR SCREEN CONTENT FOR ADVANCED MODE
 
 function clearScreenForAdvancedMode(){
   subContent1.innerHTML=""
@@ -87,7 +101,7 @@ function clearScreenForSetsAndArchetypes(){
 var whatType
 
 function changeView () {
-  clearScreen()
+  clearScreenForViewChange()
   view++
   if (view > 2) {
     view = 1
@@ -107,11 +121,18 @@ function changeView () {
     view = 0
   }
 
+  if (results.data){
   for (var b = 0; b < resultsPerPage; b++) {
     whatType(results.data[b])}
 
   // console.log("Current view is set to "+ whatType)
+  } else if (!(results.data)){
+    for (var b = 0; b < resultsPerPage; b++) {
+      whatType(results[0][b])}
   }
+
+
+}
 
 
 
