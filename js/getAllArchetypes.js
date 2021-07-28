@@ -26,14 +26,28 @@ function getAllArchetypes(textValue1,textValue2){
     
     window.location.hash = '/archetypes'
 
+    
+    subContent2.innerHTML= `
+    <div id='wait'>
+    <img src="/media/wait/wait02.gif" alt="Wait" style="width: '400px'"> 
+    <br>
+    <h3>${searchingText}</h3>
+    </div>
+    `;
+
+
     fetch("https://db.ygoprodeck.com/api/v7/archetypes.php")
     .then( cardInfo => cardInfo.json() )
     .then(data => {		
         results = data
+        
+        clearScreen()
+
         //console.log(searchCryteria)
         //if(data.length > 40){images = confirm("Load Images?") }
         subContent1.innerHTML= `${textValue1}${data.length}${textValue2}`;
         subContent_filterBar.innerHTML = ` 
+        <div id="aToM">
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="A" id="A"> A </a> </span>
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="B" id="B"> B </a> </span>
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="C" id="C"> C </a> </span>
@@ -47,6 +61,8 @@ function getAllArchetypes(textValue1,textValue2){
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="K" id="K"> K </a> </span>
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="L" id="L"> L </a> </span>
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="M" id="M"> M </a> </span>
+        </div>
+        <div id="nToZ">
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="N" id="N"> N </a> </span>
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="O" id="O"> O </a> </span>
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="P" id="P"> P </a> </span>
@@ -60,6 +76,7 @@ function getAllArchetypes(textValue1,textValue2){
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="X" id="X"> X </a> </span>
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="Y" id="Y"> Y </a> </span>
         <span onclick='getArchetypeLetter(this.id)'> <a href="#" value="Z" id="Z"> Z </a> </span>
+        </div>
     `;
 
 

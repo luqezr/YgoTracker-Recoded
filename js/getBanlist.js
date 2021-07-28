@@ -37,6 +37,16 @@ function getBanlist(cardvalue,textValue1,textValue2,textValue3){
 
     window.location.hash = `/banlist/${cardvalue}`
 
+
+    subContent2.innerHTML= `
+    <div id='wait'>
+    <img src="/media/wait/wait_banlist.gif" alt="Wait" style="width: '400px'"> 
+    <br>
+    <h3>${searchingText}</h3>
+    </div>
+    `;
+
+
     var banlist = cardvalue
 
     fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?banlist="+banlist+"&misc=yes")
@@ -48,6 +58,7 @@ function getBanlist(cardvalue,textValue1,textValue2,textValue3){
 
         banlist = banlist.toUpperCase()
 
+        clearScreen()
 
         subContent1.innerHTML= `${textValue1}${results.data.length}${textValue2}${banlist}${textValue3}</a></span> `;
 

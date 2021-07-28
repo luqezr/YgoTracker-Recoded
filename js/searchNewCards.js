@@ -8,6 +8,15 @@ function searchNewCards(value1,value2){
     // console.log("searching new cards...")
     window.location.hash = '/newCards'
 
+    subContent2.innerHTML= `
+    <div id='wait'>
+    <img src="/media/wait/wait_newCards.gif" alt="Wait" style="width: '400px'"> 
+    <br>
+    <h3>${searchingText}</h3>
+    </div>
+    `;
+  
+    
     fetch("https://db.ygoprodeck.com/api/newcards.php")
     .then( cardInfo => cardInfo.json() )
     .then(data => {		
@@ -15,6 +24,7 @@ function searchNewCards(value1,value2){
         results=data
         newCardsResults=data
         fetchInfo=true;
+
         subContent1.innerHTML= `${value1}`;
         for (var b = 0; b < 20 ; b++) {
             let card = [data[0][b]]

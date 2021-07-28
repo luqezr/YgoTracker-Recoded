@@ -16,6 +16,16 @@ function getByFormat(format,textValue1,textValue2,textValue3){
   
      window.location.hash = `/format/${format}`
 
+
+     subContent2.innerHTML= `
+     <div id='wait'>
+     <img src="/media/wait/wait_format.gif" alt="Wait" style="width: '400px'"> 
+     <br>
+     <h3>${searchingText}</h3>
+     </div>
+     `;
+
+
     fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?format=${format}&misc=yes`)
     .then( cardInfo => cardInfo.json() )
     .then(data => {	
@@ -23,6 +33,8 @@ function getByFormat(format,textValue1,textValue2,textValue3){
         allResults = data;
         results = data;
         format = format.toUpperCase()
+
+        clearScreen()
 
         subContent1.innerHTML= `${textValue1}${data.data.length}${textValue2}${format}${textValue3}`;
 
