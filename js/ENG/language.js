@@ -1,7 +1,7 @@
 // GENERICS
 var searchingText="Searching..."
 var searchBarText = "Search by card name..."
-
+var errorText= "There are no cards matching your description :( "
 // CREATE CARD
 var createCard_releaseText_1="This card hasn't been released yet"
 var createCard_releaseText_2_1="This card was released "

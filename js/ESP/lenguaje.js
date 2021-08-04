@@ -1,6 +1,7 @@
 // GENERICS
 var searchingText="Buscando..."
 var searchBarText = "Buscar carta por nombre..."
+var errorText= "No hay cartas que coincidan con tu criterio de búsqueda :( "
 
 // CREATE CARD
 var createCard_releaseText_1="Esta carta fue anunciada pero aun no ha sido impresa ni en TCG ni en OCG"
@@ -68,5 +69,5 @@ var filteredResults_H1_2 = " cartas coinciden con tu criterio de búsqueda : "
 var allSetsText_H1_1=""
 var allSetsText_H1_2=""
 var allSetsText_H1_3=" cartas / Codigo del set :"
-var allSetsText_H1_4=" este set fue impreson en TCG el "
+var allSetsText_H1_4=" este set fue impreso en TCG el "
 var allSetsText_H1_5=""

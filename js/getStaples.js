@@ -20,11 +20,12 @@ function getStaples(textValue1, textValue2){
     .then(data => {	
         //console.log(data);
         results = data;
-        subContent1.innerHTML=textValue1
         // subContent1.innerHTML= `${textValue1}${data.data.length}${textValue2}: </span>`;
         
         clearScreen()
 
+        subContent1.innerHTML=textValue1
+        
         for (b = 0; b < resultsPerPage ; b++) {
             if (b >= data.data.length){console.log('No more cards!'); return} else {
                 whatType(data.data[b])}}

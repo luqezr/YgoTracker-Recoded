@@ -19,28 +19,62 @@ var raceOfSpellCard = undefined;
 var raceOfTrapCard = undefined;
 var atkParameter=undefined;
 var defParameter=undefined;
+var results2filter
+
+// LOAD IN AND OUT ADVANCED MODE 
+
+var advancedModeToggle = 1
+
+function toggleAdvancedMode () {
+
+  advancedModeToggle++
+
+  if (advancedModeToggle==1) {
+    
+    subContent_advancedMode.innerHTML=``
+
+  } else if (advancedModeToggle==2) {
+    loadAdvancedMode()
+    advancedModeToggle = 0
+  }
+
+  }
+
+
+
 
 function loadAdvancedMode(){
   
-  clearScreen();
-  
-  for (let b = 0; b < resultsPerPage; b++) {
-    // console.log(results.data[b])
-    createCard(allCards.data[b]);
-  }
+
+  clearScreenForAdvancedMode();
+
+  if (window.location.hash=="#/format/goat" || window.location.hash=="#/format/ocg%20goat" || window.location.hash== "#/format/rush%20duel" || window.location.hash=="#/format/speed%20duel" || window.location.hash=="#/format/duel%20links"){
+    console.log("format filtering")
+    console.log(window.location.hash)
+    results2filter = results
+      }  else {
+        results2filter = allCards
+        console.log(window.location.hash)
+        console.log("results =allcards")
+        }
+
+    for (let b = 0; b < resultsPerPage; b++) {
+      // console.log(results.data[b])
+      whatType(results2filter.data[b]);
+          }
 
   subContent_advancedMode.innerHTML=`
   <div id="advancedSearchBar">
   <!-- <div class="buttonFilters">
     
   <button onclick="sortBy('type')" class="btn btn-dark mb-2">Ordenar por Tipo</button>
-  <button onclick="sortBy('type')" class="btn btn-dark mb-2">Ordenar por Tipo invertido</button>
-  <button onclick="sortBy('atk')" class="btn btn-dark mb-2">Ordenar por Menor ATK</button>
-  <button onclick="sortByInverted('atk')" class="btn btn-dark mb-2">Ordenar por Mayor ATK</button>
-  <button onclick="sortBy('def')" class="btn btn-dark mb-2">Ordenar por Menor DEF</button>
-  <button onclick="sortByInverted('def')" class="btn btn-dark mb-2">Ordenar por Mayor DEF</button>
-  <button onclick="sortBy('level')" class="btn btn-dark mb-2">Ordenar por Menor Level</button>
-  <button onclick="sortByInverted('level')" class="btn btn-dark mb-2">Ordenar por Mayor Level</button>
+  <button onclick="sortBy('type')" class="btn btn-dark mb-2">Sort by Inverted Type</button>
+  <button onclick="sortBy('atk')" class="btn btn-dark mb-2">Sort by Lower ATK</button>
+  <button onclick="sortByInverted('atk')" class="btn btn-dark mb-2">Sort by Higher ATK</button>
+  <button onclick="sortBy('def')" class="btn btn-dark mb-2">Sort by Lower DEF</button>
+  <button onclick="sortByInverted('def')" class="btn btn-dark mb-2">Sort by Higher DEF</button>
+  <button onclick="sortBy('level')" class="btn btn-dark mb-2">Sort by Lower Level</button>
+  <button onclick="sortByInverted('level')" class="btn btn-dark mb-2">Sort by Higher Level</button>
   
   </div> -->
 
@@ -54,9 +88,9 @@ function loadAdvancedMode(){
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Monster" value="Monster">
       <label class="form-check-label" for="Monster">Monstruos </label>
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SpellCard" value="Spell Card">
-      <label class="form-check-label" for="SpellCard">Magias</label>
+      <label class="form-check-label" for="SpellCard">Cartas Magias </label>
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="TrapCard" value="Trap Card">
-      <label class="form-check-label" for="TrapCard">Trampas</label>
+      <label class="form-check-label" for="TrapCard">Cartas Trampas </label>
     </div>
 
   </div>
@@ -85,14 +119,14 @@ function loadAdvancedMode(){
   <div id="desc">
     <div class="form-inline">
       <label for="formGroupExampleInput">Nombre / Efecto / Descripción de la carta</label>
-      <input type="text" class="form-control col-12" id="descForm" placeholder="Texto o nombre de la carta, sensible a mayúsculas y símbolos">
+      <input type="text" class="form-control col-12" id="descForm" vplaceholder="Texto o nombre de la carta (sensible a mayúsculas y minúsculas)">
     </div>
   </div>
 
   <br>
 
 
-  <button onclick="filterResults()" class="btn btn-dark mb-2">Buscar</button>
+  <button onclick="filterResults()" class="btn btn-dark mb-2">Buscar!</button>
 
   </div>
   `
@@ -190,7 +224,7 @@ function loadAdvancedMode(){
             trapFilterSettings.innerHTML=`
             <form>   
                 <div id="typeOfTrap">
-                <label class="mr-sm-2" for="inlineFormCustomSelect">Tipo de Trampa</label><br>
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Tipo de Trampa </label><br>
                 <div class="form-check form-check-inline">
                 <input class="form-check-input raceOfTrap" type="radio" name="inlineRadioOptions" id="NormalTrap" value="Normal">
                 <label class="form-check-label" for="NormalTrap"> <img src="/media/icons/cardIcons/race/Normal.png" for="NormalTrap" > Normal</label>
@@ -231,309 +265,309 @@ function loadAdvancedMode(){
             monsterFilterSettings.innerHTML=``;
     
             monsterFilterSettings.innerHTML=`
-                  <form>
-                    <div id="type">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">TYPE</label><br>
-                    
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Normal Monster" id="NormalMonster" >
-                    <label class="form-check-label" for="NormalMonster"><img src="/media/icons/cardIcons/typeOfCard/Normal Monster.jpg" for="NormalMonster"> Normal </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Normal Tuner Monster" id="NormalTunerMonster" >
-                    <label class="form-check-label" for="NormalTunerMonster"><img src="/media/icons/cardIcons/typeOfCard/Normal Tuner Monster.jpg" for="NormalTunerMonster"> Normal Cantante </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"  value="Effect Monster" id="EffectMonster" >
-                    <label class="form-check-label" for="EffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Effect Monster.jpg" for="EffectMonster"> Monstruo con Efecto </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Flip Effect Monster" id="FlipEffectMonster">
-                    <label class="form-check-label" for="FlipEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Flip Effect Monster.jpg" for="FlipEffectMonster"> Flip </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"  value="Gemini Monster" id="GeminiMonster">
-                    <label class="form-check-label" for="GeminiMonster"><img src="/media/icons/cardIcons/typeOfCard/Gemini Monster.jpg" for="GeminiMonster"> Gemini</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Tuner Monster" id="TunerMonster">
-                    <label class="form-check-label" for="TunerMonster"><img src="/media/icons/cardIcons/typeOfCard/Tuner Monster.jpg" for="TunerMonster"> Cantante</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"value="Union Effect Monster" id="UnionEffectMonster" >
-                    <label class="form-check-label" for="UnionEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Union Effect Monster.jpg" for="UnionEffectMonster"> Union </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Spirit Monster" id="SpiritMonster" >
-                    <label class="form-check-label" for="SpiritMonster"><img src="/media/icons/cardIcons/typeOfCard/Spirit Monster.jpg" for="SpiritMonster"> Espíritu </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Toon Monster" id="ToonMonster" >
-                    <label class="form-check-label" for="ToonMonster"><img src="/media/icons/cardIcons/typeOfCard/Toon Monster.jpg" for="ToonMonster"> Toon </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Pendulum Normal Monster" id="PendulumNormalMonster">
-                    <label class="form-check-label" for="PendulumNormalMonster"><img src="/media/icons/cardIcons/typeOfCard/Pendulum Normal Monster.jpg" for="PendulumNormalMonster"> Pendulo Normal </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"value="Pendulum Effect Monster" id="PendulumEffectMonster">
-                    <label class="form-check-label" for="PendulumEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Pendulum Effect Monster.jpg" for="PendulumEffectMonster"> Pendulo con Efecto</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Pendulum Tuner Effect Monster" id="PendulumTunerEffectMonster">
-                    <label class="form-check-label" for="PendulumTunerEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Pendulum Tuner Monster.jpg" for="PendulumTunerEffectMonster"> Pendulo Cantante </label>
-                    </div>
-    
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Ritual Monster" id="RitualMonster">
-                    <label class="form-check-label" for="RitualMonster"><img src="/media/icons/cardIcons/typeOfCard/Ritual Monster.jpg" for="RitualMonster"> Ritual</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Fusion Monster" id="FusionMonster">
-                    <label class="form-check-label" for="FusionMonster"><img src="/media/icons/cardIcons/typeOfCard/Fusion Monster.jpg" for="FusionMonster"> Fusion </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"  value="Pendulum Effect Fusion Monster" id="PendulumEffectFusionMonster">
-                    <label class="form-check-label" for="PendulumEffectFusionMonster"><img src="/media/icons/cardIcons/typeOfCard/Pendulum Effect Fusion Monster.jpg" for="PendulumEffectFusionMonster"> Pendulo Fusion </label>
-                    </div> 
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="XYZ Monster" id="XYZMonster">
-                    <label class="form-check-label" for="XYZMonster"><img src="/media/icons/cardIcons/typeOfCard/XYZ Monster.jpg" for="XYZMonster"> XYZ </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="XYZ Pendulum Effect Monster" id="XYZPendulumEffectMonster">
-                    <label class="form-check-label" for="XYZPendulumEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/XYZ Pendulum Effect Monster.jpg" for="XYZPendulumEffectMonster"> XYZ Pendulo  </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Synchro Monster" id="SynchroMonster" >
-                    <label class="form-check-label" for="SynchroMonster"><img src="/media/icons/cardIcons/typeOfCard/Synchro Monster.jpg" for="SynchroMonster"> Sincronía </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Synchro Tuner Monster" id="SynchroTunerMonster" >
-                    <label class="form-check-label" for="SynchroTunerMonster"><img src="/media/icons/cardIcons/typeOfCard/Synchro Tuner Monster.jpg" for="SynchroTunerMonster"> Sincronía Cantante </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Synchro Pendulum Effect Monster" id="SynchroPendulumEffectMonster" >
-                    <label class="form-check-label" for="SynchroPendulumEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Synchro Pendulum Effect Monster.jpg" for="SynchroPendulumEffectMonster"> Sincronía Pendulo  </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Link Monster" id="LinkMonster">
-                    <label class="form-check-label" for="LinkMonster"><img src="/media/icons/cardIcons/typeOfCard/Link Monster.jpg" for="LinkMonster"> Link </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"value="Token" id="Token">
-                    <label class="form-check-label" for="Token"><img src="/media/icons/cardIcons/typeOfCard/Token.jpg" for="Token"> Token </label>
-                    </div>
-                    </div>
-                  </form>
-                  <form>
-                    <div id="levels">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">Nivel o Rango</label><br>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level1" value="1">
-                      <label class="form-check-label" for="level1">1 <img src="/media/icons/cardIcons/level.png" for="level1"></label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level2" value="2">
-                      <label class="form-check-label" for="level2">2 <img src="/media/icons/cardIcons/level.png" for="level2"></label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level3" value="3">
-                      <label class="form-check-label" for="level3">3 <img src="/media/icons/cardIcons/level.png" for="level3"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level4" value="4">
-                      <label class="form-check-label" for="level4">4 <img src="/media/icons/cardIcons/level.png" for="level4"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level5" value="5">
-                      <label class="form-check-label" for="level5">5 <img src="/media/icons/cardIcons/level.png" for="level5"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level6" value="6">
-                      <label class="form-check-label" for="level6">6 <img src="/media/icons/cardIcons/level.png" for="level6"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level7" value="7">
-                      <label class="form-check-label" for="level7">7 <img src="/media/icons/cardIcons/level.png" for="level7"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level8" value="8">
-                      <label class="form-check-label" for="level8">8 <img src="/media/icons/cardIcons/level.png" for="level8"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level9" value="9">
-                      <label class="form-check-label" for="level9">9 <img src="/media/icons/cardIcons/level.png" for="level9"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level10" value="10">
-                      <label class="form-check-label" for="level10">10 <img src="/media/icons/cardIcons/level.png" for="level10"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level11" value="11">
-                      <label class="form-check-label" for="level11">11 <img src="/media/icons/cardIcons/level.png" for="level11"> </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level12" value="12">
-                      <label class="form-check-label" for="level12">12 <img src="/media/icons/cardIcons/level.png" for="level12"> </label>
-                    </div>
-                    </div>
-              </form>
-              <form>
-            <div id="race">
-                <label class="mr-sm-2" for="inlineFormCustomSelect">Raza</label><br>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Aqua" value="Aqua">
-                <label class="form-check-label" for="Aqua"><img src="/media/icons/cardIcons/race/Aqua.png" for="Aqua"> Agua </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Beast" value="Beast">
-                <label class="form-check-label" for="Beast"><img src="/media/icons/cardIcons/race/Beast.png" for="Beast"> Bestia </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Beast-Warrior" value="Beast-Warrior">
-                <label class="form-check-label" for="Beast-Warrior"><img src="/media/icons/cardIcons/race/Beast-Warrior.png" for="Beast-Warrior"> Guerrero-Bestia </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Creator-God" value="Creator-God">
-                <label class="form-check-label" for="Creator-God"><img src="/media/icons/cardIcons/race/Divine-Beast.png" for="Creator-God"> Dios-Creador </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Cyberse" value="Cyberse">
-                <label class="form-check-label" for="Cyberse"><img src="/media/icons/cardIcons/race/Cyberse.png" for="Cyberse"> Ciberso </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Dinosaur" value="Dinosaur">
-                <label class="form-check-label" for="Dinosaur"><img src="/media/icons/cardIcons/race/Dinosaur.png" for="Dinosaur"> Dinosaurio </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Divine-Beast" value="Divine-Beast">
-                <label class="form-check-label" for="Divine-Beast"><img src="/media/icons/cardIcons/race/Divine-Beast.png" for="Divine-Beast"> Beastia-Divina </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Dragon" value="Dragon">
-                <label class="form-check-label" for="Dragon"><img src="/media/icons/cardIcons/race/Dragon.png" for="Dragon"> Dragón </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Fairy" value="Fairy">
-                <label class="form-check-label" for="Fairy"><img src="/media/icons/cardIcons/race/Fairy.png" for="Fairy"> Hada </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Fiend" value="Fiend">
-                <label class="form-check-label" for="Fiend"><img src="/media/icons/cardIcons/race/Fiend.png" for="Fiend"> Demonio </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Fish" value="Fish">
-                <label class="form-check-label" for="Fish"><img src="/media/icons/cardIcons/race/Fish.png" for="Fish"> Pez </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Insect" value="Insect">
-                <label class="form-check-label" for="Insect"><img src="/media/icons/cardIcons/race/Insect.png" for="Insect"> Insecto </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Machine" value="Machine">
-                <label class="form-check-label" for="Machine"><img src="/media/icons/cardIcons/race/Machine.png" for="Machine"> Máquina </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Plant" value="Plant">
-                <label class="form-check-label" for="Plant"><img src="/media/icons/cardIcons/race/Plant.png" for="Plant"> Planta </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Psychic" value="Psychic">
-                <Psíquico</label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Pyro" value="Pyro">
-                <label class="form-check-label" for="Pyro"><img src="/media/icons/cardIcons/race/Pyro.png" for="Pyro"> Fuego </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Reptile" value="Reptile">
-                <label class="form-check-label" for="Reptile"><img src="/media/icons/cardIcons/race/Reptile.png" for="Reptile"> Reptil </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Rock" value="Rock">
-                <label class="form-check-label" for="Rock"><img src="/media/icons/cardIcons/race/Rock.png" for="Rock"> Roca </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="SeaSerpent" value="Sea Serpent">
-                <label class="form-check-label" for="SeaSerpent"><img src="/media/icons/cardIcons/race/Sea Serpent.png" for="SeaSerpent"> Serpiente Marina </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Spellcaster" value="Spellcaster">
-                <label class="form-check-label" for="Spellcaster"><img src="/media/icons/cardIcons/race/Spellcaster.png" for="Spellcaster"> Lanzador de Conjuros </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Thunder" value="Thunder">
-                <label class="form-check-label" for="Thunder"><img src="/media/icons/cardIcons/race/Thunder.png" for="Thunder"> Trueno </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Warrior" value="Warrior">
-                <label class="form-check-label" for="Warrior"><img src="/media/icons/cardIcons/race/Warrior.png" for="Warrior"> Guerrero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="WingedBeast" value="Winged Beast">
-                <label class="form-check-label" for="WingedBeast"><img src="/media/icons/cardIcons/race/Winged Beast.png" for="WingedBeast"> Bestia Alada </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Wyrm" value="Wyrm">
-                <label class="form-check-label" for="Wyrm"><img src="/media/icons/cardIcons/race/Wyrm.png" for="Wyrm"> Wyrm </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Zombie" value="Zombie">
-                <label class="form-check-label" for="Zombie"><img src="/media/icons/cardIcons/race/Zombie.png" for="Zombie"> Zombi </label>
-                </div>
-            </div>
-            </form>
-    
             <form>
-            <div id="attribute">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Atributo</label><br>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input attributeOfMonsterCard" type="radio" name="DARK" id="DARK" value="DARK">
-            <label class="form-check-label" for="DARK"><img src="/media/icons/cardIcons/attribute/DARK.png" for="DARK"> OSCURIDAD </label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input attributeOfMonsterCard" type="radio" name="DIVINE" id="DIVINE" value="DIVINE">
-            <label class="form-check-label" for="DIVINE"><img src="/media/icons/cardIcons/attribute/DIVINE.png" for="DIVINE"> DIVINO </label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="EARTH" value="EARTH">
-            <label class="form-check-label" for="EARTH"><img src="/media/icons/cardIcons/attribute/EARTH.png" for="EARTH"> TIERRA </label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="FIRE" value="FIRE">
-            <label class="form-check-label" for="FIRE"><img src="/media/icons/cardIcons/attribute/FIRE.png" for="FIRE"> FUEGO </label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="LIGHT" value="LIGHT">
-            <label class="form-check-label" for="LIGHT"><img src="/media/icons/cardIcons/attribute/LIGHT.png" for="LIGHT"> LUZ </label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="WATER" value="WATER">
-            <label class="form-check-label" for="WATER"><img src="/media/icons/cardIcons/attribute/WATER.png" for="WATER"> AGUA </label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="WIND" value="WIND">
-            <label class="form-check-label" for="WIND"><img src="/media/icons/cardIcons/attribute/WIND.png" for="WIND"> VIENTO </label>
-            </div>
-        </div>
+              <div id="type">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">TYPE</label><br>
+              
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Normal Monster" id="NormalMonster" >
+              <label class="form-check-label" for="NormalMonster"><img src="/media/icons/cardIcons/typeOfCard/Normal Monster.jpg" for="NormalMonster"> Normal </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Normal Tuner Monster" id="NormalTunerMonster" >
+              <label class="form-check-label" for="NormalTunerMonster"><img src="/media/icons/cardIcons/typeOfCard/Normal Tuner Monster.jpg" for="NormalTunerMonster"> Normal Cantante </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"  value="Effect Monster" id="EffectMonster" >
+              <label class="form-check-label" for="EffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Effect Monster.jpg" for="EffectMonster"> Monstruo con Efecto </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Flip Effect Monster" id="FlipEffectMonster">
+              <label class="form-check-label" for="FlipEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Flip Effect Monster.jpg" for="FlipEffectMonster"> Flip </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"  value="Gemini Monster" id="GeminiMonster">
+              <label class="form-check-label" for="GeminiMonster"><img src="/media/icons/cardIcons/typeOfCard/Gemini Monster.jpg" for="GeminiMonster"> Gemini</label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Tuner Monster" id="TunerMonster">
+              <label class="form-check-label" for="TunerMonster"><img src="/media/icons/cardIcons/typeOfCard/Tuner Monster.jpg" for="TunerMonster"> Cantante</label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"value="Union Effect Monster" id="UnionEffectMonster" >
+              <label class="form-check-label" for="UnionEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Union Effect Monster.jpg" for="UnionEffectMonster"> Union </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Spirit Monster" id="SpiritMonster" >
+              <label class="form-check-label" for="SpiritMonster"><img src="/media/icons/cardIcons/typeOfCard/Spirit Monster.jpg" for="SpiritMonster"> Espíritu </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Toon Monster" id="ToonMonster" >
+              <label class="form-check-label" for="ToonMonster"><img src="/media/icons/cardIcons/typeOfCard/Toon Monster.jpg" for="ToonMonster"> Toon </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Pendulum Normal Monster" id="PendulumNormalMonster">
+              <label class="form-check-label" for="PendulumNormalMonster"><img src="/media/icons/cardIcons/typeOfCard/Pendulum Normal Monster.jpg" for="PendulumNormalMonster"> Pendulo Normal </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"value="Pendulum Effect Monster" id="PendulumEffectMonster">
+              <label class="form-check-label" for="PendulumEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Pendulum Effect Monster.jpg" for="PendulumEffectMonster"> Pendulo con Efecto</label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Pendulum Tuner Effect Monster" id="PendulumTunerEffectMonster">
+              <label class="form-check-label" for="PendulumTunerEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Pendulum Tuner Monster.jpg" for="PendulumTunerEffectMonster"> Pendulo Cantante </label>
+              </div>
+
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Ritual Monster" id="RitualMonster">
+              <label class="form-check-label" for="RitualMonster"><img src="/media/icons/cardIcons/typeOfCard/Ritual Monster.jpg" for="RitualMonster"> Ritual</label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Fusion Monster" id="FusionMonster">
+              <label class="form-check-label" for="FusionMonster"><img src="/media/icons/cardIcons/typeOfCard/Fusion Monster.jpg" for="FusionMonster"> Fusion </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"  value="Pendulum Effect Fusion Monster" id="PendulumEffectFusionMonster">
+              <label class="form-check-label" for="PendulumEffectFusionMonster"><img src="/media/icons/cardIcons/typeOfCard/Pendulum Effect Fusion Monster.jpg" for="PendulumEffectFusionMonster"> Pendulo Fusion </label>
+              </div> 
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="XYZ Monster" id="XYZMonster">
+              <label class="form-check-label" for="XYZMonster"><img src="/media/icons/cardIcons/typeOfCard/XYZ Monster.jpg" for="XYZMonster"> XYZ </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="XYZ Pendulum Effect Monster" id="XYZPendulumEffectMonster">
+              <label class="form-check-label" for="XYZPendulumEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/XYZ Pendulum Effect Monster.jpg" for="XYZPendulumEffectMonster"> XYZ Pendulo  </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Synchro Monster" id="SynchroMonster" >
+              <label class="form-check-label" for="SynchroMonster"><img src="/media/icons/cardIcons/typeOfCard/Synchro Monster.jpg" for="SynchroMonster"> Sincronía </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Synchro Tuner Monster" id="SynchroTunerMonster" >
+              <label class="form-check-label" for="SynchroTunerMonster"><img src="/media/icons/cardIcons/typeOfCard/Synchro Tuner Monster.jpg" for="SynchroTunerMonster"> Sincronía Cantante </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Synchro Pendulum Effect Monster" id="SynchroPendulumEffectMonster" >
+              <label class="form-check-label" for="SynchroPendulumEffectMonster"><img src="/media/icons/cardIcons/typeOfCard/Synchro Pendulum Effect Monster.jpg" for="SynchroPendulumEffectMonster"> Sincronía Pendulo  </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions" value="Link Monster" id="LinkMonster">
+              <label class="form-check-label" for="LinkMonster"><img src="/media/icons/cardIcons/typeOfCard/Link Monster.jpg" for="LinkMonster"> Link </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input typeOfMonsterCard" type="radio" name="inlineRadioOptions"value="Token" id="Token">
+              <label class="form-check-label" for="Token"><img src="/media/icons/cardIcons/typeOfCard/Token.jpg" for="Token"> Token </label>
+              </div>
+              </div>
+            </form>
+            <form>
+              <div id="levels">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Nivel o Rango</label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level1" value="1">
+                <label class="form-check-label" for="level1">1 <img src="/media/icons/cardIcons/level.png" for="level1"></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level2" value="2">
+                <label class="form-check-label" for="level2">2 <img src="/media/icons/cardIcons/level.png" for="level2"></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level3" value="3">
+                <label class="form-check-label" for="level3">3 <img src="/media/icons/cardIcons/level.png" for="level3"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level4" value="4">
+                <label class="form-check-label" for="level4">4 <img src="/media/icons/cardIcons/level.png" for="level4"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level5" value="5">
+                <label class="form-check-label" for="level5">5 <img src="/media/icons/cardIcons/level.png" for="level5"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level6" value="6">
+                <label class="form-check-label" for="level6">6 <img src="/media/icons/cardIcons/level.png" for="level6"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level7" value="7">
+                <label class="form-check-label" for="level7">7 <img src="/media/icons/cardIcons/level.png" for="level7"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level8" value="8">
+                <label class="form-check-label" for="level8">8 <img src="/media/icons/cardIcons/level.png" for="level8"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level9" value="9">
+                <label class="form-check-label" for="level9">9 <img src="/media/icons/cardIcons/level.png" for="level9"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level10" value="10">
+                <label class="form-check-label" for="level10">10 <img src="/media/icons/cardIcons/level.png" for="level10"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level11" value="11">
+                <label class="form-check-label" for="level11">11 <img src="/media/icons/cardIcons/level.png" for="level11"> </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input levelOfCard" type="radio" name="inlineRadioOptions" id="level12" value="12">
+                <label class="form-check-label" for="level12">12 <img src="/media/icons/cardIcons/level.png" for="level12"> </label>
+              </div>
+              </div>
+        </form>
         <form>
-    
-        
-        <div class="row">
-          <div class="col-auto atk" id="atk">
-              <label for="atk">ATAQUE</label>
-              <input type="text" class="form-control mb-2" id="atkForm" placeholder="ATK">
+      <div id="race">
+          <label class="mr-sm-2" for="inlineFormCustomSelect">Raza</label><br>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Aqua" value="Aqua">
+          <label class="form-check-label" for="Aqua"><img src="/media/icons/cardIcons/race/Aqua.png" for="Aqua"> Agua </label>
           </div>
-    
-          <div class="col-auto def" id="def">
-              <label for="def">DEFENSA</label>
-              <input type="text" class="form-control mb-2" id="defForm" placeholder="DEF">
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Beast" value="Beast">
+          <label class="form-check-label" for="Beast"><img src="/media/icons/cardIcons/race/Beast.png" for="Beast"> Bestia </label>
           </div>
-        </div>
-    
-    
-            `
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Beast-Warrior" value="Beast-Warrior">
+          <label class="form-check-label" for="Beast-Warrior"><img src="/media/icons/cardIcons/race/Beast-Warrior.png" for="Beast-Warrior"> Guerrero-Bestia </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Creator-God" value="Creator-God">
+          <label class="form-check-label" for="Creator-God"><img src="/media/icons/cardIcons/race/Divine-Beast.png" for="Creator-God"> Dios-Creador </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Cyberse" value="Cyberse">
+          <label class="form-check-label" for="Cyberse"><img src="/media/icons/cardIcons/race/Cyberse.png" for="Cyberse"> Ciberso </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Dinosaur" value="Dinosaur">
+          <label class="form-check-label" for="Dinosaur"><img src="/media/icons/cardIcons/race/Dinosaur.png" for="Dinosaur"> Dinosaurio </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Divine-Beast" value="Divine-Beast">
+          <label class="form-check-label" for="Divine-Beast"><img src="/media/icons/cardIcons/race/Divine-Beast.png" for="Divine-Beast"> Beastia-Divina </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Dragon" value="Dragon">
+          <label class="form-check-label" for="Dragon"><img src="/media/icons/cardIcons/race/Dragon.png" for="Dragon"> Dragón </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Fairy" value="Fairy">
+          <label class="form-check-label" for="Fairy"><img src="/media/icons/cardIcons/race/Fairy.png" for="Fairy"> Hada </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Fiend" value="Fiend">
+          <label class="form-check-label" for="Fiend"><img src="/media/icons/cardIcons/race/Fiend.png" for="Fiend"> Demonio </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Fish" value="Fish">
+          <label class="form-check-label" for="Fish"><img src="/media/icons/cardIcons/race/Fish.png" for="Fish"> Pez </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Insect" value="Insect">
+          <label class="form-check-label" for="Insect"><img src="/media/icons/cardIcons/race/Insect.png" for="Insect"> Insecto </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Machine" value="Machine">
+          <label class="form-check-label" for="Machine"><img src="/media/icons/cardIcons/race/Machine.png" for="Machine"> Máquina </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Plant" value="Plant">
+          <label class="form-check-label" for="Plant"><img src="/media/icons/cardIcons/race/Plant.png" for="Plant"> Planta </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Psychic" value="Psychic">
+          <Psíquico</label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Pyro" value="Pyro">
+          <label class="form-check-label" for="Pyro"><img src="/media/icons/cardIcons/race/Pyro.png" for="Pyro"> Fuego </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Reptile" value="Reptile">
+          <label class="form-check-label" for="Reptile"><img src="/media/icons/cardIcons/race/Reptile.png" for="Reptile"> Reptil </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Rock" value="Rock">
+          <label class="form-check-label" for="Rock"><img src="/media/icons/cardIcons/race/Rock.png" for="Rock"> Roca </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="SeaSerpent" value="Sea Serpent">
+          <label class="form-check-label" for="SeaSerpent"><img src="/media/icons/cardIcons/race/Sea Serpent.png" for="SeaSerpent"> Serpiente Marina </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Spellcaster" value="Spellcaster">
+          <label class="form-check-label" for="Spellcaster"><img src="/media/icons/cardIcons/race/Spellcaster.png" for="Spellcaster"> Lanzador de Conjuros </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Thunder" value="Thunder">
+          <label class="form-check-label" for="Thunder"><img src="/media/icons/cardIcons/race/Thunder.png" for="Thunder"> Trueno </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Warrior" value="Warrior">
+          <label class="form-check-label" for="Warrior"><img src="/media/icons/cardIcons/race/Warrior.png" for="Warrior"> Guerrero </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="WingedBeast" value="Winged Beast">
+          <label class="form-check-label" for="WingedBeast"><img src="/media/icons/cardIcons/race/Winged Beast.png" for="WingedBeast"> Bestia Alada </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Wyrm" value="Wyrm">
+          <label class="form-check-label" for="Wyrm"><img src="/media/icons/cardIcons/race/Wyrm.png" for="Wyrm"> Wyrm </label>
+          </div>
+          <div class="form-check form-check-inline">
+          <input class="form-check-input raceOfMonsterCard" type="radio" name="inlineRadioOptions" id="Zombie" value="Zombie">
+          <label class="form-check-label" for="Zombie"><img src="/media/icons/cardIcons/race/Zombie.png" for="Zombie"> Zombi </label>
+          </div>
+      </div>
+      </form>
+
+      <form>
+      <div id="attribute">
+      <label class="mr-sm-2" for="inlineFormCustomSelect">Atributo</label><br>
+      <div class="form-check form-check-inline">
+      <input class="form-check-input attributeOfMonsterCard" type="radio" name="DARK" id="DARK" value="DARK">
+      <label class="form-check-label" for="DARK"><img src="/media/icons/cardIcons/attribute/DARK.png" for="DARK"> OSCURIDAD </label>
+      </div>
+      <div class="form-check form-check-inline">
+      <input class="form-check-input attributeOfMonsterCard" type="radio" name="DIVINE" id="DIVINE" value="DIVINE">
+      <label class="form-check-label" for="DIVINE"><img src="/media/icons/cardIcons/attribute/DIVINE.png" for="DIVINE"> DIVINO </label>
+      </div>
+      <div class="form-check form-check-inline">
+      <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="EARTH" value="EARTH">
+      <label class="form-check-label" for="EARTH"><img src="/media/icons/cardIcons/attribute/EARTH.png" for="EARTH"> TIERRA </label>
+      </div>
+      <div class="form-check form-check-inline">
+      <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="FIRE" value="FIRE">
+      <label class="form-check-label" for="FIRE"><img src="/media/icons/cardIcons/attribute/FIRE.png" for="FIRE"> FUEGO </label>
+      </div>
+      <div class="form-check form-check-inline">
+      <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="LIGHT" value="LIGHT">
+      <label class="form-check-label" for="LIGHT"><img src="/media/icons/cardIcons/attribute/LIGHT.png" for="LIGHT"> LUZ </label>
+      </div>
+      <div class="form-check form-check-inline">
+      <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="WATER" value="WATER">
+      <label class="form-check-label" for="WATER"><img src="/media/icons/cardIcons/attribute/WATER.png" for="WATER"> AGUA </label>
+      </div>
+      <div class="form-check form-check-inline">
+      <input class="form-check-input attributeOfMonsterCard" type="radio" name="inlineRadioOptions" id="WIND" value="WIND">
+      <label class="form-check-label" for="WIND"><img src="/media/icons/cardIcons/attribute/WIND.png" for="WIND"> VIENTO </label>
+      </div>
+  </div>
+  <form>
+
+  
+  <div class="row">
+    <div class="col-auto atk" id="atk">
+        <label for="atk">ATAQUE</label>
+        <input type="text" class="form-control mb-2" id="atkForm" placeholder="ATK">
+    </div>
+
+    <div class="col-auto def" id="def">
+        <label for="def">DEFENSA</label>
+        <input type="text" class="form-control mb-2" id="defForm" placeholder="DEF">
+    </div>
+  </div>
+
+
+      `
         } else {
             // radio is not checked..
             
@@ -567,7 +601,7 @@ Array.prototype.sortByInverted = function(p) {
 
 function sortByInverted(parameter,textValue1,textValue2){
   
-  clearScreen()
+  clearScreenForAdvancedMode()
   fetchRandom=false;
   newCards = false;
  
@@ -578,7 +612,7 @@ function sortByInverted(parameter,textValue1,textValue2){
      function createSortedByInvertedCards(){
       subContent1.innerHTML= `${textValue1}${sortedResultsInverted.length}${textValue2}: `
       for (var b = 0; b < resultsPerPage ; b++) {
-        createCard(sortedResultsInverted[b])}
+        whatType(sortedResultsInverted[b])}
     }  
     
     createSortedByInvertedCards()
@@ -587,7 +621,7 @@ function sortByInverted(parameter,textValue1,textValue2){
 
 function sortBy(parameter,textValue1,textValue2){ 
 
-  clearScreen()
+  clearScreenForAdvancedMode()
 
   sortedResults = results.sortBy(parameter)
   //CREATING THE CARDS
@@ -595,7 +629,7 @@ function sortBy(parameter,textValue1,textValue2){
   function createSortedByInvertedCards(){
     subContent1.innerHTML= `${textValue1}${sortedResults.length}${textValue2}: `
    for (var b = 0; b < resultsPerPage ; b++) {
-     createCard(sortedResults[b])}
+     whatType(sortedResults[b])}
  }  
  
  createSortedByInvertedCards()
@@ -629,11 +663,11 @@ $('#descForm').on('input', function() {
 
 
 function filterResults(){
-clearScreen()
+  clearScreenForAdvancedMode()
 //FILTER BY DESCRIPTION
 if ((document.getElementById("descForm").value) != undefined){
   function filterByDescription(){
-    return (filteredResults= (results.data.filter(function(card){
+    return (filteredResults= (results2filter.data.filter(function(card){
       return ((card.desc).includes(document.getElementById("descForm").value) || (card.name).includes(document.getElementById("descForm").value))
     
     })))
@@ -647,7 +681,7 @@ if ((document.getElementById("descForm").value) != undefined){
   if (typeParameter == "All"){
   subContent1.innerHTML= `Card Results ${filteredResults.length} cards : `
   for (var b = 0; b < resultsPerPage ; b++) {
-  createCard(filteredResults[b])}
+  whatType(filteredResults[b])}
   return
    }
 
@@ -741,7 +775,7 @@ function filterByLevelOfCard(){
         console.log("filterByaTK running")
         atkParameter = document.getElementById("atkForm").value
         function filterByAtk(){
-            return (filteredResults= (results.data.filter(function(card){return (card.atk ==atkParameter)})))
+            return (filteredResults= (results2filter.data.filter(function(card){return (card.atk ==atkParameter)})))
                 }
                 filterByAtk()
     } 
@@ -754,7 +788,7 @@ function filterByLevelOfCard(){
         console.log("filterByDef running")
                 defParameter = document.getElementById("defForm").value
                 function filterByDef(){
-                    return (filteredResults= (results.data.filter(function(card){return (card.def ==defParameter)})))
+                    return (filteredResults= (results2filter.data.filter(function(card){return (card.def ==defParameter)})))
                         }
                         filterByDef()
             } 
@@ -767,13 +801,13 @@ function filterByLevelOfCard(){
 
               defParameter = document.getElementById("defForm").value
               function filterByDef(){
-                  return (filteredResults= (results.data.filter(function(card){return (card.def ==defParameter)})))
+                  return (filteredResults= (results2filter.data.filter(function(card){return (card.def ==defParameter)})))
                       }
                       filterByDef()
               
               atkParameter = document.getElementById("atkForm").value
               function filterByAtk(){
-                  return (filteredResults= (results.data.filter(function(card){return (card.atk ==atkParameter)})))
+                  return (filteredResults= (results2filter.data.filter(function(card){return (card.atk ==atkParameter)})))
                       }
                 filterByAtk()
 
@@ -844,9 +878,9 @@ function filterByLevelOfCard(){
 
 
   subContent1.innerHTML= `${textValue1}${filteredResults.length}${textValue2}`
-  for (var b = 0; b < resultsPerPage ; b++) {
+  for (var b = 0; b = resultsPerPage ; b++) {
 
-    createCard(filteredResults[b])}
+    whatType(filteredResults[b])}
   }
 }
 
@@ -855,8 +889,21 @@ function filterByLevelOfCard(){
 
   
 advancedSearchBar.classList.remove("d-none");
-clearScreen()
+clearScreenForAdvancedMode()
+if(filteredResults.length==0){
+  
+  subContent2.innerHTML= `
+  <div class='cardGrid' style="display:flex; flex-direction:column;">
+  <img src="/media/error/error2.gif" alt="error" style="width: '400px'"> 
+  <br>
+  <h3>${errorText}</h3>
+  </div>
+  `;
+}
+
 createFilteredCards(filteredResults_H1_1,filteredResults_H1_2)
+
+
 
 
 

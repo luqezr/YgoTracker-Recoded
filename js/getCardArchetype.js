@@ -13,7 +13,9 @@ function getCardsOfArchetype(cardvalue, value1, value2) {
   clearScreen();
 
   var cardvalue = archetype;
+
   window.location.hash = `/archetype/${cardvalue}`
+
   
   subContent2.innerHTML = `
     <div id='wait'>

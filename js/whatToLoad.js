@@ -127,6 +127,15 @@ function resolveURL() {
             }
             break;
 
+            
+        case `#/advancedMode`:
+            console.log("#/advancedMode")
+            
+            searchNewCards(newCards_H1)
+                
+            break;
+
+
         case `#/search`:
             console.log("/#/newCards")
             searchNewCards(newCards_H1)

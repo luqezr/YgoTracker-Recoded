@@ -72,7 +72,6 @@ function clearScreen(){
 function clearScreenForViewChange(){
   subContent2.innerHTML="";
   subContent_miniCards.innerHTML=""
-  subContent_advancedMode.innerHTML=""
   subContent_about.innerHTML=""
   subContent_filterBar.innerHTML=""
 }
@@ -85,6 +84,7 @@ function clearScreenForAdvancedMode(){
   subContent2.innerHTML=""
   subContent_miniCards.innerHTML=""
   subContent_about.innerHTML=""
+  subContent_filterBar.innerHTML=""
 }
 
 // CLEAR CONTENT FOR SETS AND ARCHETYPES
@@ -184,15 +184,28 @@ function loadMoreCards(whatType){
   moreResults = loadedCards+loadThisManyCards;
 
   for (b = loadedCards; b < moreResults ; b++) {
-      if (b >= results.data.length){
-          moreCardsbtn.removeClass('show');
-          resetMoreResults()
-          console.log('No more cards!');
-          alert("No more cards!")
-          return} 
-      else {
-      whatType(results.data[b])
-      loadedCards++
-      }
-  }
+
+    if (window.location.hash=="#/format/goat" || window.location.hash=="#/format/ocg%20goat" || window.location.hash== "#/format/rush%20duel" || window.location.hash=="#/format/speed%20duel" || window.location.hash=="#/format/duel%20links"){
+    //  crear variable para cargar las cartas sin modificar results
+      whatType(filteredResults[b])
+        loadedCards++
+        
+
+
+        } else if (results[0].length== 20) {
+                whatType(allCards.data[b])
+                loadedCards++
+               }  else if (b = results.data.length){
+                      moreCardsbtn.removeClass('show');
+                      resetMoreResults()
+                      console.log('No more cards!');
+                      alert("No more cards!")
+                      return
+                    } else {
+                      whatType(results.data[b])
+                      loadedCards++
+                    }
+          }
+
+        
 }
