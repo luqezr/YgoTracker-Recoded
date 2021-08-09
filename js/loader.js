@@ -53,6 +53,7 @@ function loadInSpanish() {
     save2localStorage("language", language);
     // console.log("Cargando página en Español");
     $("#header").load("content/ESP/navBar.html");
+    $("#alertPopup").load("content/ESP/alertPopup.html");
     $("#scripts").load("content/ESP/scripts.html");
   }
 
@@ -68,6 +69,7 @@ function loadInEnglish() {
     save2localStorage("language", language);
     // console.log("Loading page in English");
     $("#header").load("content/ENG/navBar.html");
+    $("#alertPopup").load("content/ENG/alertPopup.html");
     $("#scripts").load("content/ENG/scripts.html");
   }
 
