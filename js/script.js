@@ -192,19 +192,22 @@ function loadMoreCards(whatType){
         
 
 
-        } else if (results[0].length== 20) {
+        } else if (results.data){
+          whatType(results.data[b])
+          loadedCards++
+        }
+        
+        else if (results[0].length== 20) {
                 whatType(allCards.data[b])
                 loadedCards++
-               }  else if (b = results.data.length){
+               } 
+                    else if (b = results.data.length){
                       moreCardsbtn.removeClass('show');
                       resetMoreResults()
                       console.log('No more cards!');
                       alert("No more cards!")
                       return
-                    } else {
-                      whatType(results.data[b])
-                      loadedCards++
-                    }
+                    } 
           }
 
         
