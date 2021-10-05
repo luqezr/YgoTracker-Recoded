@@ -49,6 +49,10 @@ function loadAdvancedMode(){
 
   clearScreenForAdvancedMode();
 
+  for (let b = 0; b < resultsPerPage; b++) {
+    // console.log(results.data[b])
+    createCard(allCards.data[b]);
+  }
   
   if (window.location.hash=="#/format/goat" || window.location.hash=="#/format/ocg%20goat" || window.location.hash== "#/format/rush%20duel" || window.location.hash=="#/format/speed%20duel" || window.location.hash=="#/format/duel%20links"){
     console.log("format filtering")
@@ -669,6 +673,7 @@ function filterResults(){
 //FILTER BY DESCRIPTION
 if ((document.getElementById("descForm").value) != undefined){
   function filterByDescription(){
+    
     return (filteredResults= (results2filter.data.filter(function(card){
       return ((card.desc).includes(document.getElementById("descForm").value) || (card.name).includes(document.getElementById("descForm").value))
     
@@ -880,7 +885,7 @@ function filterByLevelOfCard(){
 
 
   subContent1.innerHTML= `${textValue1}${filteredResults.length}${textValue2}`
-  for (var b = 0; b = resultsPerPage ; b++) {
+  for (var b = 0; b < resultsPerPage ; b++) {
 
     whatType(filteredResults[b])}
   }
