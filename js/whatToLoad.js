@@ -182,6 +182,13 @@ function resolveURL() {
             getStaples(getStaples_H1_1)
             break;
 
+        case `#/format/tcg`:
+            console.log("/#/format/tcg")
+            Urlformat='tcg'
+            getByFormat(Urlformat,getByFormat_H1_1,getByFormat_H1_2,getByFormat_H1_3)
+
+            break;
+
         case `#/format/goat`:
             console.log("/#/format/goat")
             Urlformat='goat'

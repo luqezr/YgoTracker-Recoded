@@ -46,6 +46,8 @@ function toggleAdvancedMode () {
 function loadAdvancedMode(){
   
 
+  window.location.hash = `/format/${format}`
+
   clearScreenForAdvancedMode();
 
 

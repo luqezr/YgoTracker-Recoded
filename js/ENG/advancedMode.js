@@ -46,13 +46,14 @@ function toggleAdvancedMode () {
 
 function loadAdvancedMode(){
   
+  window.location.hash = `/format/${format}`
 
   clearScreenForAdvancedMode();
 
-  for (let b = 0; b < resultsPerPage; b++) {
-    // console.log(results.data[b])
-    createCard(allCards.data[b]);
-  }
+  // for (let b = 0; b < resultsPerPage; b++) {
+  //   // console.log(results.data[b])
+  //   createCard(allCards.data[b]);
+  // }
   
   if (window.location.hash=="#/format/goat" || window.location.hash=="#/format/ocg%20goat" || window.location.hash== "#/format/rush%20duel" || window.location.hash=="#/format/speed%20duel" || window.location.hash=="#/format/duel%20links"){
     console.log("format filtering")

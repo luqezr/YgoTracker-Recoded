@@ -11,6 +11,7 @@ var subContent_filterBar = document.getElementById("sub-content-filterBar");
 var images;
 var results;
 var banlist = "tcg";
+var format = "tcg";
 var value2;
 var yugiohPricesResult;
 var allCards;
@@ -185,7 +186,7 @@ function loadMoreCards(whatType){
 
   for (b = loadedCards; b < moreResults ; b++) {
 
-    if (window.location.hash=="#/format/goat" || window.location.hash=="#/format/ocg%20goat" || window.location.hash== "#/format/rush%20duel" || window.location.hash=="#/format/speed%20duel" || window.location.hash=="#/format/duel%20links"){
+    if (window.location.hash=="#/format/goat" || window.location.hash=="#/format/ocg%20goat" || window.location.hash== "#/format/rush%20duel" || window.location.hash=="#/format/speed%20duel" || window.location.hash=="#/format/duel%20links" || window.location.hash=="#/format/tcg"){
     //  crear variable para cargar las cartas sin modificar results
       whatType(filteredResults[b])
         loadedCards++

@@ -21,7 +21,7 @@
                 <a class="nav-link" onclick="getAllArchetypes(getAllArchetypes_H1_1,getAllArchetypes_H1_2)" style="cursor: pointer" data-toggle="collapse" data-target="#navbar7">Arquetipos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="toggleAdvancedMode()" style="cursor: pointer" data-toggle="collapse" data-target="#navbar7">Advanced Mode</a>
+                <a class="nav-link" onclick="toggleAdvancedMode()" style="cursor: pointer" data-toggle="collapse" data-target="#navbar7">Modo Avanzado</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" onclick="fetchxRandomCards(resultsPerPage, randomCards_H1)" style="cursor: pointer" data-toggle="collapse" data-target="#navbar7">Cartas al azar</a>
@@ -36,6 +36,9 @@
                 Formato
               </a>
               <div class="dropdown-menu">
+                <span onclick='wichFormat(this.id)'><a class="dropdown-item" id="tcg" style="cursor: pointer" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">TCG
+                    </a></span>
                 <span onclick='wichFormat(this.id)'><a class="dropdown-item" id="goat"
                     style="cursor: pointer">GOAT</a></span>
                 <span onclick='wichFormat(this.id)'><a class="dropdown-item" id="ocg goat" style="cursor: pointer" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
