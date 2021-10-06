@@ -60,9 +60,7 @@ function createMiniCard(card){
 					
 									</div>
 								</div>
-								<div class='shareButton'>
-								<span onclick='copyCardID(this.id)'><button class=js-copy-card-url-${cardID} class='copyCardID' data-toggle="tooltip" data-placement="bottom" title="Copy card link" class="close" data-dismiss="modal" aria-label="Close" id='button.${id}'> <i id='${id}' class="fa fa-share-square-o" aria-hidden="true"></i> </button></span>
-								</div>
+								
 								</div>
 						</div>
 					</div>
@@ -113,9 +111,7 @@ function createMiniCard(card){
 			
 							</div>
 						</div>
-<div class='shareButton'>
-						<span onclick='copyCardID(this.id)'><button class=js-copy-card-url-${cardID} class='copyCardID' data-toggle="tooltip" data-placement="bottom" title="Copy card link" class="close" data-dismiss="modal" aria-label="Close" id='button.${id}'> <i id='${id}' class="fa fa-share-square-o" aria-hidden="true"></i> </button></span> 
-						</div>
+
 						</div>
 					</div>
 				</div>
