@@ -15,7 +15,13 @@ function loadHome(){
       view = 1;
       save2localStorage("view", view);
 
+      language = "ENG";
+      // console.log(language);
+      loadInEnglish();
+
+
       // Ask for default language
+      /*
       if (confirm("Load in English?")) {
         language = "ENG";
         // console.log(language);
@@ -34,6 +40,8 @@ function loadHome(){
         loadInEnglish()
   
       }
+      */
+
     }
   
     if (language == "ENG") {
