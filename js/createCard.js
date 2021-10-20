@@ -49,8 +49,15 @@ function assignValuesToCard (card, createCard_releaseText_1, createCard_releaseT
 					releaseText=createCard_releaseText_1
 					}
 			}
+
+		// Card Image Big
 		if (card.card_images === undefined) {cardImage=`https://storage.googleapis.com/ygoprodeck.com/pics/${id}.jpg`} else{cardImage= card.card_images[0].image_url}
 		if (images===false) {cardImage=`https://storage.googleapis.com/ygoprodeck.com/pics/${id}.jpg`}
+
+		// Card Image Small https://storage.googleapis.com/ygoprodeck.com/pics_small/
+		if (card.card_images === undefined) {cardImage=`https://storage.googleapis.com/ygoprodeck.com/pics_small/${id}.jpg`} else{cardImage_small= card.card_images[0].image_url}
+		if (images===false) {cardImage_small=`https://storage.googleapis.com/ygoprodeck.com/pics_small/${id}.jpg`}
+
 		card_prices= card.card_prices;	
 		card_sets= [card.card_sets];
 		if (def=== undefined || def == null){

@@ -240,6 +240,12 @@ function resolveURL() {
 
             break;
 
+        case `#/deckPricer`:
+            console.log("deck pricer")
+            loadDeckPricer()
+
+            break;
+    
     }
 
 
