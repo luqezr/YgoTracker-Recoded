@@ -223,22 +223,8 @@ function createCard(card) {
 							</div>
 
 
-						<div class='moreCardInfo'>
-							<a href='https://yugipedia.com/wiki/${id}' target="_blank"> Yugipedia </a> / 
-							<a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${konami_id}' target="_blank"> Konami Database </a> / 
-							<a href='https://db.ygorganization.com/card#${konami_id}' target="_blank"> Card Rulings </a>
-							
-							<p>
-								Card market: €${card_prices[0].cardmarket_price}* / 
-								TCG Player: $${card_prices[0].tcgplayer_price}* / 
-								Ebay: $${card_prices[0].ebay_price}* / 
-								Amazon: $${card_prices[0].amazon_price}* / 
-								Coolstuff Inc: $${card_prices[0].coolstuffinc_price}*
-							<br>
-							*${lowerPriceText}
-							</p>
-						
-						</div>
+							<div id="${id}_moreInfo"> </div>
+					
 
 						</div>
 						
@@ -304,22 +290,9 @@ function createCard(card) {
 			<br>
 			<div id='prices'>
 			</div>
-						<div class='moreCardInfo'>
-							<a href='https://yugipedia.com/wiki/${id}' target="_blank"> Yugipedia </a> / 
-							<a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${konami_id}' target="_blank"> Konami Database </a> / 
-							<a href='https://db.ygorganization.com/card#${konami_id}' target="_blank"> Card Rulings </a>
-							<br>
-							<p>
-							Card market: €${card_prices[0].cardmarket_price}* / 
-							TCG Player: $${card_prices[0].tcgplayer_price}* / 
-							Ebay: $${card_prices[0].ebay_price}* / 
-							Amazon: $${card_prices[0].amazon_price}* / 
-							Coolstuff Inc: $${card_prices[0].coolstuffinc_price}*
-							<br>
-							*${lowerPriceText}
-							</p>
-						
-						</div>
+			
+			<div id="${id}_moreInfo"> </div>
+
 		</div>
 	
 	</div>
@@ -369,17 +342,28 @@ function createCard(card) {
 			<td class="setCode" ><span onclick='getCardSetCode(this.id)'>  <a  style="cursor: pointer" id="${setName[b].set_code}" class='getBySet'  class="close" data-dismiss="modal" aria-label="Close"> ${setName[b].set_code} </a></span></td> 
 			<td class="setPrice"> $${setName[b].set_price}  </td>
 				
-			</tr>
-			
-
-
-
-
-
 
 		   </div>
+		   
 		  `;
       }
+	  document.getElementById(id + "_moreInfo").innerHTML += ` 
+	  					<div class='moreCardInfo'>
+							<a href='https://yugipedia.com/wiki/${id}' target="_blank"> Yugipedia </a> / 
+							<a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${konami_id}' target="_blank"> Konami Database </a> / 
+							<a href='https://db.ygorganization.com/card#${konami_id}' target="_blank"> Card Rulings </a>
+							<br>
+							<p>
+							Card market: €${card_prices[0].cardmarket_price}* / 
+							TCG Player: $${card_prices[0].tcgplayer_price}* / 
+							Ebay: $${card_prices[0].ebay_price}* / 
+							Amazon: $${card_prices[0].amazon_price}* / 
+							Coolstuff Inc: $${card_prices[0].coolstuffinc_price}*
+							<br>
+							*${lowerPriceText}
+							</p>
+						
+						</div>`
     });
   } else {
     document.getElementById(id + "_setTable").innerHTML = " ";
