@@ -86,7 +86,27 @@ function getCardSetCode(e) {
           console.log(results);
           console.log(results.data[0])
           whatType(results.data[0]);
-          
+
+          function replaceCardImage(){
+            currentSetImage = `https://static-3.studiobebop.net/ygo_data/card_variants/${cardSetCode}.jpg`
+
+            var previousImage = document.getElementById(`${results.data[0].id}_image`).src 
+
+            document.getElementById(`${results.data[0].id}_image`).src = currentSetImage
+            document.getElementById(`${results.data[0].id}_imageModal`).src = currentSetImage
+
+            var value = document.getElementById(`${results.data[0].id}_image`).src
+
+            if (value == "https://static-3.studiobebop.net/ygo_data/card_missing.jpg") {
+            console.log("No set image, default image restored") 
+            document.getElementById(`${results.data[0].id}_image`).src = previousImage
+            document.getElementById(`${results.data[0].id}_imageModal`).src = previousImage
+            return
+            }
+            
+          }
+           replaceCardImage()
+
           modifyPriceList(yugiohPricesResult.data.price_data.price_data.data.prices,yugiohPricesResult.data.price_data.name);
         });
     }, 1500);

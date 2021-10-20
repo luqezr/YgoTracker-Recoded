@@ -27,7 +27,7 @@ function createMiniCard(card){
 		
 		<div class="miniCard" class="card" class="col-sm" >
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-		<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
+		<img src="${cardImage}" class="card-img-bottom cardImages" id='${id}_imageModal' alt="${name}" >
 		</button>
 
 		<div class="modal fade cardModal" id="ModalID${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -36,7 +36,7 @@ function createMiniCard(card){
 					<div class="modal-header">
 
 					
-						<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" class="close" data-dismiss="modal" >
+						<img src="${cardImage}" class="card-img-bottom cardImages center" id='${id}_image' alt="${name}" class="close" data-dismiss="modal" >
 						
 					</div>
 					<div class="modal-body">
@@ -59,6 +59,22 @@ function createMiniCard(card){
 									<div id='prices'>
 					
 									</div>
+									<div class='moreCardInfo'>
+									<a href='https://yugipedia.com/wiki/${id}' target="_blank"> Yugipedia </a> / 
+									<a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${konami_id}' target="_blank"> Konami Database </a> / 
+									<a href='https://db.ygorganization.com/card#${konami_id}' target="_blank"> Card Rulings </a>
+									
+									<p>
+										Card market: €${card_prices[0].cardmarket_price}* / 
+										TCG Player: $${card_prices[0].tcgplayer_price}* / 
+										Ebay: $${card_prices[0].ebay_price}* / 
+										Amazon: $${card_prices[0].amazon_price}* / 
+										Coolstuff Inc: $${card_prices[0].coolstuffinc_price}*
+									<br>
+									*${lowerPriceText}
+									</p>
+								
+								</div>
 								</div>
 								
 								</div>
@@ -80,7 +96,7 @@ function createMiniCard(card){
 		subContent_miniCards.innerHTML+= `
 		<div class="miniCard" class="card" class="col-sm" >
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-			<img src="${cardImage}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
+			<img src="${cardImage}" class="card-img-bottom cardImages" id='${id}_imageModal' alt="${name}" >
 			</button>
 
 			<div class="modal fade cardModal" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -88,7 +104,7 @@ function createMiniCard(card){
 					<div class="modal-content">
 						<div class="modal-header">
 
-							<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" class="close" data-dismiss="modal">
+							<img src="${cardImage}" class="card-img-bottom cardImages center" id='${id}_image' alt="${name}" class="close" data-dismiss="modal">
 							
 							
 						</div>
@@ -110,6 +126,22 @@ function createMiniCard(card){
 							<div id='prices'>
 			
 							</div>
+							<div class='moreCardInfo'>
+							<a href='https://yugipedia.com/wiki/${id}' target="_blank"> Yugipedia </a> / 
+							<a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${konami_id}' target="_blank"> Konami Database </a> / 
+							<a href='https://db.ygorganization.com/card#${konami_id}' target="_blank"> Card Rulings </a>
+							
+							<p>
+								Card market: €${card_prices[0].cardmarket_price}* / 
+								TCG Player: $${card_prices[0].tcgplayer_price}* / 
+								Ebay: $${card_prices[0].ebay_price}* / 
+								Amazon: $${card_prices[0].amazon_price}* / 
+								Coolstuff Inc: $${card_prices[0].coolstuffinc_price}*
+							<br>
+							*${lowerPriceText}
+							</p>
+						
+						</div>
 						</div>
 
 						</div>

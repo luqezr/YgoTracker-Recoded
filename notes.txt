@@ -11,97 +11,6 @@ https://db.ygoprodeck.com/api/v7/cardinfo.php&id=34541863,64163367,67048711
 https://es.stackoverflow.com/questions/54734/c%C3%B3mo-leer-un-archivo-txt-desde-javascript
 https://www.html5rocks.com/es/tutorials/file/dndfiles//
 
-function leerArchivo(e) {
-  var archivo = e.target.files[0];
-  if (!archivo) {
-    return;
-  }
-  var lector = new FileReader();
-  lector.onload = function(e) {
-    var contenido = e.target.result;
-    mostrarContenido(contenido);
-  };
-  lector.readAsText(archivo);
-}
-
-function mostrarContenido(contenido) {
-  var elemento = document.getElementById('contenido-archivo');
-  elemento.innerHTML = contenido;
-}
-
-document.getElementById('file-input')
-  .addEventListener('change', leerArchivo, false);
-<input type="file" id="file-input" />
-<h3>Contenido del archivo:</h3>
-<pre id="contenido-archivo"></pre>
-
--------------------------------------------------------------------------------------------
-
-
-let area = document.getElementById('area');
-
-area.addEventListener('dragover', e => e.preventDefault());
-area.addEventListener('drop', readFile);
-
-function readFile (e) {
-  e.preventDefault();
-  let file = e.dataTransfer.files[0];
-  
-  if (file.type === 'text/plain') {
-    let reader = new FileReader();
-    reader.onloadend = () => printFileContents(reader.result);
-    reader.readAsText(file, 'ISO-8859-1');
-  } else {
-    alert('¡He dicho archivo de texto!');
-  }
-}
-
-function printFileContents (contents) {
-  area.style.lineHeight = '30px';
-  area.textContent = '';
-  let lines = contents.split(/\n/);
-
-  lines.forEach(line => area.textContent += line + '\n');
-}
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
-
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Noto Sans';
-}
-
-#area {
-  align-items: center;
-  border: 3px dashed #aaa;
-  border-radius: 5px;
-  color: #555;
-  display: flex;
-  flex-flow: column nowrap;
-  font-size: 15px;
-  height: 80vh;
-  justify-content: center;
-  max-height: 400px;
-  margin: 30px auto;
-  overflow: auto;
-  padding: 25px;
-  text-align: center;
-  white-space: pre-line;
-  width: 80%;
-  max-width: 600px;
-}
-
-h3 {
-  color: #555;
-  font-weight: 400;
-}
-<div id="area">
-  <h3>Suelta un archivo de texto y mira qué pasa ;)</h3>
-</div>
 
 -------------------------------------------------------------------------------------------
 
@@ -109,3 +18,17 @@ Para buscar cartas desde x fecha hasta x fecha
 startdate, enddate and dateregion - Query release dates for cards and the region of these release dates (TCG or OCG). What date format you pass to startdate and enddate can be slightly varied as our API picks up different formats and converts it regardless. For example: Jan 01 2000 or 01/01/2000
 Get all TCG cards released between 1st Jan 2000 and 23rd August 2002
 https://db.ygoprodeck.com/api/v7/cardinfo.php?&startdate=01/01/2000&enddate=08/23/2002&dateregion=tcg_date
+
+
+
+Agregar yugipedia 
+
+https://yugipedia.com/wiki/${id}
+
+https://yugipedia.com/wiki/63166095
+
+----------------------------------------------------------------
+
+API de ygoproorganization para poder agregar en español!! 
+
+https://db.ygorganization.com/data/card/13763

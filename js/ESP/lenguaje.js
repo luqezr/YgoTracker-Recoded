@@ -2,6 +2,7 @@
 var searchingText="Buscando..."
 var searchBarText = "Buscar carta por nombre..."
 var errorText= "No hay cartas que coincidan con tu criterio de búsqueda :( "
+var lowerPriceText = "Este es el precio mas bajo encontrado en múltiples versiones de la carta."
 
 // CREATE CARD
 var createCard_releaseText_1="Esta carta fue anunciada pero aun no ha sido impresa ni en TCG ni en OCG"

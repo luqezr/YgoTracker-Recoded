@@ -2,6 +2,7 @@
 var searchingText="Searching..."
 var searchBarText = "Search by card name..."
 var errorText= "There are no cards matching your description :( "
+var lowerPriceText = "This is the lowest price found across multiple versions of that card."
 // CREATE CARD
 var createCard_releaseText_1="This card hasn't been released yet"
 var createCard_releaseText_2_1="This card was released "
