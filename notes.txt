@@ -30,5 +30,9 @@ https://yugipedia.com/wiki/63166095
 ----------------------------------------------------------------
 
 API de ygoproorganization para poder agregar en español!! 
+https://db.ygorganization.com/about/api
 
 https://db.ygorganization.com/data/card/13763
+
+Rulings
+https://db.ygorganization.com/data/qa/13763
