@@ -1,7 +1,6 @@
 function createDeck(card,where){
 
 	if (where == "deck") { 
-		
 		var deckMain = document.getElementById("deck_main")
 		where = deckMain ; 
 		// console.log("main!!")
@@ -50,7 +49,19 @@ function createDeck(card,where){
 								
 							<p class="cardDescription">${desc}</p>
 							<p id="${id}_setsTitles"> ${releaseText}</p>
+							<table  class="priceTable"  id="${id}_setTable" >
+										<tr>
+										<th>Set Name</th>
+										<th>Rarity</th>
+										<th>Code</th>
+										<th>Price</th>
+										</tr>
+									</table>
+									<br>
+									<div id='prices'>
 					
+									</div>
+								
 									<div id="${id}_moreInfo"> </div>
 								</div>
 								
@@ -71,7 +82,7 @@ function createDeck(card,where){
 		if (type=="Link Monster"){ levelOrRankOrLink="link"}
 
 		where.innerHTML+= `
-		<div class="miniCardDeck" class="card" class="col-sm" >
+		<div class="miniCardDeck " class="card" class="col-sm" >
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
 			<img src="${cardImage}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
 			</button>
@@ -91,7 +102,18 @@ function createDeck(card,where){
  
 							<p class="cardDescription">${desc}</p>
 							<p id="${id}_setsTitles"> ${releaseText}</p>
-					
+							<table  class="priceTable" id="${id}_setTable" >
+								<tr>
+								<th>Set Name</th>
+								<th>Rarity</th>
+								<th>Code</th>
+								<th>Price</th>
+								</tr>
+							</table>
+							<br>
+							<div id='prices'>
+			
+							</div>
 							
 							<div id="${id}_moreInfo"> </div>
 
@@ -109,7 +131,69 @@ function createDeck(card,where){
 			
 	
 
+	if (card_sets[0] !== undefined ){
 
+		
+		//sortCardSets();
+
+	card_sets.forEach(function(setName,i){
+
+		for (var b = 0; b < card_sets[0].length ; b++) {
+			
+			set_code= setName[b].set_code;
+			set_name= setName[b].set_name;
+			set_price= setName[b].set_price;
+			set_rarity= setName[b].set_rarity;
+			//console.log(set_code)
+		   document.getElementById(id+'_setTable').innerHTML+=`
+		   <div onclick='addToCollection(this.id)' style='display:inline'>
+			
+		 
+
+
+			<tr>
+				<td><span onclick='cardSet(this.id)'>  <a  style="cursor: pointer" id="${setName[b].set_name}" class='getBySet'  class="close" data-dismiss="modal" aria-label="Close"> ${setName[b].set_name} </a></span>  </td>
+				<td class="setRarity">  ${set_rarity}  </td>
+				<td class="setCode" ><span onclick='getCardSetCode(this.id)'>  <a  style="cursor: pointer" id="${setName[b].set_code}" class='getBySet'  class="close" data-dismiss="modal" aria-label="Close"> ${setName[b].set_code} </a></span></td> 
+				<td class="setPrice"> $${setName[b].set_price}  </td>
+				
+			</tr>
+					
+			
+
+
+		   </div>
+		  `
+		//   $(document).ready(function(){
+		// 	$('[data-toggle="tooltip"]').tooltip();   
+		//   })
+		}
+		document.getElementById(id + "_moreInfo").innerHTML += ` 
+		<div class='moreCardInfo'>
+		  <a href='https://yugipedia.com/wiki/${id}' target="_blank"> Yugipedia </a> / 
+		  <a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${konami_id}' target="_blank"> Konami Database </a> / 
+		  <a href='https://db.ygorganization.com/card#${konami_id}' target="_blank"> Card Rulings </a>
+		  <br>
+		  <p>
+		  Card market: €${card_prices[0].cardmarket_price}* / 
+		  TCG Player: $${card_prices[0].tcgplayer_price}* / 
+		  Ebay: $${card_prices[0].ebay_price}* / 
+		  Amazon: $${card_prices[0].amazon_price}* / 
+		  Coolstuff Inc: $${card_prices[0].coolstuffinc_price}*
+		  <br>
+		  *${lowerPriceText}
+		  </p>
+	  
+	  </div>`
+
+
+	 })} else {
+		
+		  document.getElementById(id+'_setTable').innerHTML = " ";
+		  document.getElementById(id+'_setTable').innerHTML+=` `
+		}
+
+		
 }
 
 

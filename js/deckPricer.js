@@ -12,6 +12,9 @@ var rawDeck = {
   sideDeck: [],
 };
 
+var mainDeckDuplicates 
+var extraDeckDuplicates
+var sideDeckDuplicates
 
 function loadDeckPricer() {
   console.log("load deck pricer");
@@ -88,9 +91,12 @@ function mostrarContenido(contenido) {
   Extra Deck (${deck.extraDeck.length})
   Side Deck (${deck.sideDeck.length})`
 
-  getCardsById(rawDeck.mainDeck,"deck")
-  getCardsById(rawDeck.extraDeck,"extra")
-  getCardsById(rawDeck.sideDeck,"side")
+  mainDeckDuplicates=count_duplicate(deck.mainDeck)
+  extraDeckDuplicates=count_duplicate(deck.extraDeck)
+  sideDeckDuplicates=count_duplicate(deck.sideDeck)
+  getCardsById(rawDeck.mainDeck,"deck","deck")
+  getCardsById(rawDeck.extraDeck,"extra","extra")
+  getCardsById(rawDeck.sideDeck,"side","side")
 
 
 }
@@ -133,6 +139,8 @@ function createDeckArray() {
     console.log(rawDeck)
 
 
+
+
     // deck.creator = textFromFile.split("#creator:");
     // console.log(deck.creator)
 
@@ -140,14 +148,36 @@ function createDeckArray() {
 
 }
 
-function getCardsById(cardIds,where){
+function getCardsById(cardIds,where,checkDuplicates){
   resetMoreResults()
+
+	if (checkDuplicates == "deck") { 
+		checkDuplicates = mainDeckDuplicates ; 
+		// console.log("main!!")
+	}
+	if (checkDuplicates == "extra") { 
+		checkDuplicates = extraDeckDuplicates ; 
+		// console.log("extra!!")
+	}
+	if (checkDuplicates == "side") { 
+		checkDuplicates = sideDeckDuplicates ; 
+		// console.log("side!!")
+	}
+
   fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id="+cardIds+"&misc=yes")
   .then( cardInfo => cardInfo.json() )
   .then(data => {	
       results = data;
       for (var b = 0; b <= results.data.length; b++) {
         createDeck(results.data[b],where);
+        for (var c = 1; c < checkDuplicates[results.data[b].id]; c++) { 
+          createDeck(results.data[b],where);
+        }
+
+        // if (checkDuplicates[results.data[b].id] > 1 ){
+        //  console.log("Duplicate here!")
+
+        // }
       }
       });
 
@@ -183,3 +213,24 @@ function clearDeck(){
 
 }
 
+
+
+function count_duplicate(a){
+  let counts = {}
+ 
+  for(let i =0; i < a.length; i++){ 
+      if (counts[a[i]]){
+      counts[a[i]] += 1
+      } else {
+      counts[a[i]] = 1
+      }
+     }  
+     for (let prop in counts){
+         if (counts[prop] >= 2){
+            //  console.log(prop + " counted: " + counts[prop] + " times.")
+         }
+     }
+  //  console.log(counts)
+   return counts
+ }
+ 
