@@ -1,5 +1,6 @@
 function createDeck(card,where){
 
+
 	if (where == "deck") { 
 		var deckMain = document.getElementById("deck_main")
 		where = deckMain ; 
@@ -24,6 +25,8 @@ function createDeck(card,where){
 	assignValuesToCard (card, createCard_releaseText_1, createCard_releaseText_2_1,createCard_releaseText_2_2,createCard_releaseText_3_1,createCard_releaseText_3_2,createCard_releaseText_3_3,createCard_banlist_info_unlimited,createCard_banlist_info_limited,createCard_banlist_info_semi_limited,createCard_banlist_info_banned, createCard_attribute_spell,createCard_attribute_trap)
 
 	
+
+
 	if (type == "Trap Card" || type == "Spell Card" ){
 
 		where.innerHTML+= `		

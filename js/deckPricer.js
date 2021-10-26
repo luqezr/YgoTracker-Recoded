@@ -34,13 +34,15 @@ function loadDeckPricer() {
   </div>
 
   <div id="deck">
-    
     <div id="deck_creator"></div>
     <hr>
+    <h2>Main Deck </h2>
     <div id="deck_main"></div>
     <hr>
+    <h2>Extra Deck </h2>
     <div id="deck_extra"></div>
     <hr>
+    <h2>Side Deck </h2>
     <div id="deck_side"></div>
   </div>
   `
@@ -86,18 +88,19 @@ function mostrarContenido(contenido) {
 
 
   deckInfo.innerHTML=`
-  Deck creator: ${rawDeck.creator}
-  Main Deck (${deck.mainDeck.length})
-  Extra Deck (${deck.extraDeck.length})
-  Side Deck (${deck.sideDeck.length})`
+    Deck creator: ${rawDeck.creator}
+    Main Deck (${deck.mainDeck.length})
+    Extra Deck (${deck.extraDeck.length})
+    Side Deck (${deck.sideDeck.length})
+      `
 
   mainDeckDuplicates=count_duplicate(deck.mainDeck)
   extraDeckDuplicates=count_duplicate(deck.extraDeck)
   sideDeckDuplicates=count_duplicate(deck.sideDeck)
-  getCardsById(rawDeck.mainDeck,"deck","deck")
-  getCardsById(rawDeck.extraDeck,"extra","extra")
-  getCardsById(rawDeck.sideDeck,"side","side")
 
+  getCardsById(rawDeck.mainDeck,"deck","deck","mainDeck")
+  getCardsById(rawDeck.extraDeck,"extra","extra","extraDeck")
+  getCardsById(rawDeck.sideDeck,"side","side","sideDeck")
 
 }
 
@@ -134,22 +137,18 @@ function createDeckArray() {
     rawDeck.sideDeck = deck.sideDeck
     deck.sideDeck = deck.sideDeck.split(",");
 
-    console.log(deck)
-
-    console.log(rawDeck)
-
-
-
-
-    // deck.creator = textFromFile.split("#creator:");
-    // console.log(deck.creator)
-
-
 
 }
 
-function getCardsById(cardIds,where,checkDuplicates){
+function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
   resetMoreResults()
+
+  deck = {
+    mainDeck: [],
+    extraDeck: [],
+    sideDeck: [],
+  };
+
 
 	if (checkDuplicates == "deck") { 
 		checkDuplicates = mainDeckDuplicates ; 
@@ -168,10 +167,14 @@ function getCardsById(cardIds,where,checkDuplicates){
   .then( cardInfo => cardInfo.json() )
   .then(data => {	
       results = data;
-      for (var b = 0; b <= results.data.length; b++) {
+      for (var b = 0; b < results.data.length; b++) {
         createDeck(results.data[b],where);
+        pushToDeck(modifyDeckArray,b)
         for (var c = 1; c < checkDuplicates[results.data[b].id]; c++) { 
-          createDeck(results.data[b],where);
+              createDeck(results.data[b],where);
+              pushToDeck(modifyDeckArray,b)
+         
+          
         }
 
         // if (checkDuplicates[results.data[b].id] > 1 ){
@@ -180,6 +183,8 @@ function getCardsById(cardIds,where,checkDuplicates){
         // }
       }
       });
+
+
 
   }
 
@@ -234,3 +239,15 @@ function count_duplicate(a){
    return counts
  }
  
+function pushToDeck(modifyDeckArray,b){
+  if (modifyDeckArray == "mainDeck") { 
+    deck.mainDeck.push(results.data[b]) ; 
+    // console.log("main!!")
+  } else if (modifyDeckArray == "extraDeck") {  
+    deck.extraDeck.push(results.data[b]) ; 
+    // console.log("extra!!")
+  } else if (modifyDeckArray == "sideDeck") { 
+    deck.sideDeck.push(results.data[b]); 
+    // console.log("side!!")
+  }
+}

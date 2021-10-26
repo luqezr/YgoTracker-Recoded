@@ -689,7 +689,7 @@ input[type="submit"] {
 }
 
 .cardImagesSmall{
-  width: 125px!important;
+  width: 110px!important;
   margin: 0 !important;
   padding: 0!important;
 }
@@ -752,6 +752,14 @@ input[type="submit"] {
   header form {
     width: 50%;
   }
+
+
+  .cardImagesSmall{
+    width: 100px!important;
+    margin: 0 !important;
+    padding: 0!important;
+  }
+
 }
 
 @media (max-width: 740px) {
@@ -774,6 +782,11 @@ input[type="submit"] {
     align-items: center;
   }
 
+  .cardImagesSmall{
+    width: 70px!important;
+    margin: 0 !important;
+    padding: 0!important;
+  }
   /* header form {
         width:100%;
     } 
@@ -855,6 +868,11 @@ input[type="submit"] {
     width: 150px;
   }
 
+  .cardImagesSmall{
+    width: 60px!important;
+    margin: 0 !important;
+    padding: 0!important;
+  }
   .cardInfo tr {
     font-size: 10pt;
     font-weight: 520;
