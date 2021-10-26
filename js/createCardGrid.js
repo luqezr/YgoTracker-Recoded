@@ -1,33 +1,22 @@
 var cardID
 
-function createCardGrids(){
-	// clearScreen()
-	for (var b = 0; b < resultsPerPage; b++) {
-		//console.log(data[b])
-	whatType = createCardGrid
-	createCardGrid(results.data[b])}
-	$(window).scroll(function() {
-		if ($(window).scrollTop() > scrollingValue) {
-		  moreCardsbtn.addClass('show');
-		} else {
-		  moreCardsbtn.removeClass('show');
-		}
-	  });
-	}
 
-
-function createCardGrid(card){
+function createCardGrid(card,where){
 
 	assignValuesToCard (card, createCard_releaseText_1, createCard_releaseText_2_1,createCard_releaseText_2_2,createCard_releaseText_3_1,createCard_releaseText_3_2,createCard_releaseText_3_3,createCard_banlist_info_unlimited,createCard_banlist_info_limited,createCard_banlist_info_semi_limited,createCard_banlist_info_banned, createCard_attribute_spell,createCard_attribute_trap)
 
-	
+	console.log(where)
+	if (where == "deck") { where = deckMain ; console.log("deck!!")}
+	if (where == "extra") { where = deckExtra ; console.log("extra!!")}
+	if (where == "side") { where = deckSide ; console.log("side!!")}
+
 	if (type == "Trap Card" || type == "Spell Card" ){
 
-		subContent_miniCards.innerHTML+= `		
+		where.innerHTML+= `		
 		
 		<div class="miniCard" class="card" class="col-sm" >
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-		<img src="${cardImage_small}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
+		<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${fname}' alt="${name}" >
 		</button>
 
 		<div class="modal fade cardModal" id="ModalID${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -36,7 +25,7 @@ function createCardGrid(card){
 					<div class="modal-header">
 
 					
-						<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" class="close" data-dismiss="modal" >
+						<img src="${cardImage}" class="card-img-bottom cardImagesSmall center" id='${fname}' alt="${name}" class="close" data-dismiss="modal" >
 						
 					</div>
 					<div class="modal-body">
@@ -77,10 +66,10 @@ function createCardGrid(card){
 
 		if (type=="Link Monster"){ levelOrRankOrLink="link"}
 
-		subContent_miniCards.innerHTML+= `
+		where.innerHTML+= `
 		<div class="miniCard" class="card" class="col-sm" >
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-			<img src="${cardImage_small}" class="card-img-bottom cardImages" id='${fname}' alt="${name}" >
+			<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${fname}' alt="${name}" >
 			</button>
 
 			<div class="modal fade cardModal" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -88,7 +77,7 @@ function createCardGrid(card){
 					<div class="modal-content">
 						<div class="modal-header">
 
-							<img src="${cardImage}" class="card-img-bottom cardImages center" id='${fname}' alt="${name}" class="close" data-dismiss="modal">
+							<img src="${cardImage}" class="card-img-bottom cardImagesSmall center" id='${fname}' alt="${name}" class="close" data-dismiss="modal">
 							
 							
 						</div>

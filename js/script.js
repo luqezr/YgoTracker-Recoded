@@ -4,6 +4,7 @@ var content = document.getElementById("content");
 var subContent1 = document.getElementById("sub-content-1");
 var subContent2 = document.getElementById("sub-content-2");
 var subContent3 = document.getElementById("sub-content-3");
+var subContent_deckPricer = document.getElementById("sub-content-deckPricer")
 var subContent_about = document.getElementById("sub-content-about");
 var subContent_advancedMode = document.getElementById("sub-content-advancedMode");
 var subContent_miniCards = document.getElementById("sub-content-3-miniCards");
@@ -65,6 +66,7 @@ function clearScreen(){
   subContent_advancedMode.innerHTML=""
   subContent_about.innerHTML=""
   subContent_filterBar.innerHTML=""
+  clearDeckPricer()
   advancedModeToggle = 1
 }
 
@@ -86,6 +88,7 @@ function clearScreenForAdvancedMode(){
   subContent_miniCards.innerHTML=""
   subContent_about.innerHTML=""
   subContent_filterBar.innerHTML=""
+  clearDeckPricer()
 }
 
 // CLEAR CONTENT FOR SETS AND ARCHETYPES
@@ -95,6 +98,7 @@ function clearScreenForSetsAndArchetypes(){
   subContent_miniCards.innerHTML=""
   subContent_advancedMode.innerHTML=""
   subContent_about.innerHTML=""
+  clearDeckPricer()
 }
 
 // WHAT TYPE OF CARD TO LOAD (CARD, MINI CARD)

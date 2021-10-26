@@ -12,18 +12,32 @@ var rawDeck = {
   sideDeck: [],
 };
 
+var deckInfo = document.getElementById("deck_info")
+var deckDiv = document.getElementById("deck")
+var deckCreator = document.getElementById("deck_creator")
+var deckMain = document.getElementById("deck_main")
+var deckExtra = document.getElementById("deck_extra")
+var deckSide = document.getElementById("deck_side")
 
 var textFromFile
 
+function clearDeckPricer(){
+  deckInfo.innerHTML=""
+  deckDiv.innerHTML=""
+  deckCreator.innerHTML=""
+  deckMain.innerHTML=""
+  deckExtra.innerHTML=""
+  deckSide.innerHTML=""
+
+}
+
 function loadDeckPricer() {
   console.log("load deck pricer");
-
-
   window.location.hash = `/deckPricer`
-
   clearScreen();
-  subContent1.innerHTML = ` Elegir deck 
-    <input type="file" id="file-input" />
+
+  subContent1.innerHTML = ` <h2>Elegir deck</h2> 
+    <input type="file" id="file-input" class="form-control-file" />
     <h3>Contenido del archivo:</h3>
     <pre id="contenido-archivo"></pre>
             `;
@@ -32,10 +46,6 @@ function loadDeckPricer() {
     .addEventListener("change", leerArchivo, false);
     
 }
-
-
-
-
 
 function leerArchivo(e) {
   var archivo = e.target.files[0];
@@ -52,22 +62,17 @@ function leerArchivo(e) {
 }
 
 function mostrarContenido(contenido) {
-  var elemento = document.getElementById("contenido-archivo");
-  elemento.innerHTML = ` 
-  <h3>Creator : ${deck.creator}</h3>
-  <h3>Deck : </h3>
-  <div id="mainDeck"> </div>
-  <h3>Extra Deck :</h3>
-  <div id="extraDeck"> </div>
-  <h3>Side Deck :</h3>
-  <div id="sideDeck"> </div>
-  `
   // console.log(contenido)
   textFromFile = contenido
   createDeck()
+  
+
+  deckCreator.innerHTML = `${deck.creator} `
+  getCardsById(rawDeck.mainDeck,"deck")
+  getCardsById(rawDeck.extraDeck,"extra")
+  getCardsById(rawDeck.sideDeck,"side")
+
 }
-
-
 
 function createDeck() {
     textFromFile = textFromFile.replace("#created by ", "#creator:");
@@ -105,13 +110,6 @@ function createDeck() {
     console.log(deck)
     console.log(rawDeck)
 
-    var mainDeckDiv = document.getElementById("mainDeck")
-    var extraDeckDiv = document.getElementById("extraDeck")
-    var sideDeckDiv = document.getElementById("sideDeck")
-
-    mainDeckDiv.innerHTML = getCardsById(rawDeck.mainDeck)
-    extraDeckDiv.innerHTML = getCardsById(rawDeck.extraDeck)
-    sideDeckDiv.innerHTML = getCardsById(rawDeck.sideDeck)
 
     // deck.creator = textFromFile.split("#creator:");
     // console.log(deck.creator)
@@ -120,20 +118,14 @@ function createDeck() {
 
 }
 
-
-
-
-function getCardsById(cardIds){
-
+function getCardsById(cardIds,where){
   resetMoreResults()
-
   fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id="+cardIds+"&misc=yes")
   .then( cardInfo => cardInfo.json() )
   .then(data => {	
       results = data;
-      
       for (var b = 0; b = results.data.length; b++) {
-        createCardGrids(results.data[b]);
+        createCardGrids(results.data[b],where);
       }
       });
 
