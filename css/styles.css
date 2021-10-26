@@ -506,6 +506,8 @@ header form button {
   width: 300px;
 }
 
+
+
 .modal-backdrop.show {
   opacity: 0;
 }
@@ -674,11 +676,49 @@ input[type="submit"] {
   background-color: rgba(255, 255, 255, 0)!important;
 }
 
+#sub-content-deckPricer{
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  margin: 0!important;
+  padding: 0!important;
+  margin-bottom: 10px;
+}
+
+#contenido-archivo {
+  
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
 .cardImagesSmall{
   width: 100px!important;
   margin: 0 !important;
   padding: 0!important;
 }
+
+
+
+.miniCardDeck, .miniCardDeck button{
+  width: auto;
+  margin: 0 !important;
+  padding: 0 !important;
+
+}
+
+#deck{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+#deck_main, #deck_extra, #deck_side{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 
 /* DECK PRICER END  */
 
@@ -689,6 +729,7 @@ input[type="submit"] {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 15px;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */

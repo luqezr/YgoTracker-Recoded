@@ -1,22 +1,36 @@
-var cardID
+function createDeck(card,where){
 
+	if (where == "deck") { 
+		
+		var deckMain = document.getElementById("deck_main")
+		where = deckMain ; 
+		// console.log("main!!")
+	}
+	if (where == "extra") { 
+		var deckExtra = document.getElementById("deck_extra")
+		where = deckExtra ; 
+		// console.log("extra!!")
+	}
+	if (where == "side") { 
+		var deckSide = document.getElementById("deck_side")
+		where = deckSide ; 
+		// console.log("side!!")
+	}
+	if (where == undefined ){ 
+		where = subContent_miniCards ; 
+		// console.log("subcontent_minicards")
+	}
 
-function createCardGrid(card,where){
 
 	assignValuesToCard (card, createCard_releaseText_1, createCard_releaseText_2_1,createCard_releaseText_2_2,createCard_releaseText_3_1,createCard_releaseText_3_2,createCard_releaseText_3_3,createCard_banlist_info_unlimited,createCard_banlist_info_limited,createCard_banlist_info_semi_limited,createCard_banlist_info_banned, createCard_attribute_spell,createCard_attribute_trap)
 
-	console.log(where)
-	if (where == "deck") { where = deckMain ; console.log("deck!!")}
-	if (where == "extra") { where = deckExtra ; console.log("extra!!")}
-	if (where == "side") { where = deckSide ; console.log("side!!")}
-
+	
 	if (type == "Trap Card" || type == "Spell Card" ){
 
 		where.innerHTML+= `		
-		
-		<div class="miniCard" class="card" class="col-sm" >
+		<div class="miniCardDeck" class="card" class="col-sm" >
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-		<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${fname}' alt="${name}" >
+		<img src="${cardImage}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
 		</button>
 
 		<div class="modal fade cardModal" id="ModalID${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -25,7 +39,7 @@ function createCardGrid(card,where){
 					<div class="modal-header">
 
 					
-						<img src="${cardImage}" class="card-img-bottom cardImagesSmall center" id='${fname}' alt="${name}" class="close" data-dismiss="modal" >
+						<img src="${cardImage}" class="card-img-bottom cardImages center" id='${id}_image' alt="${name}" class="close" data-dismiss="modal" >
 						
 					</div>
 					<div class="modal-body">
@@ -36,18 +50,8 @@ function createCardGrid(card,where){
 								
 							<p class="cardDescription">${desc}</p>
 							<p id="${id}_setsTitles"> ${releaseText}</p>
-							<table  class="priceTable"  id="${id}_setTable" >
-										<tr>
-										<th>Set Name</th>
-										<th>Rarity</th>
-										<th>Code</th>
-										<th>Price</th>
-										</tr>
-									</table>
-									<br>
-									<div id='prices'>
 					
-									</div>
+									<div id="${id}_moreInfo"> </div>
 								</div>
 								
 								</div>
@@ -67,9 +71,9 @@ function createCardGrid(card,where){
 		if (type=="Link Monster"){ levelOrRankOrLink="link"}
 
 		where.innerHTML+= `
-		<div class="miniCard" class="card" class="col-sm" >
+		<div class="miniCardDeck" class="card" class="col-sm" >
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-			<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${fname}' alt="${name}" >
+			<img src="${cardImage}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
 			</button>
 
 			<div class="modal fade cardModal" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -77,7 +81,7 @@ function createCardGrid(card,where){
 					<div class="modal-content">
 						<div class="modal-header">
 
-							<img src="${cardImage}" class="card-img-bottom cardImagesSmall center" id='${fname}' alt="${name}" class="close" data-dismiss="modal">
+							<img src="${cardImage}" class="card-img-bottom cardImages center" id='${id}_image' alt="${name}" class="close" data-dismiss="modal">
 							
 							
 						</div>
@@ -87,18 +91,10 @@ function createCardGrid(card,where){
  
 							<p class="cardDescription">${desc}</p>
 							<p id="${id}_setsTitles"> ${releaseText}</p>
-							<table  class="priceTable" id="${id}_setTable" >
-								<tr>
-								<th>Set Name</th>
-								<th>Rarity</th>
-								<th>Code</th>
-								<th>Price</th>
-								</tr>
-							</table>
-							<br>
-							<div id='prices'>
-			
-							</div>
+					
+							
+							<div id="${id}_moreInfo"> </div>
+
 						</div>
 
 						</div>
@@ -113,50 +109,8 @@ function createCardGrid(card,where){
 			
 	
 
-	if (card_sets[0] !== undefined ){
 
-		
-		//sortCardSets();
-
-	card_sets.forEach(function(setName,i){
-
-		for (var b = 0; b < card_sets[0].length ; b++) {
-			
-			set_code= setName[b].set_code;
-			set_name= setName[b].set_name;
-			set_price= setName[b].set_price;
-			set_rarity= setName[b].set_rarity;
-			//console.log(set_code)
-		   document.getElementById(id+'_setTable').innerHTML+=`
-		   <div onclick='addToCollection(this.id)' style='display:inline'>
-			
-		 
-
-
-			<tr>
-				<td><span onclick='cardSet(this.id)'>  <a  style="cursor: pointer" id="${setName[b].set_name}" class='getBySet'  class="close" data-dismiss="modal" aria-label="Close"> ${setName[b].set_name} </a></span>  </td>
-				<td class="setRarity">  ${set_rarity}  </td>
-				<td class="setCode" ><span onclick='getCardSetCode(this.id)'>  <a  style="cursor: pointer" id="${setName[b].set_code}" class='getBySet'  class="close" data-dismiss="modal" aria-label="Close"> ${setName[b].set_code} </a></span></td> 
-				<td class="setPrice"> $${setName[b].set_price}  </td>
-				
-			</tr>
-					
-			
-
-
-		   </div>
-		  `
-		//   $(document).ready(function(){
-		// 	$('[data-toggle="tooltip"]').tooltip();   
-		//   })
-		}
-
-	 })} else {
-		
-		  document.getElementById(id+'_setTable').innerHTML = " ";
-		  document.getElementById(id+'_setTable').innerHTML+=` `
-		}
-
-		
 }
+
+
 

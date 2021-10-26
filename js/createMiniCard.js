@@ -16,14 +16,32 @@ function createMiniCards(){
 	}
 
 
-function createMiniCard(card){
+function createMiniCard(card,where){
+
+	if (where == "deck") { 
+		where = deckMain ; 
+		// console.log("main!!")
+	}
+	if (where == "extra") { 
+		where = deckExtra ; 
+		// console.log("extra!!")
+	}
+	if (where == "side") { 
+		where = deckSide ; 
+		// console.log("side!!")
+	}
+	if (where == undefined ){ 
+		where = subContent_miniCards ; 
+		// console.log("subcontent_minicards")
+	}
+
 
 	assignValuesToCard (card, createCard_releaseText_1, createCard_releaseText_2_1,createCard_releaseText_2_2,createCard_releaseText_3_1,createCard_releaseText_3_2,createCard_releaseText_3_3,createCard_banlist_info_unlimited,createCard_banlist_info_limited,createCard_banlist_info_semi_limited,createCard_banlist_info_banned, createCard_attribute_spell,createCard_attribute_trap)
 
 	
 	if (type == "Trap Card" || type == "Spell Card" ){
 
-		subContent_miniCards.innerHTML+= `		
+		where.innerHTML+= `		
 		
 		<div class="miniCard" class="card" class="col-sm" >
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
@@ -79,7 +97,7 @@ function createMiniCard(card){
 
 		if (type=="Link Monster"){ levelOrRankOrLink="link"}
 
-		subContent_miniCards.innerHTML+= `
+		where.innerHTML+= `
 		<div class="miniCard" class="card" class="col-sm" >
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
 			<img src="${cardImage}" class="card-img-bottom cardImages" id='${id}_imageModal' alt="${name}" >

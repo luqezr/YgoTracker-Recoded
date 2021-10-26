@@ -12,24 +12,6 @@ var rawDeck = {
   sideDeck: [],
 };
 
-var deckInfo = document.getElementById("deck_info")
-var deckDiv = document.getElementById("deck")
-var deckCreator = document.getElementById("deck_creator")
-var deckMain = document.getElementById("deck_main")
-var deckExtra = document.getElementById("deck_extra")
-var deckSide = document.getElementById("deck_side")
-
-var textFromFile
-
-function clearDeckPricer(){
-  deckInfo.innerHTML=""
-  deckDiv.innerHTML=""
-  deckCreator.innerHTML=""
-  deckMain.innerHTML=""
-  deckExtra.innerHTML=""
-  deckSide.innerHTML=""
-
-}
 
 function loadDeckPricer() {
   console.log("load deck pricer");
@@ -37,10 +19,35 @@ function loadDeckPricer() {
   clearScreen();
 
   subContent1.innerHTML = ` <h2>Elegir deck</h2> 
-    <input type="file" id="file-input" class="form-control-file" />
-    <h3>Contenido del archivo:</h3>
-    <pre id="contenido-archivo"></pre>
-            `;
+  <input type="file" id="file-input" class="form-control-file" />
+  <h3>Contenido del archivo:</h3>
+  <pre id="contenido-archivo"></pre>
+          `;
+
+  subContentDeckPricer.innerHTML=`
+  <h3>Drop your deck (.ydk) here!</h3>
+  <div id="deck_info">
+
+  </div>
+
+  <div id="deck">
+    
+    <div id="deck_creator"></div>
+    <hr>
+    <div id="deck_main"></div>
+    <hr>
+    <div id="deck_extra"></div>
+    <hr>
+    <div id="deck_side"></div>
+  </div>
+  `
+
+  let area = document.getElementById('sub-content-deckPricer');
+  area.addEventListener('dragover', e => e.preventDefault());
+  area.addEventListener('drop', readFile);
+  
+
+            
   document
     .getElementById("file-input")
     .addEventListener("change", leerArchivo, false);
@@ -48,6 +55,7 @@ function loadDeckPricer() {
 }
 
 function leerArchivo(e) {
+  clearDeck()
   var archivo = e.target.files[0];
   if (!archivo) {
     return;
@@ -58,23 +66,36 @@ function leerArchivo(e) {
     mostrarContenido(contenido);
   };
   lector.readAsText(archivo);
-  createDeck()
 }
 
 function mostrarContenido(contenido) {
   // console.log(contenido)
   textFromFile = contenido
-  createDeck()
+  createDeckArray()
   
+  
+  var deckInfo = document.getElementById("deck_info")
+  var deckDiv = document.getElementById("deck")
+  var deckCreator = document.getElementById("deck_creator")
+  var deckMain = document.getElementById("deck_main")
+  var deckExtra = document.getElementById("deck_extra")
+  var deckSide = document.getElementById("deck_side")
 
-  deckCreator.innerHTML = `${deck.creator} `
+
+  deckInfo.innerHTML=`
+  Deck creator: ${rawDeck.creator}
+  Main Deck (${deck.mainDeck.length})
+  Extra Deck (${deck.extraDeck.length})
+  Side Deck (${deck.sideDeck.length})`
+
   getCardsById(rawDeck.mainDeck,"deck")
   getCardsById(rawDeck.extraDeck,"extra")
   getCardsById(rawDeck.sideDeck,"side")
 
+
 }
 
-function createDeck() {
+function createDeckArray() {
     textFromFile = textFromFile.replace("#created by ", "#creator:");
     textFromFile = textFromFile.replace("#main", "#main:");
     textFromFile = textFromFile.replace("#extra", "#extra:");
@@ -108,6 +129,7 @@ function createDeck() {
     deck.sideDeck = deck.sideDeck.split(",");
 
     console.log(deck)
+
     console.log(rawDeck)
 
 
@@ -124,9 +146,40 @@ function getCardsById(cardIds,where){
   .then( cardInfo => cardInfo.json() )
   .then(data => {	
       results = data;
-      for (var b = 0; b = results.data.length; b++) {
-        createCardGrids(results.data[b],where);
+      for (var b = 0; b <= results.data.length; b++) {
+        createDeck(results.data[b],where);
       }
       });
 
   }
+
+  // Drag and drop 
+
+
+function readFile (e) {
+  e.preventDefault();
+  clearDeck()
+  let file = e.dataTransfer.files[0];
+  var lector = new FileReader();
+  lector.onload = function (e) {
+    var contenido = e.target.result;
+    mostrarContenido(contenido);
+  };
+  lector.readAsText(file);
+}
+
+function clearDeck(){
+  var deckInfo = document.getElementById("deck_info")
+  var deckDiv = document.getElementById("deck")
+  var deckCreator = document.getElementById("deck_creator")
+  var deckMain = document.getElementById("deck_main")
+  var deckExtra = document.getElementById("deck_extra")
+  var deckSide = document.getElementById("deck_side")
+
+  deckCreator.innerHTML=""
+  deckMain.innerHTML=""
+  deckExtra.innerHTML=""
+  deckSide.innerHTML=""
+
+}
+
