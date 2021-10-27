@@ -85,14 +85,32 @@ function mostrarContenido(contenido) {
   var deckMain = document.getElementById("deck_main")
   var deckExtra = document.getElementById("deck_extra")
   var deckSide = document.getElementById("deck_side")
+  let cardsInMainDeck
+  let cardsInExtraDeck
+  let cardsInSideDeck
+
+  if (deck.mainDeck[0] == undefined){
+    console.log("No main deck")
+    cardsInMainDeck = 0
+    } else if (deck.extraDeck[0] == undefined){
+      console.log("No extra deck")
+      cardsInExtraDeck = 0
+    } else if (deck.sideDeck[0] == undefined){
+      console.log("No side deck")
+      cardsInSideDeck = 0
+    }else{
+      cardsInMainDeck = deck.mainDeck.length
+      cardsInExtraDeck = deck.extraDeck.length
+      cardsInSideDeck = deck.sideDeck.length
 
 
-  deckInfo.innerHTML=`
-    Deck creator: ${rawDeck.creator}
-    Main Deck (${deck.mainDeck.length})
-    Extra Deck (${deck.extraDeck.length})
-    Side Deck (${deck.sideDeck.length})
-      `
+          deckInfo.innerHTML=`
+            Deck creator: ${rawDeck.creator}
+            Main Deck (${cardsInMainDeck})
+            Extra Deck (${cardsInExtraDeck})
+            Side Deck (${cardsInSideDeck})
+              `
+    }
 
   mainDeckDuplicates=count_duplicate(deck.mainDeck)
   extraDeckDuplicates=count_duplicate(deck.extraDeck)

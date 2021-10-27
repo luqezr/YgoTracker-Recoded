@@ -24,6 +24,9 @@ var view;
 //  CUANTO VA A CARGAR
 var resultsPerPage = 20;
 var setsPerPage = 50;
+var loadedCards = resultsPerPage
+var loadThisManyCards = 12
+var moreResults
 
 // LOCALSTORAGE
 
@@ -109,23 +112,37 @@ var whatType
 function changeView () {
   clearScreenForViewChange()
   view++
-  if (view > 2) {
+  if (view > 3) {
     view = 1
     console.log(view)
     whatType = createCard
     save2localStorage("view", view);
+    resultsPerPage = 20
+    loadThisManyCards = 12
 
   } else if (view==1) {
     whatType = createCard
     scrollingValue = 6000
     save2localStorage("view", view);
+    resultsPerPage = 20
+    loadThisManyCards = 12
 
   } else if (view == 2) {
     whatType = createMiniCard
     scrollingValue = 1000
     save2localStorage("view", view);
+    resultsPerPage = 20
+    loadThisManyCards = 12
+
+  } else if (view == 3) {
+    whatType = createDeck
+    scrollingValue = 10
+    save2localStorage("view", view);
+    resultsPerPage = 40
+    loadThisManyCards = 40
     view = 0
   }
+
 
   if (results.data){
   for (var b = 0; b < resultsPerPage; b++) {
@@ -176,9 +193,6 @@ btn.on('click', function(e) {
 
 // LOAD MORE CARDS
 
-var loadedCards = resultsPerPage
-var loadThisManyCards = 12
-var moreResults
 
 function resetMoreResults(){
   moreResults=0

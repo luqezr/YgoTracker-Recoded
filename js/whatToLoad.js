@@ -26,6 +26,14 @@ function resolveURL() {
         whatType = createMiniCard
         scrollingValue = 1000
         console.log("Mini Card view set as default")
+      } else if (view==3) {
+        whatType = createDeck
+        scrollingValue = 10
+        console.log("deck view set as default")
+        resultsPerPage = 40
+        loadThisManyCards = 20
+        loadedCards = resultsPerPage
+
       }
 
 
