@@ -139,19 +139,29 @@ function changeView () {
     scrollingValue = 10
     save2localStorage("view", view);
     resultsPerPage = 40
-    loadThisManyCards = 40
+    loadThisManyCards = 30
+    
+    loadedCards = resultsPerPage
     view = 0
   }
 
 
   if (results.data){
   for (var b = 0; b < resultsPerPage; b++) {
-    whatType(results.data[b])}
+    // whatType(results.data[b])
+  
+    (async function(){await whatType(results.data[b]); })()
+  
+  }
 
+    
   // console.log("Current view is set to "+ whatType)
   } else if (!(results.data)){
     for (var b = 0; b < resultsPerPage; b++) {
-      whatType(results[0][b])}
+      // whatType(results[0][b])
+    
+      (async function(){await whatType(results[0][b]) })()
+    }
   }
 
 

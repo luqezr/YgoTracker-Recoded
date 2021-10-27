@@ -181,28 +181,29 @@ function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
 		// console.log("side!!")
 	}
 
-  fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id="+cardIds+"&misc=yes")
-  .then( cardInfo => cardInfo.json() )
-  .then(data => {	
-      results = data;
-      for (var b = 0; b < results.data.length; b++) {
-        createDeck(results.data[b],where);
-        pushToDeck(modifyDeckArray,b)
-        for (var c = 1; c < checkDuplicates[results.data[b].id]; c++) { 
+  (async function(){
+    await fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id="+cardIds+"&misc=yes")
+        .then( cardInfo => cardInfo.json() )
+        .then(data => {	
+            results = data;
+            for (var b = 0; b < results.data.length; b++) {
               createDeck(results.data[b],where);
               pushToDeck(modifyDeckArray,b)
-         
-          
-        }
+              for (var c = 1; c < checkDuplicates[results.data[b].id]; c++) { 
+                    createDeck(results.data[b],where);
+                    pushToDeck(modifyDeckArray,b)
+              
+                
+              }
 
-        // if (checkDuplicates[results.data[b].id] > 1 ){
-        //  console.log("Duplicate here!")
+              // if (checkDuplicates[results.data[b].id] > 1 ){
+              //  console.log("Duplicate here!")
 
-        // }
-      }
-      });
+              // }
+            }
+            });
 
-
+          })();
 
   }
 

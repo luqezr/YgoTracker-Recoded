@@ -9,7 +9,7 @@ function fetchxRandomCards(howManyToFetch,value1,value2){
     results=[]
     results[0]=[]
     for (var i = 0; i < howManyToFetch; i++) {
-        searchRandomCards()
+        (async function(){await searchRandomCards(); })()
      }
     return 
 }

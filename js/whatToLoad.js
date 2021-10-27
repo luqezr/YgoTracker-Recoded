@@ -15,7 +15,7 @@ function resolveURL() {
     view = readLocalStorage("view");
     console.log("view = "+view)
 
-    if (view > 2){
+    if (view > 3){
         view=1
         save2localStorage("view", view);
     } else if (view==1) {
@@ -31,9 +31,8 @@ function resolveURL() {
         scrollingValue = 10
         console.log("deck view set as default")
         resultsPerPage = 40
-        loadThisManyCards = 20
+        loadThisManyCards = 30
         loadedCards = resultsPerPage
-
       }
 
 

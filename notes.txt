@@ -36,3 +36,13 @@ https://db.ygorganization.com/data/card/13763
 
 Rulings
 https://db.ygorganization.com/data/qa/13763
+
+
+-------------------------------------------------------------------
+async await!!
+
+ (async function(){
+        var film = await getFilm();
+        var main = await getMain(film);
+        console.log(main , film);
+    })();
