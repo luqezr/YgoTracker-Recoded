@@ -45,10 +45,6 @@ function loadDeckPricer() {
 
   subContentDeckPricer.innerHTML=`
   <h3>${deckPricer_dropkYdk}</h3>
-  <div id="deck_info">
-
-  </div>
-
   <div id="deck">
     <div id="deck_creator"></div>
     <hr>
@@ -61,9 +57,14 @@ function loadDeckPricer() {
     <h2>Side Deck </h2>
     <div id="deck_side"></div>
   </div>
-  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="searchLowestDeckValue(deck.mainDeck)">Maindeck prices</button>
-  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="searchLowestDeckValue(deck.extraDeck)">Extradeck prices</button>
-  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="searchLowestDeckValue(deck.sideDeck)">Sidedeck prices</button>
+  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="searchLowestPrices()">Price Breakdown</button>
+  <br>
+  <br>
+  <div id="deck_info">
+
+  </div>
+
+
   `
 
   let area = document.getElementById('sub-content-deckPricer');
@@ -76,6 +77,29 @@ function loadDeckPricer() {
     .getElementById("file-input")
     .addEventListener("change", leerArchivo, false);
     
+}
+
+function searchLowestPrices(){
+  deckInfo = document.getElementById("deck_info")
+  deckInfo.innerHTML+='<br>-----------------------------------<br>Main Deck'
+  searchLowestDeckValue(deck.mainDeck)
+  deckInfo.innerHTML+='<br>-----------------------------------<br>Extra Deck'
+  searchLowestDeckValue(deck.extraDeck)
+  deckInfo.innerHTML+='<br>-----------------------------------<br>Side Deck'
+  searchLowestDeckValue(deck.sideDeck)
+  deckInfo.innerHTML+='<br>-----------------------------------'
+  let decktotalprice = lowestPriceForDeck.mainDeck.reduce((a, b) => a + b, 0);
+  let extradecktotalprice = lowestPriceForDeck.extraDeck.reduce((a, b) => a + b, 0);
+  let sidedecktotalprice = lowestPriceForDeck.sideDeck.reduce((a, b) => a + b, 0);
+  let totalprice = decktotalprice+extradecktotalprice+sidedecktotalprice
+  deckInfo.innerHTML+=`<br>Total price for maindeck : ${decktotalprice.toFixed(2)}`
+  deckInfo.innerHTML+='<br>-----------------------------------'
+  deckInfo.innerHTML+=`<br>Total price for extradeck : ${extradecktotalprice.toFixed(2)}`
+  deckInfo.innerHTML+='<br>-----------------------------------'
+  deckInfo.innerHTML+=`<br>Total price for sidedeck : ${sidedecktotalprice.toFixed(2)}`
+  deckInfo.innerHTML+='<br>-----------------------------------'
+  deckInfo.innerHTML+=`<br>Total price : ${totalprice.toFixed(2)}`
+  
 }
 
 function leerArchivo(e) {
@@ -140,7 +164,6 @@ function mostrarContenido(contenido) {
   getCardsById(rawDeck.mainDeck,"deck","deck","mainDeck")
   getCardsById(rawDeck.extraDeck,"extra","extra","extraDeck")
   getCardsById(rawDeck.sideDeck,"side","side","sideDeck")
-
 
 }
 
@@ -325,7 +348,8 @@ function searchLowestDeckValue(value){
             // console.log(lowestCardPriceArray)
             console.log("lowest value for " + deck.mainDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
 
-            deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}${deck.mainDeck[b].name}${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
+            deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.mainDeck[b].id}">${deck.mainDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
+            lowestPriceForDeck.mainDeck.push(Math.min(...lowestCardPriceArray))
             
         }
 
@@ -347,8 +371,8 @@ function searchLowestDeckValue(value){
           // console.log(lowestCardPriceArray)
           console.log("lowest value for " + deck.extraDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
 
-          deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}${deck.extraDeck[b].name}${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}<br>`
-          
+          deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.extraDeck[b].id}">${deck.extraDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
+          lowestPriceForDeck.extraDeck.push(Math.min(...lowestCardPriceArray))
       }
 
 
@@ -369,7 +393,8 @@ function searchLowestDeckValue(value){
           // console.log(lowestCardPriceArray)
           console.log("lowest value for " + deck.sideDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
           
-          deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}${deck.sideDeck[b].name}${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}<br>`
+          deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.sideDeck[b].id}">${deck.sideDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
+          lowestPriceForDeck.sideDeck.push(Math.min(...lowestCardPriceArray))
       }
 
         }
