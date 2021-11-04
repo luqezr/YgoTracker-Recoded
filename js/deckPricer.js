@@ -346,7 +346,7 @@ function searchLowestDeckValue(value){
               // lowestPriceForDeck.mainDeck.push(lowestCardPrice)
             }
             // console.log(lowestCardPriceArray)
-            console.log("lowest value for " + deck.mainDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
+            // console.log("lowest value for " + deck.mainDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
 
             deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.mainDeck[b].id}">${deck.mainDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
             lowestPriceForDeck.mainDeck.push(Math.min(...lowestCardPriceArray))
@@ -369,7 +369,7 @@ function searchLowestDeckValue(value){
         
           }
           // console.log(lowestCardPriceArray)
-          console.log("lowest value for " + deck.extraDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
+          // console.log("lowest value for " + deck.extraDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
 
           deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.extraDeck[b].id}">${deck.extraDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
           lowestPriceForDeck.extraDeck.push(Math.min(...lowestCardPriceArray))
@@ -391,7 +391,7 @@ function searchLowestDeckValue(value){
         
           }
           // console.log(lowestCardPriceArray)
-          console.log("lowest value for " + deck.sideDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
+          // console.log("lowest value for " + deck.sideDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
           
           deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.sideDeck[b].id}">${deck.sideDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
           lowestPriceForDeck.sideDeck.push(Math.min(...lowestCardPriceArray))
