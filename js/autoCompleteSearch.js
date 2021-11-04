@@ -2,11 +2,12 @@ var allCardNames = []
 
 function searchCardNamesForAutocomplete(){
     
-for (let b=0 ; b<allCards.data.length ; b++){
+for (let b=0 ; b < allCards.data.length ; b++){
     allCardNames.push(allCards.data[b].name)
 }
 
-// console.log(allCardNames)
+allCardNames = [...new Set(allCardNames)];
+//  console.log(allCardNames)
 
 }
 

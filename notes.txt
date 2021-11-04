@@ -46,3 +46,27 @@ async await!!
         var main = await getMain(film);
         console.log(main , film);
     })();
+
+
+-------------------------------------------------------------------
+para buscar el valor del set mas alto de una carta 
+Math.max(deck.mainDeck[0].card_sets[0].set_price, deck.mainDeck[0].card_sets[1].set_price,deck.mainDeck[0].card_sets[2].set_price)
+
+var totn_array = [2, 4, 6, 8, 10];
+
+console.log(Math.min(...totn_array));
+The following will be output to the web browser console log:
+
+2
+
+https://www.techonthenet.com/js/math_min.php
+
+-------------------------------------------------------------------
+
+los perfiles
+- El vendedor/carpetero (solo vende, para el es un trabajo)
+- El jugador casual (gasta poca plata y usa decks baratos)
+- El jugador semi-competitivo (yo, colecciona y juega)
+- El jugador competitivo (gasta mucha plata en cartas caras que luego revende para comprar cartas mas actuales)
+- El coleccionista (no juega, colecciona cartas de las primeras generaciones)
+- Jugador nostalgia (vio el anime y le recuerda la infancia, no juega mas que los juegos viejos)

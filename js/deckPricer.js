@@ -12,23 +12,39 @@ var rawDeck = {
   sideDeck: [],
 };
 
+var lowestPriceForDeck = {
+  mainDeck: [],
+  extraDeck: [],
+  sideDeck: [],
+};
+
+var highetsPriceForDeck = {
+  mainDeck: [],
+  extraDeck: [],
+  sideDeck: [],
+};
+
+var lowestCardPriceArray = []
+var lowestCardPrice
 var mainDeckDuplicates 
 var extraDeckDuplicates
 var sideDeckDuplicates
+var deckInfo
+
+
 
 function loadDeckPricer() {
   console.log("load deck pricer");
   window.location.hash = `/deckPricer`
   clearScreen();
 
-  subContent1.innerHTML = ` <h2>Elegir deck</h2> 
+  subContent1.innerHTML = ` <h2>${deckPricer_chooseDeck}</h2> 
   <input type="file" id="file-input" class="form-control-file" />
-  <h3>Contenido del archivo:</h3>
   <pre id="contenido-archivo"></pre>
           `;
 
   subContentDeckPricer.innerHTML=`
-  <h3>Drop your deck (.ydk) here!</h3>
+  <h3>${deckPricer_dropkYdk}</h3>
   <div id="deck_info">
 
   </div>
@@ -45,6 +61,9 @@ function loadDeckPricer() {
     <h2>Side Deck </h2>
     <div id="deck_side"></div>
   </div>
+  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="searchLowestDeckValue(deck.mainDeck)">Maindeck prices</button>
+  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="searchLowestDeckValue(deck.extraDeck)">Extradeck prices</button>
+  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="searchLowestDeckValue(deck.sideDeck)">Sidedeck prices</button>
   `
 
   let area = document.getElementById('sub-content-deckPricer');
@@ -105,11 +124,13 @@ function mostrarContenido(contenido) {
 
 
           deckInfo.innerHTML=`
-            Deck creator: ${rawDeck.creator}
-            Main Deck (${cardsInMainDeck})
-            Extra Deck (${cardsInExtraDeck})
-            Side Deck (${cardsInSideDeck})
+            ${deckPricer_deckCreator} : ${rawDeck.creator}
+            ${deckPricer_mainDeck} (${cardsInMainDeck})
+            ${deckPricer_extraDeck} (${cardsInExtraDeck})
+            ${deckPricer_sideDeck} (${cardsInSideDeck})
               `
+
+        var cardPrices = document.getElementById("cardPrices")
     }
 
   mainDeckDuplicates=count_duplicate(deck.mainDeck)
@@ -119,6 +140,7 @@ function mostrarContenido(contenido) {
   getCardsById(rawDeck.mainDeck,"deck","deck","mainDeck")
   getCardsById(rawDeck.extraDeck,"extra","extra","extraDeck")
   getCardsById(rawDeck.sideDeck,"side","side","sideDeck")
+
 
 }
 
@@ -186,6 +208,8 @@ function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
         .then( cardInfo => cardInfo.json() )
         .then(data => {	
             results = data;
+            results.data.sort( sortBy );
+
             for (var b = 0; b < results.data.length; b++) {
               createDeck(results.data[b],where);
               pushToDeck(modifyDeckArray,b)
@@ -204,6 +228,10 @@ function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
             });
 
           })();
+
+          deck.mainDeck.sort( sortBy );
+          deck.extraDeck.sort( sortBy );
+          deck.sideDeck.sort( sortBy );
 
   }
 
@@ -270,3 +298,95 @@ function pushToDeck(modifyDeckArray,b){
     // console.log("side!!")
   }
 }
+
+function searchLowestDeckValue(value){
+  deckInfo = document.getElementById("deck_info")
+  if (value == deck.mainDeck ) {
+        for (let b = 0 ; b < deck.mainDeck.length ; b++ ){
+          // console.log(deck.mainDeck[b].card_sets)
+
+            lowestCardPriceArray=[]
+            for ( let i = 0 ; i < deck.mainDeck[b].card_sets.length ; i++) { 
+            
+              if (deck.mainDeck[b].card_sets[i].set_price == 0 ){ 
+                // console.log("set price  = 0") 
+                continue
+               } else {
+              lowestCardPriceArray.push(Number.parseFloat(deck.mainDeck[b].card_sets[i].set_price))
+
+               }
+              // console.log(Math.min(...lowestCardPriceArray));
+              // lowestCardPrice = Math.min(...lowestCardPriceArray)
+              // console.log("---------------------------------------------------------------")
+              // console.log(deck.mainDeck[b].name+ " set de carta numero "+i + " valor $" +deck.mainDeck[b].card_sets[i].set_price)
+            
+              // lowestPriceForDeck.mainDeck.push(lowestCardPrice)
+            }
+            // console.log(lowestCardPriceArray)
+            console.log("lowest value for " + deck.mainDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
+
+            deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}${deck.mainDeck[b].name}${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
+            
+        }
+
+
+    } else if ( value == deck.extraDeck){
+
+      for (let b = 0 ; b < deck.extraDeck.length ; b++ ){
+          lowestCardPriceArray=[]
+          for ( let i = 0 ; i < deck.extraDeck[b].card_sets.length ; i++) { 
+            if (deck.extraDeck[b].card_sets[i].set_price == 0 ){ 
+              // console.log("set price  = 0") 
+              continue
+             } else {
+            lowestCardPriceArray.push(Number.parseFloat(deck.extraDeck[b].card_sets[i].set_price))
+
+             }
+        
+          }
+          // console.log(lowestCardPriceArray)
+          console.log("lowest value for " + deck.extraDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
+
+          deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}${deck.extraDeck[b].name}${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}<br>`
+          
+      }
+
+
+      } else if ( value == deck.sideDeck){
+
+        for (let b = 0 ; b < deck.sideDeck.length ; b++ ){
+          lowestCardPriceArray=[]
+          for ( let i = 0 ; i < deck.sideDeck[b].card_sets.length ; i++) { 
+            if (deck.sideDeck[b].card_sets[i].set_price == 0 ){ 
+              // console.log("set price  = 0") 
+              continue
+             } else {
+            lowestCardPriceArray.push(Number.parseFloat(deck.sideDeck[b].card_sets[i].set_price))
+
+             }
+        
+          }
+          // console.log(lowestCardPriceArray)
+          console.log("lowest value for " + deck.sideDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
+          
+          deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}${deck.sideDeck[b].name}${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}<br>`
+      }
+
+        }
+
+ 
+
+
+}
+
+
+function sortBy( a, b ) {
+  if ( a.type < b.type ){
+    return -1;
+  }
+  if ( a.type > b.type ){
+    return 1;
+  }
+  return 0;
+}
+
