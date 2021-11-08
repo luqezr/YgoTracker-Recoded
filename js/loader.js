@@ -3,7 +3,7 @@ $(document).ready(function () {
    
   });
 
-function loadHome(){
+async function loadHome(){
     // console.log("ready!");
   
     language = readLocalStorage("language");
@@ -45,9 +45,9 @@ function loadHome(){
     }
   
     if (language == "ENG") {
-      loadInEnglish();
+      await loadInEnglish();
     } else if (language == "ESP") {
-      loadInSpanish();
+      await loadInSpanish();
     }
 }
 

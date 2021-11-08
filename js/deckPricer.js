@@ -61,7 +61,16 @@ function loadDeckPricer() {
   <br>
   <br>
   <div id="deck_info">
-
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Card</th>
+      <th scope="col">Set</th>
+      <th scope="col">Lowest Price</th>
+    </tr>
+  </thead>
+  <tbody id='deckInfo_table'>
+  </tbody>
   </div>
 
 

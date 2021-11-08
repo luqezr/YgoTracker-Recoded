@@ -209,7 +209,7 @@ function resetMoreResults(){
   loadedCards = resultsPerPage
 }
 
-function loadMoreCards(whatType){
+async function loadMoreCards(whatType){
 
   moreResults = loadedCards+loadThisManyCards;
 
@@ -217,18 +217,18 @@ function loadMoreCards(whatType){
 
     if (window.location.hash=="#/format/goat" || window.location.hash=="#/format/ocg%20goat" || window.location.hash== "#/format/rush%20duel" || window.location.hash=="#/format/speed%20duel" || window.location.hash=="#/format/duel%20links" || window.location.hash=="#/format/tcg"){
     //  crear variable para cargar las cartas sin modificar results
-      whatType(filteredResults[b])
+      await whatType(filteredResults[b])
         loadedCards++
         
 
 
         } else if (results.data){
-          whatType(results.data[b])
+          await whatType(results.data[b])
           loadedCards++
         }
         
         else if (results[0].length== 20) {
-                whatType(allCards.data[b])
+          await whatType(allCards.data[b])
                 loadedCards++
                } 
                     else if (b = results.data.length){

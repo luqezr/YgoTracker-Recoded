@@ -1,6 +1,6 @@
 
 
-function searchNewCards(value1,value2){
+async function searchNewCards(value1,value2){
 
 
     clearScreen()
@@ -15,9 +15,7 @@ function searchNewCards(value1,value2){
     <h3>${searchingText}</h3>
     </div>
     `;
-  
-    
-    fetch("https://db.ygoprodeck.com/api/newcards.php")
+   await fetch("https://db.ygoprodeck.com/api/newcards.php")
     .then( cardInfo => cardInfo.json() )
     .then(data => {		
         clearScreen()
@@ -30,25 +28,25 @@ function searchNewCards(value1,value2){
             let card = [data[0][b]]
             //console.log(card)
             //console.log(card[0])
-            whatType(card[0])
+           whatType(card[0])
         }
         
        
 	if (fetchinfo = true ){
-    
-        getAllCards()
+            getAllCards()
+        
 		// console.log('fetchinfo='+fetchinfo)
         }
         
-    });
-
+        });
+    
 
 
     }
 
 
-function getAllCards(){
-    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new")
+async function getAllCards(){
+    await fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new")
     .then( cardInfo => cardInfo.json() )
     .then(data => {		
         //console.log(data)
