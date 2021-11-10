@@ -24,12 +24,21 @@ var highetsPriceForDeck = {
   sideDeck: [],
 };
 
-var lowestCardPriceArray = []
+var lowestCardPriceRaw = {
+  name: [],
+  rarity:[],
+  price: [],
+  set: [],
+  setcode: [],
+  id: []
+};
+
 var lowestCardPrice
 var mainDeckDuplicates 
 var extraDeckDuplicates
 var sideDeckDuplicates
 var deckInfo
+var deckInfo_table
 
 
 
@@ -38,12 +47,16 @@ function loadDeckPricer() {
   window.location.hash = `/deckPricer`
   clearScreen();
 
-  subContent1.innerHTML = ` <h2>${deckPricer_chooseDeck}</h2> 
-  <input type="file" id="file-input" class="form-control-file" />
-  <pre id="contenido-archivo"></pre>
-          `;
+  // subContent1.innerHTML = ` <h2>${deckPricer_chooseDeck}</h2> 
+  // <input type="file" id="file-input" class="form-control-file" />
+  // <pre id="contenido-archivo"></pre>
+  //         `;
 
   subContentDeckPricer.innerHTML=`
+  <h2>${deckPricer_chooseDeck}</h2> 
+  <input type="file" id="file-input" class="form-control-file" />
+  <pre id="contenido-archivo"></pre>
+
   <h3>${deckPricer_dropkYdk}</h3>
   <div id="deck">
     <div id="deck_creator"></div>
@@ -57,20 +70,11 @@ function loadDeckPricer() {
     <h2>Side Deck </h2>
     <div id="deck_side"></div>
   </div>
-  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="searchLowestPrices()">Price Breakdown</button>
+  <button type="button" class="btn btn-secondary btn-lg btn-block blackButton" onclick="searchLowestPrices()" >Price Breakdown</button>
   <br>
   <br>
   <div id="deck_info">
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Card</th>
-      <th scope="col">Set</th>
-      <th scope="col">Lowest Price</th>
-    </tr>
-  </thead>
-  <tbody id='deckInfo_table'>
-  </tbody>
+
   </div>
 
 
@@ -90,25 +94,94 @@ function loadDeckPricer() {
 
 function searchLowestPrices(){
   deckInfo = document.getElementById("deck_info")
-  deckInfo.innerHTML+='<br>-----------------------------------<br>Main Deck'
+  deckInfo.innerHTML=  `  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Card</th>
+        <th scope="col">Rarity</th>
+        <th scope="col">Set Code</th>
+        <th scope="col">Lowest Price</th>
+      </tr>
+    </thead>
+    <tbody id='deckInfo_table'>
+  </tbody> `
+  deckInfo_table = document.getElementById("deckInfo_table")
+  deckInfo_table.innerHTML+= `
+  <tr>
+    <td>MAIN DECK</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+   `
   searchLowestDeckValue(deck.mainDeck)
-  deckInfo.innerHTML+='<br>-----------------------------------<br>Extra Deck'
+  deckInfo_table.innerHTML+= `
+  <tr>
+    <td>EXTRA DECK</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+   `
   searchLowestDeckValue(deck.extraDeck)
-  deckInfo.innerHTML+='<br>-----------------------------------<br>Side Deck'
+  deckInfo_table.innerHTML+= `
+  <tr>
+    <td>SIDE DECK</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+   `
   searchLowestDeckValue(deck.sideDeck)
-  deckInfo.innerHTML+='<br>-----------------------------------'
   let decktotalprice = lowestPriceForDeck.mainDeck.reduce((a, b) => a + b, 0);
   let extradecktotalprice = lowestPriceForDeck.extraDeck.reduce((a, b) => a + b, 0);
   let sidedecktotalprice = lowestPriceForDeck.sideDeck.reduce((a, b) => a + b, 0);
   let totalprice = decktotalprice+extradecktotalprice+sidedecktotalprice
-  deckInfo.innerHTML+=`<br>Total price for maindeck : ${decktotalprice.toFixed(2)}`
-  deckInfo.innerHTML+='<br>-----------------------------------'
-  deckInfo.innerHTML+=`<br>Total price for extradeck : ${extradecktotalprice.toFixed(2)}`
-  deckInfo.innerHTML+='<br>-----------------------------------'
-  deckInfo.innerHTML+=`<br>Total price for sidedeck : ${sidedecktotalprice.toFixed(2)}`
-  deckInfo.innerHTML+='<br>-----------------------------------'
-  deckInfo.innerHTML+=`<br>Total price : ${totalprice.toFixed(2)}`
-  
+  deckInfo_table.innerHTML+= `
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+   `  
+   deckInfo_table.innerHTML+= `
+   <tr>
+     <td>Total price for Main Deck : </td>
+     <td></td>
+     <td></td>
+     <td>$${decktotalprice.toFixed(2)}</td>
+   </tr>
+    `  
+   deckInfo_table.innerHTML+= `
+   <tr>
+     <td>Total price for Extra Deck : </td>
+     <td></td>
+     <td></td>
+     <td>$${extradecktotalprice.toFixed(2)}</td>
+   </tr>
+    `
+    deckInfo_table.innerHTML+= `
+    <tr>
+      <td>Total price for Side Deck : </td>
+      <td></td>
+      <td></td>
+      <td>$${sidedecktotalprice.toFixed(2)}</td>
+    </tr>
+     `
+
+     deckInfo_table.innerHTML+= `
+     <tr>
+       <td>Total price for Deck : </td>
+       <td></td>
+       <td></td>
+       <td>$${totalprice}</td>
+     </tr>
+      `
+ 
+
 }
 
 function leerArchivo(e) {
@@ -156,7 +229,7 @@ function mostrarContenido(contenido) {
       cardsInSideDeck = deck.sideDeck.length
 
 
-          deckInfo.innerHTML=`
+          deckCreator.innerHTML=`
             ${deckPricer_deckCreator} : ${rawDeck.creator}
             ${deckPricer_mainDeck} (${cardsInMainDeck})
             ${deckPricer_extraDeck} (${cardsInExtraDeck})
@@ -246,7 +319,7 @@ function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
               createDeck(results.data[b],where);
               pushToDeck(modifyDeckArray,b)
               for (var c = 1; c < checkDuplicates[results.data[b].id]; c++) { 
-                    createDeck(results.data[b],where);
+                    createDeckDuplicate(results.data[b],where);
                     pushToDeck(modifyDeckArray,b)
               
                 
@@ -266,6 +339,8 @@ function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
           deck.sideDeck.sort( sortBy );
 
   }
+
+
 
   // Drag and drop 
 
@@ -333,32 +408,49 @@ function pushToDeck(modifyDeckArray,b){
 
 function searchLowestDeckValue(value){
   deckInfo = document.getElementById("deck_info")
+  deckInfo_table = document.getElementById("deckInfo_table")
+
   if (value == deck.mainDeck ) {
         for (let b = 0 ; b < deck.mainDeck.length ; b++ ){
           // console.log(deck.mainDeck[b].card_sets)
+              lowestCardPriceRaw = {
+                name: [],
+                rarity:[],
+                price: [],
+                set: [],
+                setcode: [],
+                id: []
+              };
 
-            lowestCardPriceArray=[]
             for ( let i = 0 ; i < deck.mainDeck[b].card_sets.length ; i++) { 
             
               if (deck.mainDeck[b].card_sets[i].set_price == 0 ){ 
                 // console.log("set price  = 0") 
                 continue
                } else {
-              lowestCardPriceArray.push(Number.parseFloat(deck.mainDeck[b].card_sets[i].set_price))
+              
+                lowestCardPriceRaw.name.push(deck.mainDeck[b].name)
+                lowestCardPriceRaw.rarity.push(deck.mainDeck[b].card_sets[i].set_rarity)
+                lowestCardPriceRaw.price.push(Number.parseFloat(deck.mainDeck[b].card_sets[i].set_price))
+                lowestCardPriceRaw.set.push(deck.mainDeck[b].card_sets[i].set_name)
+                lowestCardPriceRaw.setcode.push(deck.mainDeck[b].card_sets[i].set_code)
+                lowestCardPriceRaw.id.push(deck.mainDeck[b].id)
+
 
                }
-              // console.log(Math.min(...lowestCardPriceArray));
-              // lowestCardPrice = Math.min(...lowestCardPriceArray)
-              // console.log("---------------------------------------------------------------")
-              // console.log(deck.mainDeck[b].name+ " set de carta numero "+i + " valor $" +deck.mainDeck[b].card_sets[i].set_price)
-            
-              // lowestPriceForDeck.mainDeck.push(lowestCardPrice)
             }
-            // console.log(lowestCardPriceArray)
-            // console.log("lowest value for " + deck.mainDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
 
-            deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.mainDeck[b].id}">${deck.mainDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
-            lowestPriceForDeck.mainDeck.push(Math.min(...lowestCardPriceArray))
+            deckInfo_table.innerHTML+= `
+            <tr>
+              <td data-toggle="modal" data-target="#ModalID${deck.mainDeck[b].id}">${deck.mainDeck[b].name}</td>
+              <td>rarity</td>
+              <td>setcode</td>
+              <td>$${Math.min(...(lowestCardPriceRaw.price))}</td>
+            </tr>
+            
+             `
+
+            lowestPriceForDeck.mainDeck.push(Math.min(...lowestCardPriceRaw.price))
             
         }
 
@@ -366,44 +458,91 @@ function searchLowestDeckValue(value){
     } else if ( value == deck.extraDeck){
 
       for (let b = 0 ; b < deck.extraDeck.length ; b++ ){
-          lowestCardPriceArray=[]
+        
+        lowestCardPriceRaw = {
+          name: [],
+          rarity:[],
+          price: [],
+          set: [],
+          setcode: [],
+          id: []
+        };
+
+
           for ( let i = 0 ; i < deck.extraDeck[b].card_sets.length ; i++) { 
             if (deck.extraDeck[b].card_sets[i].set_price == 0 ){ 
               // console.log("set price  = 0") 
               continue
              } else {
-            lowestCardPriceArray.push(Number.parseFloat(deck.extraDeck[b].card_sets[i].set_price))
-
+              
+                lowestCardPriceRaw.name.push(deck.extraDeck[b].name)
+                lowestCardPriceRaw.rarity.push(deck.extraDeck[b].card_sets[i].set_rarity)
+                lowestCardPriceRaw.price.push(Number.parseFloat(deck.extraDeck[b].card_sets[i].set_price))
+                lowestCardPriceRaw.set.push(deck.extraDeck[b].card_sets[i].set_name)
+                lowestCardPriceRaw.setcode.push(deck.extraDeck[b].card_sets[i].set_code)
+                lowestCardPriceRaw.id.push(deck.extraDeck[b].id)
              }
         
           }
-          // console.log(lowestCardPriceArray)
-          // console.log("lowest value for " + deck.extraDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
+          deckInfo_table.innerHTML+= `
+          <tr>
+            <td data-toggle="modal" data-target="#ModalID${deck.extraDeck[b].id}">${deck.extraDeck[b].name}</td>
+            <td>rarity</td>
+            <td>setcode</td>
+            <td>$${Math.min(...(lowestCardPriceRaw.price))}</td>
+          </tr>
+          
+           `
 
-          deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.extraDeck[b].id}">${deck.extraDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
-          lowestPriceForDeck.extraDeck.push(Math.min(...lowestCardPriceArray))
+          lowestPriceForDeck.extraDeck.push(Math.min(...lowestCardPriceRaw.price))
+          
+
       }
 
 
       } else if ( value == deck.sideDeck){
 
         for (let b = 0 ; b < deck.sideDeck.length ; b++ ){
-          lowestCardPriceArray=[]
+
+            
+        lowestCardPriceRaw = {
+          name: [],
+          rarity:[],
+          price: [],
+          set: [],
+          setcode: [],
+          id: []
+        };
+
+
           for ( let i = 0 ; i < deck.sideDeck[b].card_sets.length ; i++) { 
             if (deck.sideDeck[b].card_sets[i].set_price == 0 ){ 
               // console.log("set price  = 0") 
               continue
              } else {
-            lowestCardPriceArray.push(Number.parseFloat(deck.sideDeck[b].card_sets[i].set_price))
-
+               
+              lowestCardPriceRaw.name.push(deck.sideDeck[b].name)
+              lowestCardPriceRaw.rarity.push(deck.sideDeck[b].card_sets[i].set_rarity)
+              lowestCardPriceRaw.price.push(Number.parseFloat(deck.sideDeck[b].card_sets[i].set_price))
+              lowestCardPriceRaw.set.push(deck.sideDeck[b].card_sets[i].set_name)
+              lowestCardPriceRaw.setcode.push(deck.sideDeck[b].card_sets[i].set_code)
+              lowestCardPriceRaw.id.push(deck.sideDeck[b].id)
              }
         
           }
-          // console.log(lowestCardPriceArray)
-          // console.log("lowest value for " + deck.sideDeck[b].name +" is $"+ Math.min(...lowestCardPriceArray))
           
-          deckInfo.innerHTML+=`<br>${deckPricer_lowestPrice_1}<span data-toggle="modal" data-target="#ModalID${deck.sideDeck[b].id}">${deck.sideDeck[b].name}</span>${deckPricer_lowestPrice_2} ${Math.min(...lowestCardPriceArray)}`
-          lowestPriceForDeck.sideDeck.push(Math.min(...lowestCardPriceArray))
+          deckInfo_table.innerHTML+= `
+          <tr>
+            <td data-toggle="modal" data-target="#ModalID${deck.sideDeck[b].id}">${deck.sideDeck[b].name}</td>
+            <td>rarity</td>
+            <td>setcode</td>
+            <td>$${Math.min(...(lowestCardPriceRaw.price))}</td>
+          </tr>
+          
+           `
+
+          lowestPriceForDeck.sideDeck.push(Math.min(...lowestCardPriceRaw.price))
+          
       }
 
         }

@@ -1,6 +1,8 @@
-$(document).ready(function () {
-    loadHome()
+$(document).ready(async function () {
+  
+    await loadHome()
    
+
   });
 
 async function loadHome(){
@@ -54,15 +56,15 @@ async function loadHome(){
 
 // CARGAR PAGINA EN ESPAÑOL
 
-function loadInSpanish() {
+async function loadInSpanish() {
     language = "ESP";
     document.documentElement.lang = "es"
     document.getElementById("card_name").setAttribute("placeholder", "Buscar carta por nombre...")
-    save2localStorage("language", language);
+    await save2localStorage("language", language);
     // console.log("Cargando página en Español");
-    $("#header").load("content/ESP/navBar.html");
-    $("#alertPopup").load("content/ESP/alertPopup.html");
-    $("#scripts").load("content/ESP/scripts.html");
+    await $("#header").load("content/ESP/navBar.html");
+    await $("#alertPopup").load("content/ESP/alertPopup.html");
+    await $("#scripts").load("content/ESP/scripts.html");
   }
 
 
@@ -70,15 +72,15 @@ function loadInSpanish() {
   
 // CARGAR PAGINA EN INGLES
 
-function loadInEnglish() {
+async function loadInEnglish() {
     language = "ENG";
     document.documentElement.lang = "en"
     document.getElementById("card_name").setAttribute("placeholder", "Search by card name...")
-    save2localStorage("language", language);
+    await save2localStorage("language", language);
     // console.log("Loading page in English");
-    $("#header").load("content/ENG/navBar.html");
-    $("#alertPopup").load("content/ENG/alertPopup.html");
-    $("#scripts").load("content/ENG/scripts.html");
+    await $("#header").load("content/ENG/navBar.html");
+    await $("#alertPopup").load("content/ENG/alertPopup.html");
+    await $("#scripts").load("content/ENG/scripts.html");
   }
 
 

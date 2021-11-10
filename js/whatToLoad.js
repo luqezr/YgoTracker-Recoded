@@ -10,8 +10,7 @@ async function resolveURL() {
 
     banlist="tcg"
 
-    await getAllCards()
-
+   
     view = readLocalStorage("view");
     console.log("view = "+view)
 

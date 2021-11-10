@@ -32,7 +32,7 @@ function createDeck(card,where){
 		where.innerHTML+= `		
 		<div class="miniCardDeck" class="card" class="col-sm" >
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-		<img src="${cardImage}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
+		<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
 		</button>
 
 		<div class="modal fade cardModal" id="ModalID${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -87,7 +87,7 @@ function createDeck(card,where){
 		where.innerHTML+= `
 		<div class="miniCardDeck " class="card" class="col-sm" >
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-			<img src="${cardImage}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
+			<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
 			</button>
 
 			<div class="modal fade cardModal" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -201,3 +201,38 @@ function createDeck(card,where){
 
 
 
+function createDeckDuplicate(card, where){
+
+	
+	if (where == "deck") { 
+		var deckMain = document.getElementById("deck_main")
+		where = deckMain ; 
+		// console.log("main!!")
+	}
+	if (where == "extra") { 
+		var deckExtra = document.getElementById("deck_extra")
+		where = deckExtra ; 
+		// console.log("extra!!")
+	}
+	if (where == "side") { 
+		var deckSide = document.getElementById("deck_side")
+		where = deckSide ; 
+		// console.log("side!!")
+	}
+	if (where == undefined ){ 
+		where = subContent_miniCards ; 
+		// console.log("subcontent_minicards")
+	}
+
+
+	assignValuesToCard (card, createCard_releaseText_1, createCard_releaseText_2_1,createCard_releaseText_2_2,createCard_releaseText_3_1,createCard_releaseText_3_2,createCard_releaseText_3_3,createCard_banlist_info_unlimited,createCard_banlist_info_limited,createCard_banlist_info_semi_limited,createCard_banlist_info_banned, createCard_attribute_spell,createCard_attribute_trap)
+
+
+		where.innerHTML+= `		
+		<div class="miniCardDeck" class="card" class="col-sm" >
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
+		<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
+		</button>
+		</div>`	
+
+}

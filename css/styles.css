@@ -1,6 +1,6 @@
 img[src*="000webhost"] {
   display: none !important;
-}
+} 
 
 * {
   box-sizing: border-box;
@@ -234,6 +234,10 @@ img.center {
 button {
   color: black;
   background-color: black;
+}
+.blackButton{
+  color: white !important;
+  background-color: black !important;
 }
 .advancedSearchBar {
   color: yellowgreen;
@@ -689,7 +693,7 @@ input[type="submit"] {
 }
 
 .cardImagesSmall{
-  width: 110px!important;
+  width: 130px!important;
   margin: 0 !important;
   padding: 0!important;
 }

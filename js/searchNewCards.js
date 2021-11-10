@@ -8,13 +8,13 @@ async function searchNewCards(value1,value2){
     // console.log("searching new cards...")
     window.location.hash = '/newCards'
 
-    subContent2.innerHTML= `
-    <div id='wait'>
-    <img src="/media/wait/wait_newCards.gif" alt="Wait" style="width: '400px'"> 
-    <br>
-    <h3>${searchingText}</h3>
-    </div>
-    `;
+    // subContent2.innerHTML= `
+    // <div id='wait'>
+    // <img src="/media/wait/wait_newCards.gif" alt="Wait" style="width: '400px'"> 
+    // <br>
+    // <h3>${searchingText}</h3>
+    // </div>
+    // `;
    await fetch("https://db.ygoprodeck.com/api/newcards.php")
     .then( cardInfo => cardInfo.json() )
     .then(data => {		
@@ -33,8 +33,10 @@ async function searchNewCards(value1,value2){
         
        
 	if (fetchinfo = true ){
+         
+         (async function(){
             getAllCards()
-        
+        })();
 		// console.log('fetchinfo='+fetchinfo)
         }
         

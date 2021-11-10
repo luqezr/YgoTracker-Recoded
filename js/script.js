@@ -21,6 +21,19 @@ var scrollingValue = 6000;
 var language;
 var view;
 
+function ciao000(){
+  var chau000webhostapp_a = document.getElementsByTagName('a')[document.getElementsByTagName('a').length-1] 
+  var chau000webhostapp_img = document.getElementsByTagName('img')[document.getElementsByTagName('img').length-1] 
+  var chau2 = document.getElementsByTagName('div')[4]
+  chau2.innerHTML=''
+  chau000webhostapp_a.innerHTML=''
+  chau000webhostapp_img.innerHTML=''
+  chau000webhostapp_a.title='Yu-Gi-Oh! Tracker'
+  chau000webhostapp_a.target=''
+  chau000webhostapp_a.href='yugiohtracker.com'
+  chau000webhostapp_img.src='/media/img/logo.png'
+}
+
 //  CUANTO VA A CARGAR
 var resultsPerPage = 20;
 var setsPerPage = 50;
