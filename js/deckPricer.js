@@ -436,9 +436,11 @@ function searchLowestDeckValue(value){
                 lowestCardPriceRaw.setcode.push(deck.mainDeck[b].card_sets[i].set_code)
                 lowestCardPriceRaw.id.push(deck.mainDeck[b].id)
 
-
+                // Hay que modificar què guarda aca porque esta guardando todas las cartas en vez de solo la mas barata
                }
             }
+
+            // aca tendria que comparar de esas cartas cual es la Math.min(precio) y esa agregarla al array en vez de todas como hace ahora
 
             deckInfo_table.innerHTML+= `
             <tr>

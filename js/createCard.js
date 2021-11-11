@@ -86,7 +86,7 @@ function assignValuesToCard(
 
   // Card Image Small https://storage.googleapis.com/ygoprodeck.com/pics_small/
   if (card.card_images === undefined) {
-    cardImage = `https://storage.googleapis.com/ygoprodeck.com/pics_small/${id}.jpg`;
+    cardImage_small = `https://storage.googleapis.com/ygoprodeck.com/pics_small/${id}.jpg`;
   } else {
     cardImage_small = card.card_images[0].image_url;
   }
