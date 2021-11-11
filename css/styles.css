@@ -157,18 +157,23 @@ body {
 @font-face {
   font-family: belwe;
   src: url(/ttf/belwe\ light\ bt.ttf);
+  font-display : auto;
 
   font-family: belweCondensed;
   src: url(/ttf/belwe\ condensed\ bt.ttf);
+  font-display : auto;
 
   font-family: CardEffect;
   src: url(/ttf/CardEffect.ttf);
+  font-display : auto;
 
   font-family: CardTitle;
   src: url(/ttf/CardTitle.ttf);
+  font-display : auto;
 
   font-family: MatrixTitle;
   src: url(/ttf/MatrixTitle.ttf);
+  font-display : auto;
 }
 
 .cardImages {
