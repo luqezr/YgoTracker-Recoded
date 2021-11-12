@@ -93,9 +93,10 @@ function loadDeckPricer() {
 }
 
 function searchLowestPrices(){
+  let totalprice = 0
   deckInfo = document.getElementById("deck_info")
   deckInfo.innerHTML=  `  
-  <table class="table table-hover">
+  <table class="table table-hover" >
     <thead>
       <tr>
         <th scope="col">Card</th>
@@ -108,7 +109,7 @@ function searchLowestPrices(){
   </tbody> `
   deckInfo_table = document.getElementById("deckInfo_table")
   deckInfo_table.innerHTML+= `
-  <tr>
+  <tr style="background-color: black; color:white">
     <td>MAIN DECK</td>
     <td></td>
     <td></td>
@@ -118,7 +119,7 @@ function searchLowestPrices(){
    `
   searchLowestDeckValue(deck.mainDeck)
   deckInfo_table.innerHTML+= `
-  <tr>
+  <tr style="background-color: black; color:white">
     <td>EXTRA DECK</td>
     <td></td>
     <td></td>
@@ -127,7 +128,7 @@ function searchLowestPrices(){
    `
   searchLowestDeckValue(deck.extraDeck)
   deckInfo_table.innerHTML+= `
-  <tr>
+  <tr style="background-color: black; color:white">
     <td>SIDE DECK</td>
     <td></td>
     <td></td>
@@ -138,9 +139,9 @@ function searchLowestPrices(){
   let decktotalprice = lowestPriceForDeck.mainDeck.reduce((a, b) => a + b, 0);
   let extradecktotalprice = lowestPriceForDeck.extraDeck.reduce((a, b) => a + b, 0);
   let sidedecktotalprice = lowestPriceForDeck.sideDeck.reduce((a, b) => a + b, 0);
-  let totalprice = decktotalprice+extradecktotalprice+sidedecktotalprice
+  totalprice = decktotalprice+extradecktotalprice+sidedecktotalprice
   deckInfo_table.innerHTML+= `
-  <tr>
+  <tr style="background-color: black">
     <td></td>
     <td></td>
     <td></td>
@@ -177,7 +178,7 @@ function searchLowestPrices(){
        <td>Total price for Deck : </td>
        <td></td>
        <td></td>
-       <td>$${totalprice}</td>
+       <td>$${totalprice.toFixed(2)}</td>
      </tr>
       `
  
@@ -313,8 +314,8 @@ function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
         .then( cardInfo => cardInfo.json() )
         .then(data => {	
             results = data;
-            results.data.sort( sortBy );
-
+            results.data.sort( sortByType );
+            console.log(results)
             for (var b = 0; b < results.data.length; b++) {
               createDeck(results.data[b],where);
               pushToDeck(modifyDeckArray,b)
@@ -334,9 +335,9 @@ function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
 
           })();
 
-          deck.mainDeck.sort( sortBy );
-          deck.extraDeck.sort( sortBy );
-          deck.sideDeck.sort( sortBy );
+          deck.mainDeck.sort( sortByType );
+          deck.extraDeck.sort( sortByType );
+          deck.sideDeck.sort( sortByType );
 
   }
 
@@ -411,151 +412,212 @@ function searchLowestDeckValue(value){
   deckInfo_table = document.getElementById("deckInfo_table")
 
   if (value == deck.mainDeck ) {
-        for (let b = 0 ; b < deck.mainDeck.length ; b++ ){
-          // console.log(deck.mainDeck[b].card_sets)
-              lowestCardPriceRaw = {
-                name: [],
-                rarity:[],
-                price: [],
-                set: [],
-                setcode: [],
-                id: []
-              };
+    
 
-            for ( let i = 0 ; i < deck.mainDeck[b].card_sets.length ; i++) { 
-            
-              if (deck.mainDeck[b].card_sets[i].set_price == 0 ){ 
-                // console.log("set price  = 0") 
-                continue
-               } else {
-              
-                lowestCardPriceRaw.name.push(deck.mainDeck[b].name)
-                lowestCardPriceRaw.rarity.push(deck.mainDeck[b].card_sets[i].set_rarity)
-                lowestCardPriceRaw.price.push(Number.parseFloat(deck.mainDeck[b].card_sets[i].set_price))
-                lowestCardPriceRaw.set.push(deck.mainDeck[b].card_sets[i].set_name)
-                lowestCardPriceRaw.setcode.push(deck.mainDeck[b].card_sets[i].set_code)
-                lowestCardPriceRaw.id.push(deck.mainDeck[b].id)
+    for (let b = 0 ; b < deck.mainDeck.length ; b++ ){
+      lowestCardPriceRaw = {
+        name: [],
+        rarity:[],
+        rarity_code: [],
+        price: [],
+        set: [],
+        setcode: [],
+        id: []
+      };
 
-                // Hay que modificar què guarda aca porque esta guardando todas las cartas en vez de solo la mas barata
-               }
-            }
+      lowestCardPrice = []
 
-            // aca tendria que comparar de esas cartas cual es la Math.min(precio) y esa agregarla al array en vez de todas como hace ahora
+    if (deck.mainDeck[b].card_sets == undefined ) {
+        // console.log("not printed yet")
+        lowestPriceForDeck.mainDeck.push(0)
+     } else {
 
-            deckInfo_table.innerHTML+= `
-            <tr>
-              <td data-toggle="modal" data-target="#ModalID${deck.mainDeck[b].id}">${deck.mainDeck[b].name}</td>
-              <td>rarity</td>
-              <td>setcode</td>
-              <td>$${Math.min(...(lowestCardPriceRaw.price))}</td>
-            </tr>
-            
-             `
+    for ( let i = 0 ; i < deck.mainDeck[b].card_sets.length ; i++) { 
+    
+      if (deck.mainDeck[b].card_sets[i].set_price == 0 || deck.mainDeck[b].card_sets[i].set_rarity == "Collector's Rare" || deck.mainDeck[b].card_sets[i].set_rarity == "Ultimate Rare"){ 
+        // console.log("set price  = 0") 
+        continue
+       } else {
+      
+        lowestCardPrice.push(Number.parseFloat(deck.mainDeck[b].card_sets[i].set_price))
 
-            lowestPriceForDeck.mainDeck.push(Math.min(...lowestCardPriceRaw.price))
-            
-        }
+       }
+    }
+
+    for ( let i = 0 ; i < deck.mainDeck[b].card_sets.length ; i++) { 
+      if (deck.mainDeck[b].card_sets[i].set_price == Math.min(...lowestCardPrice) ){ 
+          // console.log("this set is the cheapest "+ JSON.stringify(deck.mainDeck[b].card_sets[i]) )
+          lowestCardPriceRaw.name.push(deck.mainDeck[b].name)
+          lowestCardPriceRaw.rarity.push(deck.mainDeck[b].card_sets[i].set_rarity)
+          lowestCardPriceRaw.rarity_code.push(deck.mainDeck[b].card_sets[i].set_rarity_code)
+          lowestCardPriceRaw.price.push(Number.parseFloat(deck.mainDeck[b].card_sets[i].set_price))
+          lowestCardPriceRaw.set.push(deck.mainDeck[b].card_sets[i].set_name)
+          lowestCardPriceRaw.setcode.push(deck.mainDeck[b].card_sets[i].set_code)
+          lowestCardPriceRaw.id.push(deck.mainDeck[b].id)
+      }
+    }
+    
+
+    }
+    if (Math.min(...lowestCardPrice)  == Infinity ) {
+      // console.log(Math.min(...lowestCardPrice))
+      lowestPriceForDeck.mainDeck.push(0)
+    } else {
+    lowestPriceForDeck.mainDeck.push(Math.min(...lowestCardPrice))
+     }
+    deckInfo_table.innerHTML+= `
+    <tr data-toggle="modal" data-target="#ModalID${deck.mainDeck[b].id}">
+      <td>${deck.mainDeck[b].name}</td>
+      <td>${lowestCardPriceRaw.rarity_code}</td>
+      <td>${lowestCardPriceRaw.setcode}</td>
+      <td>$${lowestPriceForDeck.mainDeck[b]}</td>
+    </tr>
+    
+     `
+
+    
+    
+}
 
 
     } else if ( value == deck.extraDeck){
-
+      
       for (let b = 0 ; b < deck.extraDeck.length ; b++ ){
-        
         lowestCardPriceRaw = {
           name: [],
           rarity:[],
+          rarity_code: [],
           price: [],
           set: [],
           setcode: [],
           id: []
         };
 
+        lowestCardPrice = []
 
-          for ( let i = 0 ; i < deck.extraDeck[b].card_sets.length ; i++) { 
-            if (deck.extraDeck[b].card_sets[i].set_price == 0 ){ 
-              // console.log("set price  = 0") 
-              continue
-             } else {
-              
-                lowestCardPriceRaw.name.push(deck.extraDeck[b].name)
-                lowestCardPriceRaw.rarity.push(deck.extraDeck[b].card_sets[i].set_rarity)
-                lowestCardPriceRaw.price.push(Number.parseFloat(deck.extraDeck[b].card_sets[i].set_price))
-                lowestCardPriceRaw.set.push(deck.extraDeck[b].card_sets[i].set_name)
-                lowestCardPriceRaw.setcode.push(deck.extraDeck[b].card_sets[i].set_code)
-                lowestCardPriceRaw.id.push(deck.extraDeck[b].id)
-             }
+      if (deck.extraDeck[b].card_sets == undefined ) {
+          // console.log("not printed yet")
+          lowestPriceForDeck.extraDeck.push(0)
+       } else {
+
+      for ( let i = 0 ; i < deck.extraDeck[b].card_sets.length ; i++) { 
+      
+        if (deck.extraDeck[b].card_sets[i].set_price == 0 || deck.extraDeck[b].card_sets[i].set_rarity == "Collector's Rare" || deck.extraDeck[b].card_sets[i].set_rarity == "Ultimate Rare"){ 
+          // console.log("set price  = 0") 
+          continue
+         } else {
         
-          }
-          deckInfo_table.innerHTML+= `
-          <tr>
-            <td data-toggle="modal" data-target="#ModalID${deck.extraDeck[b].id}">${deck.extraDeck[b].name}</td>
-            <td>rarity</td>
-            <td>setcode</td>
-            <td>$${Math.min(...(lowestCardPriceRaw.price))}</td>
-          </tr>
-          
-           `
+          lowestCardPrice.push(Number.parseFloat(deck.extraDeck[b].card_sets[i].set_price))
 
-          lowestPriceForDeck.extraDeck.push(Math.min(...lowestCardPriceRaw.price))
-          
+         }
+      }
+
+      for ( let i = 0 ; i < deck.extraDeck[b].card_sets.length ; i++) { 
+        if (deck.extraDeck[b].card_sets[i].set_price == Math.min(...lowestCardPrice) ){ 
+            // console.log("this set is the cheapest "+ JSON.stringify(deck.mainDeck[b].card_sets[i]) )
+            lowestCardPriceRaw.name.push(deck.extraDeck[b].name)
+            lowestCardPriceRaw.rarity.push(deck.extraDeck[b].card_sets[i].set_rarity)
+            lowestCardPriceRaw.rarity_code.push(deck.extraDeck[b].card_sets[i].set_rarity_code)
+            lowestCardPriceRaw.price.push(Number.parseFloat(deck.extraDeck[b].card_sets[i].set_price))
+            lowestCardPriceRaw.set.push(deck.extraDeck[b].card_sets[i].set_name)
+            lowestCardPriceRaw.setcode.push(deck.extraDeck[b].card_sets[i].set_code)
+            lowestCardPriceRaw.id.push(deck.extraDeck[b].id)
+        }
+      }
 
       }
+      if (Math.min(...lowestCardPrice)  == Infinity ) {
+        // console.log(Math.min(...lowestCardPrice))
+        lowestPriceForDeck.extraDeck.push(0)
+      } else {
+      lowestPriceForDeck.extraDeck.push(Math.min(...lowestCardPrice))
+       }
+      deckInfo_table.innerHTML+= `
+      <tr data-toggle="modal" data-target="#ModalID${deck.extraDeck[b].id}">
+        <td>${deck.extraDeck[b].name}</td>
+        <td>${lowestCardPriceRaw.rarity_code}</td>
+        <td>${lowestCardPriceRaw.setcode}</td>
+        <td>$${lowestPriceForDeck.extraDeck[b]}</td>
+      </tr>
+      
+       `
+
+      
+      
+  }
 
 
       } else if ( value == deck.sideDeck){
 
         for (let b = 0 ; b < deck.sideDeck.length ; b++ ){
+          lowestCardPriceRaw = {
+            name: [],
+            rarity:[],
+            rarity_code: [],
+            price: [],
+            set: [],
+            setcode: [],
+            id: []
+          };
 
-            
-        lowestCardPriceRaw = {
-          name: [],
-          rarity:[],
-          price: [],
-          set: [],
-          setcode: [],
-          id: []
-        };
+          lowestCardPrice = []
 
+        if (deck.sideDeck[b].card_sets == undefined ) {
+            // console.log("not printed yet")
+            lowestPriceForDeck.sideDeck.push(0)
+         } else {
 
-          for ( let i = 0 ; i < deck.sideDeck[b].card_sets.length ; i++) { 
-            if (deck.sideDeck[b].card_sets[i].set_price == 0 ){ 
-              // console.log("set price  = 0") 
-              continue
-             } else {
-               
+        for ( let i = 0 ; i < deck.sideDeck[b].card_sets.length ; i++) { 
+        
+          if (deck.sideDeck[b].card_sets[i].set_price == 0 || deck.sideDeck[b].card_sets[i].set_rarity == "Collector's Rare" || deck.sideDeck[b].card_sets[i].set_rarity == "Ultimate Rare"){ 
+            // console.log("set price  = 0") 
+            continue
+           } else {
+          
+            lowestCardPrice.push(Number.parseFloat(deck.sideDeck[b].card_sets[i].set_price))
+
+           }
+        }
+
+        for ( let i = 0 ; i < deck.sideDeck[b].card_sets.length ; i++) { 
+          if (deck.sideDeck[b].card_sets[i].set_price == Math.min(...lowestCardPrice) ){ 
+              // console.log("this set is the cheapest "+ JSON.stringify(deck.mainDeck[b].card_sets[i]) )
               lowestCardPriceRaw.name.push(deck.sideDeck[b].name)
               lowestCardPriceRaw.rarity.push(deck.sideDeck[b].card_sets[i].set_rarity)
+              lowestCardPriceRaw.rarity_code.push(deck.sideDeck[b].card_sets[i].set_rarity_code)
               lowestCardPriceRaw.price.push(Number.parseFloat(deck.sideDeck[b].card_sets[i].set_price))
               lowestCardPriceRaw.set.push(deck.sideDeck[b].card_sets[i].set_name)
               lowestCardPriceRaw.setcode.push(deck.sideDeck[b].card_sets[i].set_code)
               lowestCardPriceRaw.id.push(deck.sideDeck[b].id)
-             }
-        
           }
-          
-          deckInfo_table.innerHTML+= `
-          <tr>
-            <td data-toggle="modal" data-target="#ModalID${deck.sideDeck[b].id}">${deck.sideDeck[b].name}</td>
-            <td>rarity</td>
-            <td>setcode</td>
-            <td>$${Math.min(...(lowestCardPriceRaw.price))}</td>
-          </tr>
-          
-           `
-
-          lowestPriceForDeck.sideDeck.push(Math.min(...lowestCardPriceRaw.price))
-          
-      }
-
         }
 
- 
+        }
+        if (Math.min(...lowestCardPrice)  == Infinity ) {
+          // console.log(Math.min(...lowestCardPrice))
+          lowestPriceForDeck.sideDeck.push(0)
+        } else {
+        lowestPriceForDeck.sideDeck.push(Math.min(...lowestCardPrice))
+         }
+        deckInfo_table.innerHTML+= `
+        <tr data-toggle="modal" data-target="#ModalID${deck.sideDeck[b].id}">
+          <td>${deck.sideDeck[b].name}</td>
+          <td>${lowestCardPriceRaw.rarity_code}</td>
+          <td>${lowestCardPriceRaw.setcode}</td>
+          <td>$${lowestPriceForDeck.sideDeck[b]}</td>
+        </tr>
+        
+         `
+       
+    }
+
+        }
 
 
 }
 
 
-function sortBy( a, b ) {
+function sortByType( a, b ) {
   if ( a.type < b.type ){
     return -1;
   }
