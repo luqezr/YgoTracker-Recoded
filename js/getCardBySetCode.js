@@ -64,7 +64,7 @@ function getCardSetCode(e) {
       .then((cardInfo) => cardInfo.json())
       .then((data) => {
         results = data;
-        console.log(results);
+        // console.log(results);
         cardName = results.name;
   
         // createCard(data)
@@ -83,8 +83,8 @@ function getCardSetCode(e) {
           //console.log(data);
           clearScreen()
           results = data;
-          console.log(results);
-          console.log(results.data[0])
+          // console.log(results);
+          // console.log(results.data[0])
           whatType(results.data[0]);
 
           function replaceCardImage(){

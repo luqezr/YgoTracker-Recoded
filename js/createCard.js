@@ -88,7 +88,7 @@ function assignValuesToCard(
   if (card.card_images === undefined) {
     cardImage_small = `https://storage.googleapis.com/ygoprodeck.com/pics_small/${id}.jpg`;
   } else {
-    cardImage_small = card.card_images[0].image_url;
+    cardImage_small = card.card_images[0].image_url_small;
   }
   if (images === false) {
     cardImage_small = `https://storage.googleapis.com/ygoprodeck.com/pics_small/${id}.jpg`;

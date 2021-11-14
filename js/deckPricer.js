@@ -315,7 +315,6 @@ function getCardsById(cardIds,where,checkDuplicates,modifyDeckArray){
         .then(data => {	
             results = data;
             results.data.sort( sortByType );
-            console.log(results)
             for (var b = 0; b < results.data.length; b++) {
               createDeck(results.data[b],where);
               pushToDeck(modifyDeckArray,b)
