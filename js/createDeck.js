@@ -30,7 +30,7 @@ function createDeck(card,where){
 		where.innerHTML+= `		
 		<div class="miniCardDeck" class="card" class="col-sm" >
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-		<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
+		<img src="${cardImage}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
 		</button>
 
 		<div class="modal fade cardModal" id="ModalID${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -85,7 +85,7 @@ function createDeck(card,where){
 		where.innerHTML+= `
 		<div class="miniCardDeck " class="card" class="col-sm" >
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-			<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
+			<img src="${cardImage}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
 			</button>
 
 			<div class="modal fade cardModal" id="ModalID${id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -229,7 +229,7 @@ function createDeckDuplicate(card, where){
 		where.innerHTML+= `		
 		<div class="miniCardDeck" class="card" class="col-sm" >
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${id}">
-		<img src="${cardImage_small}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
+		<img src="${cardImage}" class="card-img-bottom cardImagesSmall" id='${id}_imageModal' alt="${name}" >
 		</button>
 		</div>`	
 

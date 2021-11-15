@@ -157,23 +157,23 @@ body {
 @font-face {
   font-family: belwe;
   src: url(/ttf/belwe\ light\ bt.ttf);
-  font-display : auto;
+  /* font-display : auto; */
 
   font-family: belweCondensed;
   src: url(/ttf/belwe\ condensed\ bt.ttf);
-  font-display : auto;
+  /* font-display : auto; */
 
   font-family: CardEffect;
   src: url(/ttf/CardEffect.ttf);
-  font-display : auto;
+  /* font-display : auto; */
 
   font-family: CardTitle;
   src: url(/ttf/CardTitle.ttf);
-  font-display : auto;
+  /* font-display : auto; */
 
   font-family: MatrixTitle;
   src: url(/ttf/MatrixTitle.ttf);
-  font-display : auto;
+  /* font-display : auto; */
 }
 
 .cardImages {
@@ -698,7 +698,7 @@ input[type="submit"] {
 }
 
 .cardImagesSmall{
-  width: 130px!important;
+  width: 140px!important;
   margin: 0 !important;
   padding: 0!important;
 }
@@ -726,8 +726,12 @@ input[type="submit"] {
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  padding: 10px;
 }
 
+#deck_info{
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
 /* DECK PRICER END  */
 
@@ -764,7 +768,7 @@ input[type="submit"] {
 
 
   .cardImagesSmall{
-    width: 100px!important;
+    width: 120px!important;
     margin: 0 !important;
     padding: 0!important;
   }

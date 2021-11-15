@@ -61,16 +61,16 @@ function loadDeckPricer() {
   <div id="deck">
     <div id="deck_creator"></div>
     <hr>
-    <h2>Main Deck </h2>
+    <h2>${deckPricer_mainDeck}</h2>
     <div id="deck_main"></div>
     <hr>
-    <h2>Extra Deck </h2>
+    <h2>${deckPricer_extraDeck}</h2>
     <div id="deck_extra"></div>
     <hr>
-    <h2>Side Deck </h2>
+    <h2>${deckPricer_sideDeck}</h2>
     <div id="deck_side"></div>
   </div>
-  <button type="button" class="btn btn-secondary btn-lg btn-block blackButton" onclick="searchLowestPrices()" >Price Breakdown</button>
+  <button type="button" class="btn btn-secondary btn-lg btn-block blackButton" onclick="searchLowestPrices()" >${deckPricer_button}</button>
   <br>
   <br>
   <div id="deck_info">
@@ -93,16 +93,23 @@ function loadDeckPricer() {
 }
 
 function searchLowestPrices(){
-  let totalprice = 0
+
+
+  lowestPriceForDeck = {
+    mainDeck: [],
+    extraDeck: [],
+    sideDeck: [],
+  };
+
   deckInfo = document.getElementById("deck_info")
   deckInfo.innerHTML=  `  
   <table class="table table-hover" >
     <thead>
       <tr>
-        <th scope="col">Card</th>
-        <th scope="col">Rarity</th>
-        <th scope="col">Set Code</th>
-        <th scope="col">Lowest Price</th>
+        <th scope="col">${deckPricer_card}</th>
+        <th scope="col">${deckPricer_rarity}</th>
+        <th scope="col">${deckPricer_setCode}</th>
+        <th scope="col">${deckPricer_lowestPrice}</th>
       </tr>
     </thead>
     <tbody id='deckInfo_table'>
@@ -136,9 +143,15 @@ function searchLowestPrices(){
   </tr>
    `
   searchLowestDeckValue(deck.sideDeck)
-  let decktotalprice = lowestPriceForDeck.mainDeck.reduce((a, b) => a + b, 0);
-  let extradecktotalprice = lowestPriceForDeck.extraDeck.reduce((a, b) => a + b, 0);
-  let sidedecktotalprice = lowestPriceForDeck.sideDeck.reduce((a, b) => a + b, 0);
+  let totalprice = 0
+  let decktotalprice = 0
+  let extradecktotalprice = 0
+  let sidedecktotalprice = 0
+  
+  console.log()
+  decktotalprice = lowestPriceForDeck.mainDeck.reduce((a, b) => a + b, 0);
+  extradecktotalprice = lowestPriceForDeck.extraDeck.reduce((a, b) => a + b, 0);
+  sidedecktotalprice = lowestPriceForDeck.sideDeck.reduce((a, b) => a + b, 0);
   totalprice = decktotalprice+extradecktotalprice+sidedecktotalprice
   deckInfo_table.innerHTML+= `
   <tr style="background-color: black">
@@ -150,7 +163,7 @@ function searchLowestPrices(){
    `  
    deckInfo_table.innerHTML+= `
    <tr>
-     <td>Total price for Main Deck : </td>
+     <td>${deckPricer_tp}${deckPricer_mainDeck} : </td>
      <td></td>
      <td></td>
      <td>$${decktotalprice.toFixed(2)}</td>
@@ -158,7 +171,7 @@ function searchLowestPrices(){
     `  
    deckInfo_table.innerHTML+= `
    <tr>
-     <td>Total price for Extra Deck : </td>
+     <td>${deckPricer_tp}${deckPricer_extraDeck} : </td>
      <td></td>
      <td></td>
      <td>$${extradecktotalprice.toFixed(2)}</td>
@@ -166,7 +179,7 @@ function searchLowestPrices(){
     `
     deckInfo_table.innerHTML+= `
     <tr>
-      <td>Total price for Side Deck : </td>
+      <td>${deckPricer_tp}${deckPricer_sideDeck} : </td>
       <td></td>
       <td></td>
       <td>$${sidedecktotalprice.toFixed(2)}</td>
@@ -175,7 +188,7 @@ function searchLowestPrices(){
 
      deckInfo_table.innerHTML+= `
      <tr>
-       <td>Total price for Deck : </td>
+       <td>${deckPricer_tp}${deckPricer_deck} : </td>
        <td></td>
        <td></td>
        <td>$${totalprice.toFixed(2)}</td>
