@@ -70,3 +70,12 @@ los perfiles
 - El jugador competitivo (gasta mucha plata en cartas caras que luego revende para comprar cartas mas actuales)
 - El coleccionista (no juega, colecciona cartas de las primeras generaciones)
 - Jugador nostalgia (vio el anime y le recuerda la infancia, no juega mas que los juegos viejos)
+
+-------------------------------------------------------------------
+https://db.ygorganization.com/data/card/13092
+
+https://db.ygorganization.com/data/meta/auto
+
+https://db.ygorganization.com/data/meta/mprop
+
+https://db.ygorganization.com/about/api

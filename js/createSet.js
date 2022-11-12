@@ -7,6 +7,7 @@ function createSet(set,textValue1,textValue2,textValue3,textValue4,textValue5){
 	setDate = visibleSet[3]
 	setImage = setName.replace(/ /g, "_");
 	setImage = setImage.replace(/:/g,"_");
+    setImage = setImage.replace(/-/g, "_");
 
 	subContent2.innerHTML+= 
 	`
@@ -15,7 +16,7 @@ function createSet(set,textValue1,textValue2,textValue3,textValue4,textValue5){
 
 			<div class="setImage"> 
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${setImage}">
-					<img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
+					<img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
 			
 				</button>
 			</div>
@@ -29,7 +30,7 @@ function createSet(set,textValue1,textValue2,textValue3,textValue4,textValue5){
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content modalImage">
 						
-						<img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" class="close" data-dismiss="modal">
+						<img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${name}" class="close" data-dismiss="modal">
 
 					</div>
 				</div>

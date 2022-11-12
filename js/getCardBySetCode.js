@@ -88,7 +88,7 @@ function getCardSetCode(e) {
           whatType(results.data[0]);
 
           function replaceCardImage(){
-            currentSetImage = `https://static-3.studiobebop.net/ygo_data/card_variants/${cardSetCode}.jpg`
+            currentSetImage = `https://static-7.studiobebop.net/ygo_data/card_variants/${cardSetCode}.jpg`
 
             var previousImage = document.getElementById(`${results.data[0].id}_image`).src 
 
@@ -97,7 +97,7 @@ function getCardSetCode(e) {
 
             var value = document.getElementById(`${results.data[0].id}_image`).src
 
-            if (value == "https://static-3.studiobebop.net/ygo_data/card_missing.jpg") {
+            if (value == "https://static-7.studiobebop.net/ygo_data/card_missing.jpg") {
             console.log("No set image, default image restored") 
             document.getElementById(`${results.data[0].id}_image`).src = previousImage
             document.getElementById(`${results.data[0].id}_imageModal`).src = previousImage

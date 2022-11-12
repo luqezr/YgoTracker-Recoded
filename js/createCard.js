@@ -76,22 +76,22 @@ function assignValuesToCard(
 
   // Card Image Big
   if (card.card_images === undefined) {
-    cardImage = `https://storage.googleapis.com/ygoprodeck.com/pics/${id}.jpg`;
+    cardImage = `https://images.ygoprodeck.com/images/cards/${id}.jpg`;
   } else {
     cardImage = card.card_images[0].image_url;
   }
   if (images === false) {
-    cardImage = `https://storage.googleapis.com/ygoprodeck.com/pics/${id}.jpg`;
+    cardImage = `https://images.ygoprodeck.com/images/cards/${id}.jpg`;
   }
 
   // Card Image Small https://storage.googleapis.com/ygoprodeck.com/pics_small/
   if (card.card_images === undefined) {
-    cardImage_small = `https://storage.googleapis.com/ygoprodeck.com/pics_small/${id}.jpg`;
+    cardImage_small = `https://images.ygoprodeck.com/images/cards/pics_small/${id}.jpg`;
   } else {
     cardImage_small = card.card_images[0].image_url_small;
   }
   if (images === false) {
-    cardImage_small = `https://storage.googleapis.com/ygoprodeck.com/pics_small/${id}.jpg`;
+    cardImage_small = `https://images.ygoprodeck.com/images/cards/pics_small/${id}.jpg`;
   }
 
 
